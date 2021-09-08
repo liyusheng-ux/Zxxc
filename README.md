@@ -61,6 +61,6 @@
 在校开发不易，如对您有帮助，您可以给予我们一点支持
 
 支付宝：
-![支付宝](https://images.gitee.com/uploads/images/2021/0908/120223_b882a30f_1616166.png "屏幕截图.png")
+![支付宝](https://images.gitee.com/uploads/images/2021/0908/120223_b882a30f_1616166.png =128x128))
 微信：
-![微信](https://images.gitee.com/uploads/images/2021/0908/120333_894f5c7e_1616166.png "屏幕截图.png")
+![微信](https://images.gitee.com/uploads/images/2021/0908/120333_894f5c7e_1616166.png =128x128))
