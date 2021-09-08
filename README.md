@@ -58,9 +58,9 @@
 
 但我们仍记得，我们对这个项目付出的热情和精力
 
-在校开发不易，如对您有帮助，您可以给予我们一点支持
+在校开发不易，如对您有帮助，您可以给予我们一点支持!
 
 + ##### 支付宝
-![支付宝](https://images.gitee.com/uploads/images/2021/0908/120223_b882a30f_1616166.png){:height="128px" width="128px"}
+<img src="https://images.gitee.com/uploads/images/2021/0908/120223_b882a30f_1616166.png" alt="支付宝打赏二维码" width="128px" height="128px">
 + ##### 微信
-![微信](https://images.gitee.com/uploads/images/2021/0908/120333_894f5c7e_1616166.png){:height="128px" width="128px"}
+<img src="https://images.gitee.com/uploads/images/2021/0908/120333_894f5c7e_1616166.png" alt="微信打赏二维码" width="128px" height="128px">
