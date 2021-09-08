@@ -3802,7 +3802,7 @@ CREATE TABLE `admin`  (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1, 'admin', '1209577113, '123456', '21d4356b-d72f-4336-aafa-404cd4f4396b.jpg');
+INSERT INTO `admin` VALUES (1, 'admin', '1209577113', '123456', '21d4356b-d72f-4336-aafa-404cd4f4396b.jpg');
 INSERT INTO `admin` VALUES (2, '1311972563', 'jackma', 'mdl123.0', NULL);
 INSERT INTO `admin` VALUES (3, '4117751414', 'drli', 'l123.0', NULL);
 
