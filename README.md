@@ -25,7 +25,7 @@
 3. 该项目是我们几个学生在校合作完成的一个练习项目，目的是让编程初学者和应届毕业生可以参考一下用较少的代码实现一个完整MVC模式，Spring Boot体系的电商项目，相关领域大神们可以给我们建议，让我们做得更好。
 
 ### 项目界面
-+ ##### 后台界面(部分)
++ ##### 后台界面(部分)---
 ![主页](https://images.gitee.com/uploads/images/2019/0720/132736_629d409d_1616166.png "主页.png")
 ![所有产品](https://images.gitee.com/uploads/images/2019/0720/132752_a9065bdc_1616166.png "所有产品.png")
 ![产品详情](https://images.gitee.com/uploads/images/2019/0720/132804_07364d8e_1616166.png "产品详情.png")
@@ -61,6 +61,7 @@
 在校开发不易，如对您有帮助，您可以给予我们一点支持!
 
 + ##### 支付宝
-<img src="https://images.gitee.com/uploads/images/2021/0908/120223_b882a30f_1616166.png" alt="支付宝打赏二维码" width="128px" height="128px">
+<img src="https://images.gitee.com/uploads/images/2021/0908/120223_b882a30f_1616166.png" alt="支付宝打赏二维码" width="128px" height="128px"/>
+
 + ##### 微信
-<img src="https://images.gitee.com/uploads/images/2021/0908/120333_894f5c7e_1616166.png" alt="微信打赏二维码" width="128px" height="128px">
+<img src="https://images.gitee.com/uploads/images/2021/0908/120333_894f5c7e_1616166.png" alt="微信打赏二维码" width="128px" height="128px"/>
