@@ -1,36 +1,28 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 阿里云天猫
- Source Server Type    : MySQL
- Source Server Version : 50717
- Source Host           : 39.107.88.195:3306
- Source Schema         : tmalldemodb
-
- Target Server Type    : MySQL
- Target Server Version : 50717
- File Encoding         : 65001
-
- Date: 09/09/2019 19:45:41
+ Date: 18/09/2021 13:53:40
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
+DROP DATABASE IF EXISTS `tmalldemodb`;
 CREATE DATABASE tmalldemodb;
 USE tmalldemodb;
+
 -- ----------------------------
 -- Table structure for address
 -- ----------------------------
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address`  (
-  `address_areaId` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `address_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `address_regionId` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`address_areaId`) USING BTREE,
-  INDEX `address_regionId`(`address_regionId`) USING BTREE,
-  CONSTRAINT `address_ibfk_1` FOREIGN KEY (`address_regionId`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+    `address_areaId` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    `address_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    `address_regionId` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    PRIMARY KEY (`address_areaId`) USING BTREE,
+    INDEX `address_regionId`(`address_regionId`) USING BTREE,
+    CONSTRAINT `address_ibfk_1` FOREIGN KEY (`address_regionId`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of address
@@ -3797,25 +3789,23 @@ CREATE TABLE `admin`  (
   PRIMARY KEY (`admin_id`) USING BTREE,
   UNIQUE INDEX `un_admin_name`(`admin_name`) USING BTREE,
   INDEX `un_admin_nickname`(`admin_nickname`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1, 'admin', '1209577113', '123456', '21d4356b-d72f-4336-aafa-404cd4f4396b.jpg');
-INSERT INTO `admin` VALUES (2, '1311972563', 'jackma', 'mdl123.0', NULL);
-INSERT INTO `admin` VALUES (3, '4117751414', 'drli', 'l123.0', NULL);
+INSERT INTO `admin` VALUES (1, 'admin', 'admin', '123456', '21d4356b-d72f-4336-aafa-404cd4f4396b.jpg');
 
 -- ----------------------------
 -- Table structure for category
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category`  (
-  `category_id` int(10) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `category_image_src` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`category_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+     `category_id` int(10) NOT NULL AUTO_INCREMENT,
+     `category_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+     `category_image_src` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+     PRIMARY KEY (`category_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of category
@@ -3842,129 +3832,131 @@ INSERT INTO `category` VALUES (16, '图书音像', '4601eb3f-2a7a-45d2-809d-8d0b
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product`  (
-  `product_id` int(10) NOT NULL AUTO_INCREMENT,
-  `product_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `product_title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `product_price` decimal(10, 2) NULL DEFAULT NULL,
-  `product_sale_price` decimal(10, 2) NOT NULL,
-  `product_create_date` datetime(0) NOT NULL,
-  `product_category_id` int(10) NOT NULL,
-  `product_isEnabled` tinyint(1) NOT NULL DEFAULT 0,
-  `product_sale_count` int(10) NOT NULL DEFAULT 0,
-  `product_review_count` int(10) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`product_id`) USING BTREE,
-  INDEX `product_ibfk_1`(`product_category_id`) USING BTREE,
-  INDEX `cn_product_name`(`product_name`) USING BTREE,
-  INDEX `cn_product_title`(`product_title`) USING BTREE,
-  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`product_category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 90 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+                            `product_id` int(10) NOT NULL AUTO_INCREMENT,
+                            `product_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+                            `product_title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                            `product_price` decimal(10, 2) NULL DEFAULT NULL,
+                            `product_sale_price` decimal(10, 2) NOT NULL,
+                            `product_create_date` datetime(0) NOT NULL,
+                            `product_category_id` int(10) NOT NULL,
+                            `product_isEnabled` tinyint(1) NOT NULL DEFAULT 0,
+                            `product_sale_count` int(10) NOT NULL DEFAULT 0,
+                            `product_review_count` int(10) NOT NULL DEFAULT 0,
+                            PRIMARY KEY (`product_id`) USING BTREE,
+                            INDEX `product_ibfk_1`(`product_category_id`) USING BTREE,
+                            INDEX `cn_product_name`(`product_name`) USING BTREE,
+                            INDEX `cn_product_title`(`product_title`) USING BTREE,
+                            CONSTRAINT `product_ibfk_1` FOREIGN KEY (`product_category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 92 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES (1, '2018春装新款韩版潮学生宽松薄款卫衣女长袖ins超火的上衣服外套', '春装新款百搭~~', 119.00, 79.00, '2018-04-24 10:36:23', 1, 0, 1221, 17);
-INSERT INTO `product` VALUES (2, '乔琪诺牛仔卫衣女中长款连帽套头中袖韩版宽松2018新款连衣裙夏', '乔琪诺原创设计 送运费险', 270.00, 199.00, '2018-04-24 10:54:59', 1, 0, 2, 1);
-INSERT INTO `product` VALUES (3, '花花公子春季男士长袖衬衫免烫中青年休闲衬衣潮流男装印花衬衣', '送运费险 放心购物', 288.00, 139.00, '2018-04-24 10:58:08', 2, 0, 0, 0);
-INSERT INTO `product` VALUES (4, '人本高帮帆布鞋内增高布鞋高邦高腰单鞋牛仔布系带学院风学生款女', '帆布鞋', 150.00, 75.00, '2018-04-24 11:00:25', 3, 0, 0, 0);
-INSERT INTO `product` VALUES (5, '2018新款ins超火短款连帽卫衣女夏春季bf风薄款帽衫潮学生宽松', '潮流卫衣', 108.00, 69.00, '2018-04-24 11:06:45', 1, 0, 1, 0);
-INSERT INTO `product` VALUES (6, '花花公子牛仔裤男修身款 秋冬季直筒商务休闲弹力男士牛仔长裤子', '花花公子正品 默认圆通 送运费险', 259.00, 159.00, '2018-04-24 11:08:18', 2, 0, 0, 0);
+INSERT INTO `product` VALUES (1, '2018春装新款韩版潮学生宽松薄款卫衣女长袖ins超火的上衣服外套', '春装新款百搭~~', 119.00, 79.00, '2018-04-24 10:36:23', 1, 0, 3302, 33);
+INSERT INTO `product` VALUES (2, '乔琪诺牛仔卫衣女中长款连帽套头中袖韩版宽松2018新款连衣裙夏', '乔琪诺原创设计 送运费险', 270.00, 199.00, '2018-04-24 10:54:59', 1, 0, 12, 1);
+INSERT INTO `product` VALUES (3, '花花公子春季男士长袖衬衫免烫中青年休闲衬衣潮流男装印花衬衣', '送运费险 放心购物', 288.00, 139.00, '2018-04-24 10:58:08', 2, 0, 8, 3);
+INSERT INTO `product` VALUES (4, '人本高帮帆布鞋内增高布鞋高邦高腰单鞋牛仔布系带学院风学生款女', '帆布鞋', 150.00, 75.00, '2018-04-24 11:00:25', 3, 0, 1, 1);
+INSERT INTO `product` VALUES (5, '2018新款ins超火短款连帽卫衣女夏春季bf风薄款帽衫潮学生宽松', '潮流卫衣', 108.00, 69.00, '2018-04-24 11:06:45', 1, 0, 3, 0);
+INSERT INTO `product` VALUES (6, '花花公子牛仔裤男修身款 秋冬季直筒商务休闲弹力男士牛仔长裤子', '花花公子正品 默认圆通 送运费险', 259.00, 159.00, '2018-04-24 11:08:18', 2, 0, 3, 0);
 INSERT INTO `product` VALUES (7, '人本韩版女式低帮百搭帆布鞋系带浅口学生白色小白鞋文艺清新单鞋', '低帮帆布鞋', 169.00, 59.00, '2018-04-24 11:15:40', 3, 0, 0, 0);
 INSERT INTO `product` VALUES (8, '花花公子长袖衬衫男士印花翻领薄款商务休闲衬衣中青年秋款男装潮', '潮男焕新 舒适体验 帅气有型 赠运费险', 239.00, 139.00, '2018-04-24 11:16:57', 2, 0, 5, 1);
-INSERT INTO `product` VALUES (9, '早春新款韩版宽松长袖卫衣女连帽2018超火ins上衣学生百搭慵懒风', '早春新款宽松连帽卫衣', 142.00, 79.00, '2018-04-24 11:18:19', 1, 0, 5, 0);
+INSERT INTO `product` VALUES (9, '早春新款韩版宽松长袖卫衣女连帽2018超火ins上衣学生百搭慵懒风', '早春新款宽松连帽卫衣', 142.00, 79.00, '2018-04-24 11:18:19', 1, 0, 9, 3);
 INSERT INTO `product` VALUES (10, '花花公子春季卫衣男装圆领套头长袖t恤青年男士简约绣花打底衫潮', '花花公子正品 默认圆通 送运费险', 258.00, 139.00, '2018-04-24 11:22:48', 2, 0, 1, 0);
-INSERT INTO `product` VALUES (11, '手绘单鞋韩版学生高帮女童帆布板鞋休闲男女鞋春秋夜光球鞋女', '送运费险 画工细腻 做工精致 穿着舒适', 90.00, 59.80, '2018-04-24 11:27:43', 3, 0, 1, 1);
-INSERT INTO `product` VALUES (12, '【明星同款】妖精的口袋ins半袖t恤夏装2018新款圆领纯棉短袖女J=', '【宋佳同款】圆领宽松 趣味大片印花', 179.00, 129.00, '2018-04-24 11:31:17', 1, 0, 0, 0);
-INSERT INTO `product` VALUES (13, '韩版潮帆布鞋女 平跟学生板鞋 女鞋 高帮运动鞋牛仔休闲秋鞋子', '韩版潮帆', 139.00, 59.00, '2018-04-24 11:34:30', 3, 0, 3, 0);
+INSERT INTO `product` VALUES (11, '手绘单鞋韩版学生高帮女童帆布板鞋休闲男女鞋春秋夜光球鞋女', '送运费险 画工细腻 做工精致 穿着舒适', 90.00, 59.80, '2018-04-24 11:27:43', 3, 0, 5, 2);
+INSERT INTO `product` VALUES (12, '【明星同款】妖精的口袋ins半袖t恤夏装2018新款圆领纯棉短袖女J=', '【宋佳同款】圆领宽松 趣味大片印花', 179.00, 129.00, '2018-04-24 11:31:17', 1, 0, 1, 0);
+INSERT INTO `product` VALUES (13, '韩版潮帆布鞋女 平跟学生板鞋 女鞋 高帮运动鞋牛仔休闲秋鞋子', '韩版潮帆', 139.00, 59.00, '2018-04-24 11:34:30', 3, 0, 5, 1);
 INSERT INTO `product` VALUES (14, 'YOVCA手绘情侣鞋平底大码板鞋高帮帆布鞋女鞋男鞋休闲鞋动漫周边', 'YOVCA手绘', 59.00, 59.00, '2018-04-24 11:38:17', 3, 0, 3, 1);
-INSERT INTO `product` VALUES (15, '逸阳女裤2018新款夏季牛仔裤女毛边显瘦弹力铅笔小脚裤九分裤2015', '小脚睫毛裤脚 时尚磨白 隐藏美人心机', 159.00, 159.00, '2018-04-24 11:39:50', 1, 0, 2, 1);
-INSERT INTO `product` VALUES (16, '花花公子男士短袖衬衫条纹修身商务休闲青年免烫短袖衬衣男寸衫潮', '花花公子正品 默认圆通 送运费险', 239.00, 139.00, '2018-04-24 11:43:28', 2, 0, 1, 1);
-INSERT INTO `product` VALUES (17, '春季韩版原宿学生帆布鞋女港风板鞋平底运动鞋情侣休闲鞋软妹鞋潮', '涂鸦不规则 韩版潮鞋 个性板鞋', 228.00, 68.00, '2018-04-24 11:44:15', 3, 0, 6, 0);
-INSERT INTO `product` VALUES (18, 'Koradior/珂莱蒂尔品牌女装2018春装新款碎花高腰雪纺v领连衣裙女', '碎花短袖 雪纺v领连衣裙', 1887.00, 1136.00, '2018-04-24 11:47:27', 1, 0, 1, 0);
-INSERT INTO `product` VALUES (19, '热风2017春新款小白鞋女低帮鞋系带时尚女休闲鞋H14W7110', '支持30天退换货 （不影响二次销售情况下）', 129.00, 99.00, '2018-04-24 11:50:06', 3, 0, 0, 0);
-INSERT INTO `product` VALUES (20, '七匹狼短袖衬衫 2018夏季新款男士中青年纯色商务休闲白衬衣男装', '纯色百搭款', 379.00, 199.00, '2018-04-24 11:53:05', 2, 0, 9, 0);
+INSERT INTO `product` VALUES (15, '逸阳女裤2018新款夏季牛仔裤女毛边显瘦弹力铅笔小脚裤九分裤2015', '小脚睫毛裤脚 时尚磨白 隐藏美人心机', 159.00, 159.00, '2018-04-24 11:39:50', 1, 0, 3, 1);
+INSERT INTO `product` VALUES (16, '花花公子男士短袖衬衫条纹修身商务休闲青年免烫短袖衬衣男寸衫潮', '花花公子正品 默认圆通 送运费险', 239.00, 139.00, '2018-04-24 11:43:28', 2, 0, 2, 1);
+INSERT INTO `product` VALUES (17, '春季韩版原宿学生帆布鞋女港风板鞋平底运动鞋情侣休闲鞋软妹鞋潮', '涂鸦不规则 韩版潮鞋 个性板鞋', 228.00, 68.00, '2018-04-24 11:44:15', 3, 0, 9, 1);
+INSERT INTO `product` VALUES (18, 'Koradior/珂莱蒂尔品牌女装2018春装新款碎花高腰雪纺v领连衣裙女', '碎花短袖 雪纺v领连衣裙', 1887.00, 1136.00, '2018-04-24 11:47:27', 1, 0, 1032, 8);
+INSERT INTO `product` VALUES (19, '热风2017春新款小白鞋女低帮鞋系带时尚女休闲鞋H14W7110', '支持30天退换货 （不影响二次销售情况下）', 129.00, 99.00, '2018-04-24 11:50:06', 3, 0, 505, 0);
+INSERT INTO `product` VALUES (20, '七匹狼短袖衬衫 2018夏季新款男士中青年纯色商务休闲白衬衣男装', '纯色百搭款', 379.00, 199.00, '2018-04-24 11:53:05', 2, 0, 16, 2);
 INSERT INTO `product` VALUES (21, '2018新款运动服套装女装潮韩版时尚春秋季大码衣服休闲卫衣两件套', '关注店铺送10元无门槛 领券下单立减', 298.00, 139.00, '2018-04-24 11:54:29', 1, 0, 2, 0);
-INSERT INTO `product` VALUES (22, 'CHARLES＆KEITH春夏单鞋女CK1-60900081通勤尖头浅口猫跟小白鞋', '优雅猫跟 气质尖头', 339.00, 329.00, '2018-04-24 11:55:24', 3, 0, 0, 0);
+INSERT INTO `product` VALUES (22, 'CHARLES＆KEITH春夏单鞋女CK1-60900081通勤尖头浅口猫跟小白鞋', '优雅猫跟 气质尖头', 339.00, 329.00, '2018-04-24 11:55:24', 3, 0, 1005, 3);
 INSERT INTO `product` VALUES (23, '运动套装女夏装2018新款潮时尚女装短袖七分裤两件套夏天休闲衣服', '不起球 不掉色 30天无理由退换货', 198.00, 138.00, '2018-04-24 11:59:36', 1, 0, 2, 1);
-INSERT INTO `product` VALUES (24, 'CHARLES＆KEITH平底单鞋女CK1-70900076芭蕾舞绑带穆勒尖头小白鞋', '优雅绑带装饰', 339.00, 329.00, '2018-04-24 12:01:09', 3, 0, 3, 0);
+INSERT INTO `product` VALUES (24, 'CHARLES＆KEITH平底单鞋女CK1-70900076芭蕾舞绑带穆勒尖头小白鞋', '优雅绑带装饰', 339.00, 329.00, '2018-04-24 12:01:09', 3, 0, 4, 1);
 INSERT INTO `product` VALUES (25, '菲西娅阔腿裤套装女2018春装新款女装针织衫时尚休闲两件套潮夏季', '潮流套装', 755.00, 528.00, '2018-04-24 12:04:55', 1, 0, 5, 1);
-INSERT INTO `product` VALUES (26, '男士白衬衫短袖修身韩版潮流帅气2018新款夏季休闲百搭印花衬衣男', '收藏有惊喜 赠运费险 长袖短袖随心选', 155.00, 89.00, '2018-04-24 12:07:01', 2, 0, 7, 1);
-INSERT INTO `product` VALUES (27, 'Nike 耐克官方NIKE FREE METCON 男子训练鞋AH8141', '专为体能训练 和力量训练打造', 899.00, 899.00, '2018-04-24 12:09:12', 3, 0, 8, 1);
+INSERT INTO `product` VALUES (26, '男士白衬衫短袖修身韩版潮流帅气2018新款夏季休闲百搭印花衬衣男', '收藏有惊喜 赠运费险 长袖短袖随心选', 155.00, 89.00, '2018-04-24 12:07:01', 2, 0, 9, 2);
+INSERT INTO `product` VALUES (27, 'Nike 耐克官方NIKE FREE METCON 男子训练鞋AH8141', '专为体能训练 和力量训练打造', 899.00, 899.00, '2018-04-24 12:09:12', 3, 0, 23, 3);
 INSERT INTO `product` VALUES (28, 'SELECTED思莱德纯棉简约立领男士长款防风风衣外套BL|417121501', '7天退差价 防风按扣 斜拉链门襟', 999.00, 399.60, '2018-04-24 12:11:56', 2, 0, 2, 1);
 INSERT INTO `product` VALUES (29, '茵曼旗舰店纯棉长袖衬衫曼茵2018春装新款印花衬衣女上衣女装寸衫', '舒适亲肤新疆纯棉 少女水杯印花图案', 599.00, 169.00, '2018-04-24 12:12:26', 1, 0, 1, 0);
-INSERT INTO `product` VALUES (30, 'Nike 耐克官方 NIKE FLEX ESSENTIAL TR女子训练鞋 924344', '轻盈支撑', 469.00, 469.00, '2018-04-24 12:16:27', 3, 0, 16, 5);
-INSERT INTO `product` VALUES (31, '针织衫女开衫2018春装新款宽松韩版中长款2017秋装学生毛衣外套潮', '简约口袋设计 中长款版型毛衣外套', 228.00, 118.00, '2018-04-24 12:17:44', 1, 0, 11, 2);
-INSERT INTO `product` VALUES (32, '衣品天成男士短袖T恤夏季男装半袖衣服潮流韩版修身纯棉圆领体恤', '潮流韩版 字母短袖t恤男士', 208.00, 78.00, '2018-04-24 12:20:19', 2, 0, 6, 0);
-INSERT INTO `product` VALUES (33, '衣品天成2018夏季新款t恤男士短袖圆领纯色纯棉潮流韩版半袖体恤', '圆领半袖 体恤男士', 208.00, 78.90, '2018-04-24 12:25:03', 2, 0, 7, 1);
-INSERT INTO `product` VALUES (34, '白色T恤女短袖蕾丝上衣棉立方2018夏新款女装修身韩版圆领雪纺衫', '绣花公主袖 甜美荷叶边', 125.00, 59.00, '2018-04-24 12:25:07', 1, 0, 7, 1);
-INSERT INTO `product` VALUES (35, '衣品天成2018新款男士T恤潮流夏季印花半截袖青年韩版短袖体恤', '胸口个性印花装饰 时髦双色任你选', 100.00, 79.90, '2018-04-24 12:29:55', 2, 0, 6, 0);
-INSERT INTO `product` VALUES (36, '润乙一夏装2018新款女雪纺衫上衣超仙甜美碎花V领荷叶chic一字肩', '新款女雪纺衫', 268.00, 139.00, '2018-04-24 12:30:53', 1, 0, 7, 0);
-INSERT INTO `product` VALUES (37, '衣品天成2018夏季新款男士短袖T恤潮韩版假两件体恤早春打底小衫', '胸口个性字母印花 袖口个性撞色 假两件', 238.00, 79.90, '2018-04-24 12:37:42', 2, 0, 2, 1);
-INSERT INTO `product` VALUES (38, '短袖女2018新款夏装纯棉T恤女白色韩范宽松学生ulzzang百搭半袖女', '纯棉面料 两件可以领优惠卷10元', 98.00, 35.00, '2018-04-24 12:40:09', 1, 0, 10, 1);
-INSERT INTO `product` VALUES (39, 'GXG男装 2018夏季新品时尚胶印黑色休闲短裤男五分裤#182822204', '个性胶印设计 腰间抽绳', 429.00, 259.00, '2018-04-24 12:46:01', 2, 0, 6, 1);
-INSERT INTO `product` VALUES (40, '宽松短袖t恤女简约夏季印花ulzzang百搭2018新款黄色学生大码上衣', '1件49.9 2件69.9', 158.00, 69.90, '2018-04-24 12:49:01', 1, 0, 7, 0);
-INSERT INTO `product` VALUES (41, '小猪佩奇社会人佩琪短袖t恤成人衣服恶搞联名抖音潮牌tee男女半袖', '小猪佩奇', 198.00, 49.00, '2018-04-24 12:54:41', 1, 0, 121, 8);
-INSERT INTO `product` VALUES (42, '【2018年生肖纪念版】OPPO R11S 全面屏 拍照4G手机 oppor11s', '直降200元 6期免息', 2799.00, 2599.00, '2018-04-28 14:11:44', 6, 2, 1024, 18);
-INSERT INTO `product` VALUES (43, '赵薇酒庄梦陇法国红酒原装进口干红葡萄酒2支装波尔多绝代双骄III', '领券立减20元', 496.00, 288.00, '2018-04-28 14:19:30', 8, 2, 10, 1);
-INSERT INTO `product` VALUES (44, 'Xiaomi/小米 红米5A新品老人机拍照官网4a升级款小巧简约智能手机', '4.27-5.1 2+16G直降30元', 599.00, 569.00, '2018-04-28 14:54:52', 6, 2, 68, 2);
-INSERT INTO `product` VALUES (45, '【渐变樱粉金热卖中】Huawei/华为 P20 全面屏徕卡双摄正品4G手机', '旗舰新品 新一代徕卡双摄 AI摄影大师', 4288.00, 4088.00, '2018-04-28 15:00:28', 6, 2, 6, 1);
-INSERT INTO `product` VALUES (46, '360扫地机器人家用全自动吸尘器智能超薄静音拖地机擦地一体机', '黑色新品首发 领券直降200 抢豪礼', 2499.00, 1599.00, '2018-04-28 15:53:35', 10, 2, 17, 1);
+INSERT INTO `product` VALUES (30, 'Nike 耐克官方 NIKE FLEX ESSENTIAL TR女子训练鞋 924344', '轻盈支撑', 469.00, 469.00, '2018-04-24 12:16:27', 3, 0, 23, 8);
+INSERT INTO `product` VALUES (31, '针织衫女开衫2018春装新款宽松韩版中长款2017秋装学生毛衣外套潮', '简约口袋设计 中长款版型毛衣外套', 228.00, 118.00, '2018-04-24 12:17:44', 1, 0, 19, 3);
+INSERT INTO `product` VALUES (32, '衣品天成男士短袖T恤夏季男装半袖衣服潮流韩版修身纯棉圆领体恤', '潮流韩版 字母短袖t恤男士', 208.00, 78.00, '2018-04-24 12:20:19', 2, 0, 10, 1);
+INSERT INTO `product` VALUES (33, '衣品天成2018夏季新款t恤男士短袖圆领纯色纯棉潮流韩版半袖体恤', '圆领半袖 体恤男士', 208.00, 78.90, '2018-04-24 12:25:03', 2, 0, 11, 2);
+INSERT INTO `product` VALUES (34, '白色T恤女短袖蕾丝上衣棉立方2018夏新款女装修身韩版圆领雪纺衫', '绣花公主袖 甜美荷叶边', 125.00, 59.00, '2018-04-24 12:25:07', 1, 0, 15, 2);
+INSERT INTO `product` VALUES (35, '衣品天成2018新款男士T恤潮流夏季印花半截袖青年韩版短袖体恤', '胸口个性印花装饰 时髦双色任你选', 100.00, 79.90, '2018-04-24 12:29:55', 2, 0, 8, 0);
+INSERT INTO `product` VALUES (36, '润乙一夏装2018新款女雪纺衫上衣超仙甜美碎花V领荷叶chic一字肩', '新款女雪纺衫', 268.00, 139.00, '2018-04-24 12:30:53', 1, 0, 31, 3);
+INSERT INTO `product` VALUES (37, '衣品天成2018夏季新款男士短袖T恤潮韩版假两件体恤早春打底小衫', '胸口个性字母印花 袖口个性撞色 假两件', 238.00, 79.90, '2018-04-24 12:37:42', 2, 0, 35, 3);
+INSERT INTO `product` VALUES (38, '短袖女2018新款夏装纯棉T恤女白色韩范宽松学生ulzzang百搭半袖女', '纯棉面料 两件可以领优惠卷10元', 98.00, 35.00, '2018-04-24 12:40:09', 1, 0, 17, 2);
+INSERT INTO `product` VALUES (39, 'GXG男装 2018夏季新品时尚胶印黑色休闲短裤男五分裤#182822204', '个性胶印设计 腰间抽绳', 429.00, 259.00, '2018-04-24 12:46:01', 2, 0, 1025, 4);
+INSERT INTO `product` VALUES (40, '宽松短袖t恤女简约夏季印花ulzzang百搭2018新款黄色学生大码上衣', '1件49.9 2件69.9', 158.00, 69.90, '2018-04-24 12:49:01', 1, 0, 8, 0);
+INSERT INTO `product` VALUES (41, '小猪佩奇社会人佩琪短袖t恤成人衣服恶搞联名抖音潮牌tee男女半袖', '小猪佩奇', 198.00, 49.00, '2018-04-24 12:54:41', 1, 1, 1197, 21);
+INSERT INTO `product` VALUES (42, '【2018年生肖纪念版】OPPO R11S 全面屏 拍照4G手机 oppor11s', '直降200元 6期免息', 2799.00, 2599.00, '2018-04-28 14:11:44', 6, 2, 2052, 20);
+INSERT INTO `product` VALUES (43, '赵薇酒庄梦陇法国红酒原装进口干红葡萄酒2支装波尔多绝代双骄III', '领券立减20元', 496.00, 288.00, '2018-04-28 14:19:30', 8, 2, 1023, 4);
+INSERT INTO `product` VALUES (44, 'Xiaomi/小米 红米5A新品老人机拍照官网4a升级款小巧简约智能手机', '4.27-5.1 2+16G直降30元', 599.00, 569.00, '2018-04-28 14:54:52', 6, 2, 176, 3);
+INSERT INTO `product` VALUES (45, '【渐变樱粉金热卖中】Huawei/华为 P20 全面屏徕卡双摄正品4G手机', '旗舰新品 新一代徕卡双摄 AI摄影大师', 4288.00, 4088.00, '2018-04-28 15:00:28', 6, 2, 1030, 4);
+INSERT INTO `product` VALUES (46, '360扫地机器人家用全自动吸尘器智能超薄静音拖地机擦地一体机', '黑色新品首发 领券直降200 抢豪礼', 2499.00, 1599.00, '2018-04-28 15:53:35', 10, 2, 22, 1);
 INSERT INTO `product` VALUES (47, '【领券低至919】Meizu/魅族 魅蓝 Note6 疾速双摄 快充大电池', '满1299元领券 立减150元', 999.00, 999.00, '2018-04-28 16:08:27', 6, 2, 56, 0);
-INSERT INTO `product` VALUES (48, '【母亲节】雅诗兰黛小棕瓶眼霜 肌透修护眼部精华霜15ml 淡化细纹', '小棕瓶眼霜 多效修护 年轻睛采乍现', 490.00, 490.00, '2018-04-28 16:17:43', 4, 0, 2, 1);
-INSERT INTO `product` VALUES (49, '娇韵诗隔离 清透防晒乳SPF30PA++++（粉色）30ml透亮', '物理防晒 自然透亮 清透无压力', 420.00, 420.00, '2018-04-28 16:24:55', 4, 0, 0, 0);
+INSERT INTO `product` VALUES (48, '【母亲节】雅诗兰黛小棕瓶眼霜 肌透修护眼部精华霜15ml 淡化细纹', '小棕瓶眼霜 多效修护 年轻睛采乍现', 490.00, 490.00, '2018-04-28 16:17:43', 4, 0, 5, 3);
+INSERT INTO `product` VALUES (49, '娇韵诗隔离 清透防晒乳SPF30PA++++（粉色）30ml透亮', '物理防晒 自然透亮 清透无压力', 420.00, 420.00, '2018-04-28 16:24:55', 4, 0, 1, 0);
 INSERT INTO `product` VALUES (50, '娇韵诗V脸精华塑颜紧致精华露50ml双支套装 提拉小脸', '双支立减250元', 990.00, 990.00, '2018-04-28 16:30:12', 4, 0, 0, 0);
 INSERT INTO `product` VALUES (51, '娇韵诗青春赋活分龄精华水200ml 补水保湿定制年轻抗皱滋润修护', '活力光泽 肌肤吹弹可破 增强肌肤弹性', 360.00, 360.00, '2018-04-28 16:36:11', 4, 0, 0, 0);
 INSERT INTO `product` VALUES (52, '娇韵诗全明星眼霜15ml淡化细纹 提拉紧致舒缓眼肌肤', '一步修护多重问题 提拉眼角 改善眼袋', 500.00, 500.00, '2018-04-28 16:39:27', 4, 0, 0, 0);
 INSERT INTO `product` VALUES (53, '娇韵诗孕产准妈妈护理套装预防淡化修护身体纹提拉紧致', '美肌套装 预防淡化身体纹路', 1090.00, 1090.00, '2018-04-28 16:42:55', 4, 0, 1, 0);
 INSERT INTO `product` VALUES (54, '娇韵诗恒润奇肌保湿凝露50ml持久补水缓解干燥面霜', '卓效滋养 细腻柔滑', 470.00, 470.00, '2018-04-28 16:47:13', 4, 0, 0, 0);
-INSERT INTO `product` VALUES (55, 'IPSA茵芙莎三色遮瑕膏 遮盖脸部痘印痘痘斑点雀斑黑眼圈遮瑕盘', '全新升级 瑕疵隐形', 290.00, 290.00, '2018-04-28 16:54:57', 4, 0, 0, 0);
+INSERT INTO `product` VALUES (55, 'IPSA茵芙莎三色遮瑕膏 遮盖脸部痘印痘痘斑点雀斑黑眼圈遮瑕盘', '全新升级 瑕疵隐形', 290.00, 290.00, '2018-04-28 16:54:57', 4, 0, 1, 0);
 INSERT INTO `product` VALUES (56, 'IPSA茵芙莎蓝瘦子防晒霜 水润倍护防晒日乳EX 面部隔离防紫外线女', '双重倍护', 280.00, 280.00, '2018-04-28 16:57:30', 4, 0, 0, 0);
 INSERT INTO `product` VALUES (57, 'IPSA茵芙莎洗面奶 舒缓净润洁面乳 温和清洁脆弱修护保湿女男日本', '温和洁净 舒缓修护', 230.00, 230.00, '2018-04-28 17:00:22', 4, 0, 0, 0);
 INSERT INTO `product` VALUES (58, 'IPSA茵芙莎水乳套装UL 流金水自律循环美肌液护肤品套装 林允同款', '臻享2件礼', 1200.00, 1200.00, '2018-04-28 17:05:44', 4, 0, 0, 0);
 INSERT INTO `product` VALUES (59, '雅诗兰黛大牌洗面奶红石榴泡沫洁面乳125ml清洁保湿', '一支双效 透亮肌肤', 280.00, 280.00, '2018-04-28 17:46:37', 4, 0, 0, 0);
 INSERT INTO `product` VALUES (60, '【母亲节】雅诗兰黛眼霜 小棕瓶密集修护眼精华 紧致修护淡化细纹', '密集修护 创新支撑科技 淡化熊猫眼', 590.00, 590.00, '2018-04-28 17:52:17', 4, 0, 1, 0);
-INSERT INTO `product` VALUES (61, '雅诗兰黛面膜 小棕瓶密集修护肌透面膜贴4/8片装套装 补水保湿', '内外双膜深修护 肌肤晶莹剔透', 1190.00, 680.00, '2018-04-28 17:56:18', 4, 0, 2, 0);
-INSERT INTO `product` VALUES (62, '雅诗兰黛红石榴眼霜 鲜活亮采眼部凝露 保湿提亮 淡化熊猫眼', '排浊提亮 淡化熊猫眼', 350.00, 350.00, '2018-04-28 18:00:00', 4, 0, 1, 0);
-INSERT INTO `product` VALUES (63, '男士洗发水沐浴露套装古龙香味持久留香去屑止痒洗头膏液洗浴套装', '部分地区次日到达', 158.00, 44.90, '2018-04-28 18:05:39', 4, 0, 1, 0);
-INSERT INTO `product` VALUES (64, '海飞丝鹿晗洗发水丝质柔滑去屑止痒洗头露膏套装男女士500ml*3', '随机抢旅行装', 198.50, 109.00, '2018-04-28 18:09:46', 4, 0, 6, 0);
+INSERT INTO `product` VALUES (61, '雅诗兰黛面膜 小棕瓶密集修护肌透面膜贴4/8片装套装 补水保湿', '内外双膜深修护 肌肤晶莹剔透', 1190.00, 680.00, '2018-04-28 17:56:18', 4, 0, 3, 0);
+INSERT INTO `product` VALUES (62, '雅诗兰黛红石榴眼霜 鲜活亮采眼部凝露 保湿提亮 淡化熊猫眼', '排浊提亮 淡化熊猫眼', 350.00, 350.00, '2018-04-28 18:00:00', 4, 0, 2, 0);
+INSERT INTO `product` VALUES (63, '男士洗发水沐浴露套装古龙香味持久留香去屑止痒洗头膏液洗浴套装', '部分地区次日到达', 158.00, 44.90, '2018-04-28 18:05:39', 4, 0, 2, 0);
+INSERT INTO `product` VALUES (64, '海飞丝鹿晗洗发水丝质柔滑去屑止痒洗头露膏套装男女士500ml*3', '随机抢旅行装', 198.50, 109.00, '2018-04-28 18:09:46', 4, 0, 7, 1);
 INSERT INTO `product` VALUES (65, '睿嫣润膏舒盈洗发水250ml女士coco香水洗护合一持久留香韩国进口', '润泽秀发 洗护2合1香水洗发水', 99.00, 59.00, '2018-04-28 18:15:26', 4, 0, 0, 0);
 INSERT INTO `product` VALUES (66, '乔治卡罗尔男士洗发水沐浴露套装控油去屑持久留香味洗头膏露洗浴', '买1送2 收藏送香水 加购送洗面奶', 159.00, 59.90, '2018-04-28 18:19:02', 4, 0, 2, 0);
-INSERT INTO `product` VALUES (67, '清扬洗发水露男士活力运动薄荷控油去屑滋养官方正品套装500g*3', '专为男士设计 从根源解决头屑烦恼', 209.40, 109.00, '2018-04-28 18:23:19', 4, 0, 1, 0);
-INSERT INTO `product` VALUES (68, 'Danielwellington丹尼尔惠灵顿DW金属表带女生简约时尚石英腕表', '全新系列 金属表带 2年保修 瑞典品牌', 1190.00, 1190.00, '2018-04-28 18:34:32', 5, 0, 2, 1);
-INSERT INTO `product` VALUES (69, 'DanielWellington丹尼尔惠灵顿DW黑手表织纹带男表黑表盘', '瑞典品牌 顺丰包邮 2年保修 进口腕表', 1350.00, 1350.00, '2018-04-28 18:40:53', 5, 0, 0, 0);
+INSERT INTO `product` VALUES (67, '清扬洗发水露男士活力运动薄荷控油去屑滋养官方正品套装500g*3', '专为男士设计 从根源解决头屑烦恼', 209.40, 109.00, '2018-04-28 18:23:19', 4, 0, 7, 2);
+INSERT INTO `product` VALUES (68, 'Danielwellington丹尼尔惠灵顿DW金属表带女生简约时尚石英腕表', '全新系列 金属表带 2年保修 瑞典品牌', 1190.00, 1190.00, '2018-04-28 18:34:32', 5, 0, 6, 1);
+INSERT INTO `product` VALUES (69, 'DanielWellington丹尼尔惠灵顿DW黑手表织纹带男表黑表盘', '瑞典品牌 顺丰包邮 2年保修 进口腕表', 1350.00, 1350.00, '2018-04-28 18:40:53', 5, 0, 2, 0);
 INSERT INTO `product` VALUES (70, '【直营】ARMANI/阿玛尼手表女气质名媛时尚优雅镶钻石英表AR1925', '欧美时尚 气质经典 优雅潮流', 2059.00, 1799.00, '2018-04-28 18:46:03', 5, 0, 2, 1);
-INSERT INTO `product` VALUES (71, '【直营】香港直邮天梭力洛克系列全自动机械男表正品', '香港直邮 正品保证', 2609.00, 2559.00, '2018-04-28 18:51:12', 5, 0, 4, 1);
+INSERT INTO `product` VALUES (71, '【直营】香港直邮天梭力洛克系列全自动机械男表正品', '香港直邮 正品保证', 2609.00, 2559.00, '2018-04-28 18:51:12', 5, 0, 3014, 2);
 INSERT INTO `product` VALUES (72, '分期购 瑞士天梭Tissot 男表石英表T033.410.11.053.01钢带手表男', '全球联保 天猫八年老店 正品保证 顺丰', 1750.00, 1118.00, '2018-04-28 18:56:16', 5, 0, 0, 0);
-INSERT INTO `product` VALUES (73, '新款罗西尼手表男潮自动机械男表 正品防水皮带时尚男士表616725', '澎湃海蓝 品质非凡 进口机芯 精准可靠', 3800.00, 1399.00, '2018-04-28 19:01:40', 5, 0, 0, 0);
+INSERT INTO `product` VALUES (73, '新款罗西尼手表男潮自动机械男表 正品防水皮带时尚男士表616725', '澎湃海蓝 品质非凡 进口机芯 精准可靠', 3800.00, 1399.00, '2018-04-28 19:01:40', 5, 0, 1, 0);
 INSERT INTO `product` VALUES (74, '仲尼Johnny同款 天王表男表自动机械表皮带日历休闲腕表GS5956', '12期分期免息 评价晒图有礼', 1599.00, 1599.00, '2018-04-28 19:06:15', 5, 0, 0, 0);
 INSERT INTO `product` VALUES (75, '海鸥手表男士皮带腕表时尚多功能镂空防水男表自动机械表219.328', '七天无理由 飞轮表', 3400.00, 1480.00, '2018-04-28 19:09:48', 5, 0, 1, 0);
 INSERT INTO `product` VALUES (76, 'G-SHOCK旗舰店官网DW-5600BB卡西欧运动防水男士手表方块gshock', '复古运动表', 790.00, 790.00, '2018-04-28 19:16:19', 5, 0, 0, 0);
 INSERT INTO `product` VALUES (77, 'casio卡西欧G-SHOCK旗舰店官网GA-700运动男士电子手表男表gshock', '防震防磁 200米防水 LED照明', 990.00, 990.00, '2018-04-28 19:21:11', 5, 0, 5, 0);
-INSERT INTO `product` VALUES (78, '卡西欧CASIO手表男士正品防水精钢带MTP-1374D-7A三眼休闲石英表', '商务休闲 下单即送表带一条', 598.00, 298.00, '2018-04-28 19:25:43', 5, 0, 2, 0);
+INSERT INTO `product` VALUES (78, '卡西欧CASIO手表男士正品防水精钢带MTP-1374D-7A三眼休闲石英表', '商务休闲 下单即送表带一条', 598.00, 298.00, '2018-04-28 19:25:43', 5, 0, 3, 1);
 INSERT INTO `product` VALUES (79, 'CASIO卡西欧G-SHOCK旗舰店官网DW-5035运动男士手表男表Gshock', '5035运动男士 手表男表', 1190.00, 1190.00, '2018-04-28 19:29:47', 5, 0, 1, 0);
 INSERT INTO `product` VALUES (80, 'SUUNTO颂拓松拓斯巴达极速光电心率运动骑行跑步智能腕表户外手表', '光电心率 触摸彩屏', 4290.00, 4089.00, '2018-04-28 19:36:29', 5, 0, 1, 0);
 INSERT INTO `product` VALUES (81, '军拓铁腕5心率监测GPS户外功能运动导航智能手表铁人三项马拉松表', '权威授时 15天误差小于1秒 双星定位', 2999.00, 2999.00, '2018-04-28 19:40:47', 5, 0, 1, 0);
 INSERT INTO `product` VALUES (82, 'PANDORA潘多拉 华丽蝴蝶结手链925银手链597242CZ气质时尚简约女', '官方直售 正品保证 新品上市', 598.00, 598.00, '2018-04-28 19:45:55', 5, 0, 0, 0);
 INSERT INTO `product` VALUES (83, '施华洛世奇DUO恶魔之眼项链时尚气质女短款锁骨链首饰', '官方直售 全国专柜联保', 990.00, 990.00, '2018-04-28 19:53:43', 5, 0, 8, 0);
-INSERT INTO `product` VALUES (84, 'BOLON暴龙2018新款复古蛤蟆镜男金属框太阳镜革新墨镜眼镜BL7021', '2018新款 BL7021', 798.00, 668.00, '2018-04-28 20:01:35', 5, 0, 1, 1);
+INSERT INTO `product` VALUES (84, 'BOLON暴龙2018新款复古蛤蟆镜男金属框太阳镜革新墨镜眼镜BL7021', '2018新款 BL7021', 798.00, 668.00, '2018-04-28 20:01:35', 5, 0, 2, 1);
 INSERT INTO `product` VALUES (85, 'beta', '11', 11.00, 11.00, '2018-05-25 14:30:17', 16, 1, 0, 0);
 INSERT INTO `product` VALUES (86, '测试', '测试标题', 19.00, 15.00, '2018-05-25 17:35:32', 1, 1, 0, 0);
 INSERT INTO `product` VALUES (87, '测试3', '测试', 12.00, 10.00, '2018-05-26 16:02:33', 1, 1, 0, 0);
 INSERT INTO `product` VALUES (88, '测试4', '测试', 15.00, 10.00, '2018-05-26 16:45:41', 1, 1, 0, 0);
 INSERT INTO `product` VALUES (89, '测试', '测试', 1.00, 1.00, '2018-05-23 14:00:16', 1, 1, 0, 0);
+INSERT INTO `product` VALUES (90, '2018春装新款韩版潮学生宽松薄款卫衣女长袖ins超火的上衣服外套', '春装新款百搭~~', 119.00, 79.00, '2020-08-15 12:00:42', 16, 0, 0, 0);
+INSERT INTO `product` VALUES (91, '777', '测试', 50.00, 25.00, '2020-11-04 09:45:50', 2, 0, 1, 0);
 
 -- ----------------------------
 -- Table structure for productimage
 -- ----------------------------
 DROP TABLE IF EXISTS `productimage`;
 CREATE TABLE `productimage`  (
-  `productimage_id` int(10) NOT NULL AUTO_INCREMENT,
-  `productimage_type` tinyint(1) UNSIGNED NOT NULL,
-  `productimage_src` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `productimage_product_id` int(10) NOT NULL,
-  PRIMARY KEY (`productimage_id`) USING BTREE,
-  INDEX `productimage_product_id`(`productimage_product_id`) USING BTREE,
-  CONSTRAINT `productimage_ibfk_1` FOREIGN KEY (`productimage_product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1037 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+     `productimage_id` int(10) NOT NULL AUTO_INCREMENT,
+     `productimage_type` tinyint(1) UNSIGNED NOT NULL,
+     `productimage_src` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+     `productimage_product_id` int(10) NOT NULL,
+     PRIMARY KEY (`productimage_id`) USING BTREE,
+     INDEX `productimage_product_id`(`productimage_product_id`) USING BTREE,
+     CONSTRAINT `productimage_ibfk_1` FOREIGN KEY (`productimage_product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1042 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of productimage
@@ -3981,7 +3973,6 @@ INSERT INTO `productimage` VALUES (9, 1, 'ce6af876-95b4-4f15-a314-3949411ed3fc.j
 INSERT INTO `productimage` VALUES (10, 1, '39ee0ad3-8f20-45aa-a2d8-6c4e168e52b0.jpg', 1);
 INSERT INTO `productimage` VALUES (11, 1, '90fd93cb-9d19-4f21-8a40-aace56c57161.jpg', 1);
 INSERT INTO `productimage` VALUES (12, 1, 'd313974c-f06b-4e9e-aa17-cc443f5a27e8.jpg', 1);
-INSERT INTO `productimage` VALUES (13, 1, '42f1b1d7-9193-42c6-8265-803bb0ad8676.jpg', 1);
 INSERT INTO `productimage` VALUES (14, 0, '3d84ae79-2fb1-440a-992a-ac1da5197ade.jpg', 2);
 INSERT INTO `productimage` VALUES (15, 0, '93e7e2bd-bc63-4d8c-8b8e-05bd0911e6c7.jpg', 2);
 INSERT INTO `productimage` VALUES (16, 0, '494081e5-fdca-4af6-bf4d-c6854c0ee02d.jpg', 2);
@@ -4917,31 +4908,36 @@ INSERT INTO `productimage` VALUES (1033, 0, '7e060d8e-4410-4785-8308-db0cdc57ee3
 INSERT INTO `productimage` VALUES (1034, 1, '4304883f-5cf1-44cd-a39e-5e142c9fe513.jpg', 87);
 INSERT INTO `productimage` VALUES (1035, 0, '1f8fa058-96dd-41c2-9554-96a3250acf98.jpg', 88);
 INSERT INTO `productimage` VALUES (1036, 0, '4e7e04df-2040-4c92-be96-a8d94974426a.jpg', 89);
+INSERT INTO `productimage` VALUES (1037, 0, '26062b30-2fed-45f0-90ca-7b7b8ed78ec4.jpg', 89);
+INSERT INTO `productimage` VALUES (1038, 0, 'd3ccc8bc-b558-4eb5-ab41-bee8a78f15f3.jpg', 90);
+INSERT INTO `productimage` VALUES (1039, 1, '2a28cf29-9097-45ae-b137-36829d2d1d46.jpg', 90);
+INSERT INTO `productimage` VALUES (1040, 0, '57a1e381-e153-47bf-aca5-305b1d0811d8.jpg', 91);
+INSERT INTO `productimage` VALUES (1041, 1, '4926b70b-b780-4656-80dc-fef0a8b7fa64.jpeg', 91);
 
 -- ----------------------------
 -- Table structure for productorder
 -- ----------------------------
 DROP TABLE IF EXISTS `productorder`;
 CREATE TABLE `productorder`  (
-  `productorder_id` int(10) NOT NULL AUTO_INCREMENT,
-  `productorder_code` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `productorder_address` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `productorder_detail_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `productorder_post` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `productorder_receiver` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `productorder_mobile` char(11) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `productorder_pay_date` datetime(0) NOT NULL,
-  `productorder_delivery_date` datetime(0) NULL DEFAULT NULL,
-  `productorder_confirm_date` datetime(0) NULL DEFAULT NULL,
-  `productorder_status` tinyint(1) NOT NULL,
-  `productorder_user_id` int(10) NOT NULL,
-  PRIMARY KEY (`productorder_id`) USING BTREE,
-  UNIQUE INDEX `un_productorder_code`(`productorder_code`) USING BTREE,
-  INDEX `productorder_address`(`productorder_address`) USING BTREE,
-  INDEX `productorder_ibfk_2`(`productorder_user_id`) USING BTREE,
-  CONSTRAINT `productorder_ibfk_1` FOREIGN KEY (`productorder_address`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `productorder_ibfk_2` FOREIGN KEY (`productorder_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 228 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+     `productorder_id` int(10) NOT NULL AUTO_INCREMENT,
+     `productorder_code` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+     `productorder_address` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+     `productorder_detail_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+     `productorder_post` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+     `productorder_receiver` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+     `productorder_mobile` char(11) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+     `productorder_pay_date` datetime(0) NOT NULL,
+     `productorder_delivery_date` datetime(0) NULL DEFAULT NULL,
+     `productorder_confirm_date` datetime(0) NULL DEFAULT NULL,
+     `productorder_status` tinyint(1) NOT NULL,
+     `productorder_user_id` int(10) NOT NULL,
+     PRIMARY KEY (`productorder_id`) USING BTREE,
+     UNIQUE INDEX `un_productorder_code`(`productorder_code`) USING BTREE,
+     INDEX `productorder_address`(`productorder_address`) USING BTREE,
+     INDEX `productorder_ibfk_2`(`productorder_user_id`) USING BTREE,
+     CONSTRAINT `productorder_ibfk_1` FOREIGN KEY (`productorder_address`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+     CONSTRAINT `productorder_ibfk_2` FOREIGN KEY (`productorder_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 550 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of productorder
@@ -5173,27 +5169,348 @@ INSERT INTO `productorder` VALUES (224, '20190909135017025', '110101', '213', ''
 INSERT INTO `productorder` VALUES (225, '2019090914043701', '110101', '1111', '', '11', '13335398824', '2019-09-09 14:05:01', '2019-09-09 14:05:05', '2019-09-09 14:05:15', 3, 1);
 INSERT INTO `productorder` VALUES (226, '2019090914062001', '110101', '1111', '', '11', '13335398824', '2019-09-09 14:06:20', NULL, NULL, 0, 1);
 INSERT INTO `productorder` VALUES (227, '2019090915170001', '110101', '1111', '', '11', '13335398824', '2019-09-09 15:17:00', NULL, NULL, 0, 1);
+INSERT INTO `productorder` VALUES (228, '2019091007532101', '110101', 'ffdhj', '', '济南', '15319254578', '2019-09-10 07:53:30', '2019-09-10 07:53:40', '2019-09-10 07:53:49', 3, 1);
+INSERT INTO `productorder` VALUES (229, '2019091007585601', '110101', '厉害了', '', '测试', '15319449088', '2019-09-10 07:58:56', NULL, NULL, 4, 1);
+INSERT INTO `productorder` VALUES (230, '2019091008024001', '110101', '厉害了', '', '测试', '15319449088', '2019-09-10 08:05:06', '2019-09-10 08:05:39', '2019-09-10 08:06:13', 3, 1);
+INSERT INTO `productorder` VALUES (231, '2019091008460001', '110101', '1', '111111', '1', '13511111111', '2019-09-10 08:46:13', '2019-09-10 08:51:17', NULL, 2, 1);
+INSERT INTO `productorder` VALUES (232, '2019091021102101', '110101', 'a', '', 'jc', '15319946855', '2019-09-10 21:10:21', NULL, NULL, 0, 1);
+INSERT INTO `productorder` VALUES (233, '2019091021102701', '110101', 'a', '', 'jc', '15319946855', '2019-09-10 21:10:54', NULL, NULL, 1, 1);
+INSERT INTO `productorder` VALUES (234, '2019091120132901', '110101', 'dsf', '130000', 'dsf', '13567025783', '2019-09-11 20:13:38', '2019-09-11 20:13:54', '2019-09-11 20:14:11', 3, 1);
+INSERT INTO `productorder` VALUES (235, '2019091121464701', '110101', 'kk', '', 'kk', '13468547542', '2019-09-11 21:46:50', NULL, NULL, 1, 1);
+INSERT INTO `productorder` VALUES (236, '2019091121483701', '110101', 'kk', '', 'kk', '13468547542', '2019-09-11 21:48:56', NULL, NULL, 1, 1);
+INSERT INTO `productorder` VALUES (237, '2019091121593401', '110101', 'kk', '', 'kk', '13468547542', '2019-09-11 21:59:49', '2020-10-26 09:03:40', NULL, 2, 1);
+INSERT INTO `productorder` VALUES (238, '2019091122040401', '110101', 'kk', '', 'kk', '13468547542', '2019-09-11 22:04:04', NULL, NULL, 0, 1);
+INSERT INTO `productorder` VALUES (239, '2019091122042801', '110101', 'kk', '', 'kk', '13468547542', '2019-09-11 22:05:16', NULL, NULL, 1, 1);
+INSERT INTO `productorder` VALUES (240, '2019091122064701', '110101', 'kk', '', 'kk', '13468547542', '2019-09-11 22:06:49', NULL, NULL, 1, 1);
+INSERT INTO `productorder` VALUES (241, '2019091122110101', '110101', 'kk', '', 'kk', '13468547542', '2019-09-11 22:11:03', '2019-09-11 22:17:32', NULL, 2, 1);
+INSERT INTO `productorder` VALUES (242, '2019091122162401', '110101', '1111', '', '11', '13335398824', '2019-09-11 22:16:25', '2019-09-11 22:16:28', '2019-09-11 22:16:32', 3, 1);
+INSERT INTO `productorder` VALUES (243, '20190912112347031', '110101', '深圳龙华', '', '张超', '18377941689', '2019-09-12 11:23:54', '2019-09-12 11:24:13', NULL, 2, 31);
+INSERT INTO `productorder` VALUES (244, '20190912112439031', '110101', '深圳龙华', '', '张超', '18377941689', '2019-09-12 11:24:57', '2019-09-12 11:28:13', '2019-09-12 11:28:37', 3, 31);
+INSERT INTO `productorder` VALUES (245, '20190912112719031', '110101', '深圳龙华', '', '张超', '18377941689', '2019-09-12 11:27:19', NULL, NULL, 4, 31);
+INSERT INTO `productorder` VALUES (246, '20190916132323033', '440103', '12312321', '600001', '无', '15626615653', '2019-09-16 13:23:36', '2019-09-16 13:27:03', '2019-09-16 13:27:12', 3, 33);
+INSERT INTO `productorder` VALUES (247, '20190917093145035', '340102', '高新区', '231350', '高新区', '15056910130', '2019-09-17 09:32:16', '2019-09-17 09:32:33', NULL, 2, 35);
+INSERT INTO `productorder` VALUES (248, '20190917162331036', '110101', '北京故宫', '124215', '蔡徐坤', '15278667826', '2019-09-17 16:23:44', '2019-09-17 16:24:03', '2019-09-17 16:24:38', 3, 36);
+INSERT INTO `productorder` VALUES (249, '20190917210827012', '110101', 'sdhjsdhas', '152300', 'sadasd', '15146549297', '2019-09-17 21:08:38', '2019-09-17 21:08:56', '2019-09-17 21:09:08', 3, 12);
+INSERT INTO `productorder` VALUES (250, '20190917234550012', '110101', 'sdhjsdhas', '152300', 'sadasd', '15146549297', '2019-09-17 23:45:57', '2019-09-17 23:46:12', '2019-09-17 23:46:21', 3, 12);
+INSERT INTO `productorder` VALUES (251, '20190918195925038', '110101', 'sffwerf', '515161', '龙虾环境', '13132323262', '2019-09-18 19:59:33', '2019-09-18 19:59:45', '2019-09-18 20:00:09', 3, 38);
+INSERT INTO `productorder` VALUES (252, '20190918200224038', '110101', 'sffwerf', '515161', '龙虾环境', '13132323262', '2019-09-18 20:02:24', NULL, NULL, 4, 38);
+INSERT INTO `productorder` VALUES (253, '20190921221104041', '110101', '11', '111111', '11', '13856547854', '2019-09-21 22:11:13', '2019-09-21 22:11:19', '2019-09-21 22:11:26', 3, 41);
+INSERT INTO `productorder` VALUES (254, '20190922175453044', '110101', '111', '', 'xiaoli', '13203777777', '2019-09-22 17:54:59', '2019-10-02 19:32:54', NULL, 2, 44);
+INSERT INTO `productorder` VALUES (255, '20190923164341045', '430102', '234', '', '张三', '13912345678', '2019-09-23 16:43:52', '2019-10-02 19:32:50', NULL, 2, 45);
+INSERT INTO `productorder` VALUES (256, '20190923183545044', '110101', '111', '', 'xiaoli', '13203777777', '2019-09-23 18:35:51', '2019-10-02 19:32:46', NULL, 2, 44);
+INSERT INTO `productorder` VALUES (257, '2019092410595806', '110101', '测试', '', 'zcy', '17674196509', '2019-09-24 11:00:22', '2019-09-24 11:00:36', NULL, 2, 6);
+INSERT INTO `productorder` VALUES (258, '20190928152209047', '360102', '红谷凯旋', '324234', '陈嘉', '18879561130', '2019-09-28 15:22:40', '2019-10-02 19:32:40', NULL, 2, 47);
+INSERT INTO `productorder` VALUES (259, '20190929161948048', '110101', '222', '', '222', '15251766056', '2019-09-29 16:19:56', '2019-10-02 19:32:34', NULL, 2, 48);
+INSERT INTO `productorder` VALUES (260, '20191003090048049', '350102', '福建省厦门市同安区', '361100', '福建省厦门市同安区', '18205981234', '2019-10-03 19:44:40', '2019-10-03 19:44:48', '2019-10-06 15:45:24', 3, 49);
+INSERT INTO `productorder` VALUES (261, '20191006112839049', '110101', '123', '356110', '123', '18678909989', '2019-10-06 11:28:39', NULL, NULL, 0, 49);
+INSERT INTO `productorder` VALUES (262, '20191006201353051', '110101', 'wr', '515134', 'wrew', '15800521356', '2019-10-06 20:14:02', '2019-10-06 20:14:17', '2019-10-06 20:14:35', 3, 51);
+INSERT INTO `productorder` VALUES (263, '20191006202542051', '110101', 'wr', '515134', 'wrew', '15800521356', '2019-10-06 20:25:47', '2019-10-06 20:25:57', '2019-10-06 20:26:02', 3, 51);
+INSERT INTO `productorder` VALUES (264, '20191007142951051', '110101', 'wr', '515134', 'wrew', '15800521356', '2019-10-07 14:30:06', '2019-10-07 14:31:02', NULL, 2, 51);
+INSERT INTO `productorder` VALUES (265, '2019100811302201', '110101', '1111', '', '11', '13335398824', '2019-10-08 11:30:30', '2019-10-08 11:30:36', '2019-10-08 11:30:43', 3, 1);
+INSERT INTO `productorder` VALUES (266, '20191008143156051', '110101', 'wr', '515134', 'wrew', '15800521356', '2019-10-08 14:31:59', '2019-10-08 14:32:12', '2019-10-08 14:35:37', 3, 51);
+INSERT INTO `productorder` VALUES (267, '20191009165723051', '110101', 'wr', '515134', 'wrew', '15800521356', '2019-10-09 16:57:25', '2019-10-09 16:57:30', '2019-10-09 16:57:35', 3, 51);
+INSERT INTO `productorder` VALUES (268, '20191010101015052', '450102', '地址不存在', '530000', '地址不存在', '13481129590', '2019-10-10 10:10:24', NULL, NULL, 1, 52);
+INSERT INTO `productorder` VALUES (269, '20191010120919053', '110101', '实打实大', '', '大大', '15937686542', '2019-10-10 12:09:34', '2019-10-10 12:09:48', '2019-10-10 12:10:14', 3, 53);
+INSERT INTO `productorder` VALUES (270, '20191010235617050', '110101', '顶顶顶', '123123', '嘻嘻嘻', '15570711575', '2019-10-10 23:56:17', NULL, NULL, 0, 50);
+INSERT INTO `productorder` VALUES (271, '2019101211322401', '110101', '1', '', 'jc', '15319449085', '2019-10-12 11:32:24', NULL, NULL, 0, 1);
+INSERT INTO `productorder` VALUES (272, '20191012130701055', '110101', '111111', '111111', '11111', '13521300635', '2019-10-12 13:07:16', '2019-10-12 13:07:33', '2019-10-12 13:07:40', 3, 55);
+INSERT INTO `productorder` VALUES (273, '20191014094706056', '110101', '13232', '132123', '1321', '13058502033', '2019-10-14 09:47:13', '2019-10-14 09:47:21', NULL, 2, 56);
+INSERT INTO `productorder` VALUES (274, '20191014094850056', '110101', '112', '223333', '1233', '13058502033', '2019-10-14 09:48:53', '2019-10-14 09:49:09', NULL, 2, 56);
+INSERT INTO `productorder` VALUES (275, '20191015142440058', '110101', '123', '226200', '陈天一', '18068435170', '2019-10-15 14:24:55', NULL, NULL, 1, 58);
+INSERT INTO `productorder` VALUES (276, '20191015150206059', '110101', 'adsfgasdf', '330202', 'asdf', '15501227777', '2019-10-15 15:02:13', '2019-10-15 15:02:23', '2019-10-15 15:02:36', 3, 59);
+INSERT INTO `productorder` VALUES (277, '20191015150515059', '110101', 'adsfgasdf', '330202', 'asdf', '15501227777', '2019-10-15 15:05:17', '2019-10-15 15:05:26', NULL, 2, 59);
+INSERT INTO `productorder` VALUES (278, '20191015150611059', '110101', 'adsfgasdf', '330202', 'asdf', '15501227777', '2019-10-15 15:06:13', '2019-10-15 15:06:42', '2019-10-15 15:07:09', 3, 59);
+INSERT INTO `productorder` VALUES (279, '20191015151040059', '110101', 'adsfgasdf', '330202', 'asdf', '15501227777', '2019-10-15 15:10:41', '2019-10-15 15:10:45', '2019-10-15 15:10:48', 3, 59);
+INSERT INTO `productorder` VALUES (280, '20191015155744060', '110101', 'sqsq', '251000', 'lsc', '15050449873', '2019-10-15 15:57:51', '2019-10-15 15:58:10', '2019-10-15 15:58:25', 3, 60);
+INSERT INTO `productorder` VALUES (281, '20191018161237065', '120102', 'dsadas', '225227', '孙某', '17862588658', '2019-10-18 16:12:40', '2019-10-18 16:12:46', '2019-10-18 16:13:11', 3, 65);
+INSERT INTO `productorder` VALUES (282, '20191018164310065', '120102', 'dsadas', '225227', '孙某', '17862588658', '2019-10-18 16:43:11', '2019-10-18 16:43:14', '2019-10-18 16:43:18', 3, 65);
+INSERT INTO `productorder` VALUES (283, '20191018164420065', '120102', 'dsadas', '225227', '孙某', '17862588658', '2019-10-18 16:44:21', '2019-10-18 16:44:25', '2019-10-18 16:44:29', 3, 65);
+INSERT INTO `productorder` VALUES (284, '20191018164954066', '110101', '12', '211222', '21', '13571321111', '2019-10-18 16:49:57', '2019-10-18 16:50:02', '2019-10-18 16:50:09', 3, 66);
+INSERT INTO `productorder` VALUES (285, '20191018165058066', '110101', '12', '211222', '21', '13571321111', '2019-10-18 16:50:58', NULL, NULL, 0, 66);
+INSERT INTO `productorder` VALUES (286, '20191018165111066', '110101', '12', '211222', '21', '13571321111', '2019-10-18 16:51:12', NULL, NULL, 1, 66);
+INSERT INTO `productorder` VALUES (287, '20191022172339069', '110101', '都是啥地方', '', '阿萨德', '18345678987', '2019-10-22 17:23:47', '2019-10-22 17:30:04', '2019-10-22 17:30:18', 3, 69);
+INSERT INTO `productorder` VALUES (288, '20191022173107069', '110101', '都是啥地方', '', '阿萨德', '18345678987', '2019-10-22 17:31:07', NULL, NULL, 0, 69);
+INSERT INTO `productorder` VALUES (289, '20191022213048070', '110101', 'cnbcxv', '', 'dfgd', '13211111111', '2019-10-22 21:30:54', '2019-10-22 21:31:12', '2019-10-22 21:31:43', 3, 70);
+INSERT INTO `productorder` VALUES (290, '20191025221105072', '110101', 'aaa', '222222', 'aaa', '15262068021', '2019-10-25 22:11:48', '2019-10-25 22:11:55', '2019-10-25 22:12:07', 3, 72);
+INSERT INTO `productorder` VALUES (291, '20191028153130073', '110101', '32432', '', '432432', '13666666666', '2019-10-28 15:31:37', '2019-10-28 15:31:49', '2019-10-28 15:31:57', 3, 73);
+INSERT INTO `productorder` VALUES (292, '20191031135814077', '110101', '234', '234123', '234', '13333333333', '2019-10-31 13:58:16', '2019-10-31 13:58:22', NULL, 2, 77);
+INSERT INTO `productorder` VALUES (293, '20191102125107078', '110101', '的发顺丰', '525252', '辅导费', '18605412451', '2019-11-02 12:51:20', NULL, NULL, 1, 78);
+INSERT INTO `productorder` VALUES (294, '20191114153909079', '110101', '少时诵诗书所所所所所所所所所所所所所所所所所所所所所', '', '问我', '13460000000', '2019-11-14 15:39:15', NULL, NULL, 1, 79);
+INSERT INTO `productorder` VALUES (295, '2019111516132708', '110101', '东方红法规及客户', '223344', '法国人', '14545666777', '2019-11-15 16:13:29', '2019-11-15 16:13:36', '2019-11-15 16:13:46', 3, 8);
+INSERT INTO `productorder` VALUES (296, '2019111516143808', '110101', '东方红法规及客户', '223344', '法国人', '14545666777', '2019-11-15 16:14:40', '2019-11-15 16:14:47', '2019-11-15 16:14:53', 3, 8);
+INSERT INTO `productorder` VALUES (297, '2019111516163907', '110101', '东方红法规及客户', '223344', '法国人', '14545666777', '2019-11-15 16:16:42', '2021-06-18 15:26:53', NULL, 2, 7);
+INSERT INTO `productorder` VALUES (298, '20191119164149080', '110101', '1', '116021', '1', '13311111111', '2019-11-19 16:41:52', '2019-11-19 16:42:02', '2019-11-19 16:42:10', 3, 80);
+INSERT INTO `productorder` VALUES (299, '20191122152940082', '120101', 'asd', '418000', 'asd', '18374589760', '2019-11-22 15:29:43', '2019-11-22 15:29:50', NULL, 2, 82);
+INSERT INTO `productorder` VALUES (300, '20191122153006082', '120101', 'asd', '418000', 'asd', '18374589760', '2019-11-22 15:30:19', NULL, NULL, 1, 82);
+INSERT INTO `productorder` VALUES (301, '20191127161921085', '110101', 'sdf', '', 'dfa', '18338645962', '2019-11-27 16:19:27', NULL, NULL, 1, 85);
+INSERT INTO `productorder` VALUES (302, '20191127162410085', '140105', 'fgdgfgsg', '430000', 'fadfadf', '18312345678', '2019-11-27 16:24:27', '2019-11-27 16:24:42', NULL, 2, 85);
+INSERT INTO `productorder` VALUES (303, '20191203163851089', '110101', '中国工农兵大学行政楼823', '', '张牛武', '13991863239', '2019-12-03 16:38:57', '2019-12-03 16:39:12', '2019-12-03 16:39:33', 3, 89);
+INSERT INTO `productorder` VALUES (304, '20191204193127090', '110101', '1111', '', '11', '13335398824', '2019-12-04 19:31:38', '2019-12-04 19:31:41', '2019-12-04 19:31:46', 3, 90);
+INSERT INTO `productorder` VALUES (305, '20191205114130090', '110101', '1111', '', '11', '13335398824', '2019-12-05 11:41:42', NULL, NULL, 1, 90);
+INSERT INTO `productorder` VALUES (306, '20191206184857092', '110101', '1', '125487', '11', '13281490222', '2019-12-06 18:49:02', '2019-12-06 18:49:08', '2019-12-06 18:49:14', 3, 92);
+INSERT INTO `productorder` VALUES (307, '20191212203446093', '110101', '32131', '321321', '312312', '15213724780', '2019-12-12 20:34:57', '2019-12-12 20:35:03', NULL, 2, 93);
+INSERT INTO `productorder` VALUES (308, '20191213210638094', '110101', '11', '111111', '11', '13911111111', '2019-12-13 21:07:06', NULL, NULL, 1, 94);
+INSERT INTO `productorder` VALUES (309, '20191220161433096', '110101', '111', '', '11', '13912346789', '2019-12-20 16:14:45', NULL, NULL, 1, 96);
+INSERT INTO `productorder` VALUES (310, '20191231192851098', '130402', 'fwef', '', 'fewf', '15555555555', '2019-12-31 19:28:51', NULL, NULL, 4, 98);
+INSERT INTO `productorder` VALUES (311, '20200105222915025', '110101', '111', '', '111', '13805792263', '2020-04-08 20:21:19', '2020-04-08 20:21:22', '2020-04-08 20:21:36', 3, 25);
+INSERT INTO `productorder` VALUES (312, '202001071627050100', '110101', 'dddsx', '', 'aa', '15888888888', '2020-01-07 16:27:15', '2020-01-07 16:27:26', '2020-01-07 16:27:36', 3, 100);
+INSERT INTO `productorder` VALUES (313, '202001161707340102', '120101', 'dfafdsa', '838000', '王麻子', '13575002666', '2020-01-16 17:07:47', '2020-01-16 17:10:05', '2020-01-16 17:10:20', 3, 102);
+INSERT INTO `productorder` VALUES (314, '202002041618460104', '110101', '12', '121212', '12', '13333333333', '2020-02-04 16:18:50', NULL, NULL, 1, 104);
+INSERT INTO `productorder` VALUES (315, '2020020712344206', '110101', '3443', '', '3', '13121211212', '2020-02-07 12:34:44', NULL, NULL, 1, 6);
+INSERT INTO `productorder` VALUES (316, '2020020712352406', '110101', '3443', '', '3', '13121211212', '2020-02-07 12:35:24', NULL, NULL, 0, 6);
+INSERT INTO `productorder` VALUES (317, '2020020712374106', '110101', '3443', '', '3', '13121211212', '2020-02-07 12:38:02', NULL, NULL, 1, 6);
+INSERT INTO `productorder` VALUES (318, '2020020712394906', '110101', '3443', '', '3', '13121211212', '2020-02-07 12:40:58', NULL, NULL, 1, 6);
+INSERT INTO `productorder` VALUES (319, '2020020712485106', '110101', '3443', '', '3', '13121211212', '2020-06-14 16:08:38', '2020-06-14 16:08:44', '2020-06-14 16:08:50', 3, 6);
+INSERT INTO `productorder` VALUES (320, '202002091727530105', '130204', 'qweqwe', '', 'qweqe', '13119129568', '2020-02-09 17:28:15', '2020-02-09 17:28:26', '2020-02-09 17:28:33', 3, 105);
+INSERT INTO `productorder` VALUES (321, '202002151712400106', '110101', '123', '123456', '1', '13710097041', '2020-02-15 17:13:02', NULL, NULL, 1, 106);
+INSERT INTO `productorder` VALUES (322, '2020022321041603', '130203', 'aaa', '698512', '1', '15645468478', '2020-02-23 21:04:35', '2020-02-23 21:05:13', NULL, 2, 3);
+INSERT INTO `productorder` VALUES (323, '202002242038310108', '110101', '打算', '253000', '阿萨德', '18676336541', '2020-02-24 20:38:55', NULL, NULL, 1, 108);
+INSERT INTO `productorder` VALUES (324, '202003050919230111', '110101', 'www', '', 'qqq', '15152961822', '2020-11-29 00:10:32', NULL, NULL, 1, 111);
+INSERT INTO `productorder` VALUES (325, '2020030520353001', '110101', '1111', '', '11', '13335398824', '2020-11-05 14:45:50', NULL, NULL, 1, 1);
+INSERT INTO `productorder` VALUES (326, '2020030602275601', '110101', '1111', '', '11', '13335398824', '2020-03-06 02:32:04', '2020-03-06 02:33:53', NULL, 2, 1);
+INSERT INTO `productorder` VALUES (327, '202003072014580114', '110101', '4556', '', 'ssfds', '17835954853', '2020-03-07 20:15:13', '2020-03-07 21:47:22', NULL, 2, 114);
+INSERT INTO `productorder` VALUES (328, '202003072147460114', '110101', '4556', '', 'ssfds', '17835954853', '2020-03-07 21:47:46', NULL, NULL, 0, 114);
+INSERT INTO `productorder` VALUES (329, '2020031118524401', '110101', '1111', '', '11', '13335398824', '2020-03-11 18:52:45', '2020-03-11 18:53:19', '2020-03-11 18:53:24', 3, 1);
+INSERT INTO `productorder` VALUES (330, '2020031118533301', '110101', '1111', '', '11', '13335398824', '2020-11-05 14:37:57', '2020-11-05 14:38:11', '2020-12-07 17:36:38', 3, 1);
+INSERT INTO `productorder` VALUES (331, '202003112139460117', '110101', '111', '111111', '11111111', '13578965142', '2020-03-11 21:39:50', '2020-03-11 21:39:59', NULL, 2, 117);
+INSERT INTO `productorder` VALUES (332, '202003112140280117', '110101', '111', '111111', '11111111', '13578965142', '2020-03-11 21:40:30', NULL, NULL, 1, 117);
+INSERT INTO `productorder` VALUES (333, '202003112146040117', '110101', '111', '111111', '11111111', '13578965142', '2020-03-11 21:46:05', '2020-03-11 21:46:11', NULL, 2, 117);
+INSERT INTO `productorder` VALUES (334, '202003112153160117', '110101', '111', '111111', '11111111', '13578965142', '2020-03-11 21:53:17', '2020-03-25 16:30:58', NULL, 2, 117);
+INSERT INTO `productorder` VALUES (335, '202003112153550117', '110101', '111', '111111', '11111111', '13578965142', '2020-03-11 21:53:56', '2020-03-11 21:54:00', NULL, 2, 117);
+INSERT INTO `productorder` VALUES (336, '202003121511400118', '110101', '胡同', '', '王大锤', '13333333333', '2020-03-12 15:11:43', '2020-03-12 15:11:57', '2020-03-12 15:12:14', 3, 118);
+INSERT INTO `productorder` VALUES (337, '202003171752190119', '110101', '1111', '111111', '111', '13333333333', '2020-03-17 17:52:23', '2020-03-17 17:52:28', '2020-03-17 17:52:32', 3, 119);
+INSERT INTO `productorder` VALUES (338, '202003200000400121', '110101', 'qq服务费dsfds', '200000', '张三', '13000000000', '2020-03-20 00:00:45', '2020-03-20 00:01:04', NULL, 2, 121);
+INSERT INTO `productorder` VALUES (339, '202003201756160120', '510124', 'dwefe', '332111', 'frew', '13413241234', '2020-03-20 18:29:29', '2020-03-20 18:30:22', '2020-03-20 18:32:53', 3, 120);
+INSERT INTO `productorder` VALUES (340, '202003201806170120', '510124', 'dwefe', '332111', 'frew', '13413241234', '2020-03-20 18:24:46', '2020-03-20 18:26:36', '2020-03-20 18:28:13', 3, 120);
+INSERT INTO `productorder` VALUES (341, '202003211326330122', '150902', '北洋小区302', '', '李四', '15663636969', '2020-03-21 13:26:52', '2020-03-25 13:18:28', NULL, 2, 122);
+INSERT INTO `productorder` VALUES (342, '202003211855280123', '150103', '中国范德萨发生地方', '', '张三', '15248409766', '2020-03-21 18:55:31', '2020-03-21 19:03:42', '2020-03-21 19:04:02', 3, 123);
+INSERT INTO `productorder` VALUES (343, '202003211856140123', '150103', '中国范德萨发生地方', '', '张三', '15248409766', '2020-03-21 18:56:14', NULL, NULL, 0, 123);
+INSERT INTO `productorder` VALUES (344, '202003220122230123', '150103', '中国范德萨发生地方', '', '张三', '15248409766', '2020-03-22 01:22:23', NULL, NULL, 0, 123);
+INSERT INTO `productorder` VALUES (345, '202003230814390124', '110101', 'lalala', '121212', '齐', '13213143005', '2020-03-23 08:14:52', '2020-03-23 08:15:18', '2020-03-23 08:15:31', 3, 124);
+INSERT INTO `productorder` VALUES (346, '202003231648330125', '110101', '神盾局的很难接受', '121232', '你麻痹', '13214156089', '2020-03-23 16:48:38', '2020-03-23 16:48:52', '2020-03-23 16:49:02', 3, 125);
+INSERT INTO `productorder` VALUES (347, '202003232315380118', '110101', '胡同', '', '王大锤', '13333333333', '2020-03-23 23:15:41', '2020-03-23 23:15:57', '2020-03-23 23:16:20', 3, 118);
+INSERT INTO `productorder` VALUES (348, '202003232324310118', '110101', '胡同', '', '王大锤', '13333333333', '2020-03-23 23:26:46', '2020-03-23 23:26:58', NULL, 2, 118);
+INSERT INTO `productorder` VALUES (349, '202003232338560118', '110101', '胡同', '', '王大锤', '13333333333', '2020-03-23 23:38:56', NULL, NULL, 0, 118);
+INSERT INTO `productorder` VALUES (350, '202003241821390125', '110101', '邓州市', '254361', '倪妮', '13235353535', '2020-03-24 18:22:38', '2020-03-24 18:23:06', '2020-03-24 18:23:26', 3, 125);
+INSERT INTO `productorder` VALUES (351, '2020032516172801', '110101', '1111', '', '11', '13335398824', '2020-05-14 10:34:09', '2020-11-05 14:38:38', NULL, 2, 1);
+INSERT INTO `productorder` VALUES (352, '2020032516311901', '110101', '1111', '', '11', '13335398824', '2020-03-25 16:31:23', '2020-03-25 16:31:27', '2020-03-25 16:31:33', 3, 1);
+INSERT INTO `productorder` VALUES (353, '202003260014570120', '510124', 'dwefe', '332111', 'frew', '13413241234', '2020-03-26 00:15:00', '2020-03-26 00:48:06', '2020-03-26 00:48:41', 3, 120);
+INSERT INTO `productorder` VALUES (354, '202003260015490120', '510124', 'dwefe', '332111', 'frew', '13413241234', '2020-03-26 00:45:54', '2020-04-07 16:59:59', '2020-04-07 17:01:19', 3, 120);
+INSERT INTO `productorder` VALUES (355, '202003281934350126', '110101', '胡同', '', '王大锤', '13333333333', '2020-03-28 19:35:03', '2020-03-28 19:36:10', '2020-03-28 19:37:34', 3, 126);
+INSERT INTO `productorder` VALUES (356, '202003301855560129', '110101', 'dcvgsdfgsdfgsd', '122222', 'sdfsdf', '15511111111', '2020-03-30 18:55:59', NULL, NULL, 1, 129);
+INSERT INTO `productorder` VALUES (357, '202003311720180130', '310101', 'cccccc', '454545', 'cccccc', '18018981818', '2020-03-31 17:20:24', NULL, NULL, 1, 130);
+INSERT INTO `productorder` VALUES (358, '202003311749350120', '510124', 'dwefe', '332111', 'frew', '13413241234', '2020-03-31 17:49:35', NULL, NULL, 4, 120);
+INSERT INTO `productorder` VALUES (359, '202003311752470120', '510124', 'dwefe', '332111', 'frew', '13413241234', '2020-03-31 18:16:29', '2020-05-10 18:14:28', '2020-05-10 21:27:43', 3, 120);
+INSERT INTO `productorder` VALUES (360, '202003311753390120', '510124', 'dwefe', '332111', 'frew', '13413241234', '2020-03-31 18:09:12', '2020-03-31 18:17:17', '2020-03-31 18:18:07', 3, 120);
+INSERT INTO `productorder` VALUES (361, '202004071453350120', '510124', 'dwefe', '332111', 'frew', '13413241234', '2020-04-30 18:29:35', '2020-04-30 23:53:06', '2020-05-01 10:03:49', 3, 120);
+INSERT INTO `productorder` VALUES (362, '20200408214424025', '110101', '1', '', '15507624698', '15507624698', '2020-04-08 21:44:24', NULL, NULL, 0, 25);
+INSERT INTO `productorder` VALUES (363, '202004092350030118', '110101', '胡同', '', '王大锤', '13333333333', '2020-04-09 23:50:05', '2020-04-09 23:50:29', '2020-04-09 23:50:38', 3, 118);
+INSERT INTO `productorder` VALUES (364, '202004112034520139', '110101', '12345', '266000', '424', '17091008732', '2020-04-11 20:35:04', NULL, NULL, 1, 139);
+INSERT INTO `productorder` VALUES (365, '202004112318570118', '110101', '胡同', '', '王大锤', '13333333333', '2020-04-11 23:19:00', '2020-04-11 23:19:10', '2020-04-11 23:19:43', 3, 118);
+INSERT INTO `productorder` VALUES (366, '202004132340180118', '110101', '胡同', '', '王大锤', '13333333333', '2020-04-13 23:40:23', NULL, NULL, 1, 118);
+INSERT INTO `productorder` VALUES (367, '202004140017460118', '110101', '胡同', '', '王大锤', '13333333333', '2020-04-14 00:17:52', '2020-04-14 00:18:02', '2020-04-14 00:18:13', 3, 118);
+INSERT INTO `productorder` VALUES (368, '202004142004480140', '110101', '123', '100001', 'chauisn', '13355776688', '2020-04-14 20:04:55', NULL, NULL, 1, 140);
+INSERT INTO `productorder` VALUES (369, '202004181444260143', '340124', '矾山镇', '123456', '卢琪', '18895654365', '2020-04-18 14:44:29', NULL, NULL, 1, 143);
+INSERT INTO `productorder` VALUES (370, '202004200941320144', '110101', 'dsfsdfdsdfd', '', 'vavav', '13178839988', '2020-04-20 09:41:34', '2020-04-20 10:32:15', '2020-04-20 10:32:31', 3, 144);
+INSERT INTO `productorder` VALUES (371, '202004201044460144', '110101', 'dsfsdfdsdfd', '', 'vavav', '13178839988', '2020-04-20 10:44:48', '2020-04-21 10:20:26', NULL, 2, 144);
+INSERT INTO `productorder` VALUES (372, '202004201326330145', '110101', '111', '', '1', '17712363466', '2020-04-20 13:26:38', NULL, NULL, 1, 145);
+INSERT INTO `productorder` VALUES (373, '202004220959230144', '110101', 'dsfsdfdsdfd', '', 'vavav', '13178839988', '2020-04-22 09:59:25', NULL, NULL, 1, 144);
+INSERT INTO `productorder` VALUES (374, '202004250036080146', '110101', '15744', '111111', '切切切', '13786881328', '2020-04-25 00:36:19', NULL, NULL, 1, 146);
+INSERT INTO `productorder` VALUES (375, '202004251646590147', '440103', '123123', '518000', '龙岗区龙岗大道六约锦荟park二栋190', '18980643333', '2020-04-25 16:47:07', NULL, NULL, 1, 147);
+INSERT INTO `productorder` VALUES (376, '202004300007420120', '110101', '1we', '123123', '12', '13312312312', '2020-04-30 00:07:42', NULL, NULL, 4, 120);
+INSERT INTO `productorder` VALUES (377, '202004301810580120', '110101', '1we', '123123', '12', '13312312312', '2020-04-30 18:57:32', NULL, NULL, 1, 120);
+INSERT INTO `productorder` VALUES (378, '202005062307220148', '110101', '测试', '', '测试', '15912121212', '2020-05-06 23:07:27', NULL, NULL, 1, 148);
+INSERT INTO `productorder` VALUES (379, '202005071743210149', '140105', '南山大道100号', '', '张三', '15502020303', '2020-05-07 17:43:34', NULL, NULL, 1, 149);
+INSERT INTO `productorder` VALUES (380, '202005071757080149', '140105', '南山大道100号', '', '张三', '15502020303', '2020-05-07 17:57:08', NULL, NULL, 0, 149);
+INSERT INTO `productorder` VALUES (381, '202005080943190150', '530103', '北京路51号', '', '小祥', '13529361699', '2020-05-08 09:43:25', NULL, NULL, 1, 150);
+INSERT INTO `productorder` VALUES (382, '202005091514490151', '110101', '东大街', '411122', 'wcm', '13333333333', '2020-05-09 15:14:53', NULL, NULL, 1, 151);
+INSERT INTO `productorder` VALUES (383, '202005091515350151', '110101', '东大街', '411122', 'wcm', '13333333333', '2020-05-09 15:15:37', NULL, NULL, 1, 151);
+INSERT INTO `productorder` VALUES (384, '202005091516190151', '110101', '东大街', '411122', 'wcm', '13333333333', '2020-05-09 15:16:21', NULL, NULL, 1, 151);
+INSERT INTO `productorder` VALUES (385, '202005100214030120', '110101', '1we', '123123', '12', '13312312312', '2020-05-10 02:14:03', NULL, NULL, 0, 120);
+INSERT INTO `productorder` VALUES (386, '202005101739500120', '110101', '1we', '123123', '12', '13312312312', '2020-05-10 17:39:56', '2020-05-14 11:16:26', '2020-05-14 11:28:22', 3, 120);
+INSERT INTO `productorder` VALUES (387, '202005132244280152', '110101', '故意', '', '张凯', '18834521234', '2020-05-13 22:44:36', '2020-05-13 22:44:55', '2020-05-13 22:45:19', 3, 152);
+INSERT INTO `productorder` VALUES (388, '2020051415411608', '110101', 'beijingshizhengfu', '317108', '张三', '13754524575', '2020-05-14 15:41:17', '2020-05-14 15:41:20', '2020-05-14 15:41:26', 3, 8);
+INSERT INTO `productorder` VALUES (389, '202005160801450153', '110101', '北京朝阳区XX路', '476000', '小s', '15939203556', '2020-05-16 08:03:05', '2020-05-16 08:04:22', NULL, 2, 153);
+INSERT INTO `productorder` VALUES (390, '202005161050180154', '110101', '北京朝阳区XX路', '476000', '小s', '15939203556', '2020-05-16 10:50:26', NULL, NULL, 1, 154);
+INSERT INTO `productorder` VALUES (391, '202005161050520154', '110101', '北京朝阳区XX路', '476000', '小s', '15939203556', '2020-05-16 10:50:52', NULL, NULL, 0, 154);
+INSERT INTO `productorder` VALUES (392, '202005161056330154', '110101', '北京朝阳区XX路', '476000', '小s', '15939203556', '2020-05-16 10:57:54', '2020-05-16 10:58:07', NULL, 2, 154);
+INSERT INTO `productorder` VALUES (393, '202005162124010156', '120102', 'wdda', '211121', 'ddd', '15222222222', '2020-05-16 21:24:03', '2020-05-16 21:24:11', '2020-05-16 21:24:21', 3, 156);
+INSERT INTO `productorder` VALUES (394, '2020051723121001', '330102', '杭州市西湖区', '310012', '杭州市西湖区', '13336111602', '2020-05-17 23:12:12', '2020-10-26 09:03:27', NULL, 2, 1);
+INSERT INTO `productorder` VALUES (395, '202005261422350159', '110101', 'eeqw', '843814', 'ewqewq', '15696575266', '2020-05-26 14:22:40', NULL, NULL, 1, 159);
+INSERT INTO `productorder` VALUES (396, '2020061621112003', '110101', '4ewrqweffdsfafda', '412341', '1234123', '15012312313', '2020-06-16 21:11:23', '2020-06-16 21:11:49', '2020-06-16 21:12:04', 3, 3);
+INSERT INTO `productorder` VALUES (397, '202006171317250160', '120101', 'dwqdqw', '', 'fewfew', '18503833997', '2020-06-17 13:18:02', '2020-06-17 13:18:08', NULL, 2, 160);
+INSERT INTO `productorder` VALUES (398, '202006172234380162', '110101', '123', '', 'asdf', '17745632158', '2020-06-17 22:35:18', NULL, NULL, 1, 162);
+INSERT INTO `productorder` VALUES (399, '2020061817525301', '110101', '1111', '', '11', '13335398824', '2020-06-18 17:52:56', '2020-06-18 17:53:01', '2020-06-18 17:53:04', 3, 1);
+INSERT INTO `productorder` VALUES (400, '202006210423220165', '110101', 'vvvvvvv', '', 'hhghgh', '13913913999', '2020-06-21 04:23:24', NULL, NULL, 1, 165);
+INSERT INTO `productorder` VALUES (401, '2020062214335801', '110101', '1111', '', '11', '13335398824', '2020-07-02 23:30:33', '2020-10-26 09:03:22', NULL, 2, 1);
+INSERT INTO `productorder` VALUES (402, '202006221509490166', '110101', '123', '', 'asdf', '17745632158', '2020-06-22 15:09:49', NULL, NULL, 0, 166);
+INSERT INTO `productorder` VALUES (403, '202006301109430168', '110101', 'dadada', '488000', 'faith', '18888888888', '2020-06-30 11:09:58', '2020-06-30 11:10:15', NULL, 2, 168);
+INSERT INTO `productorder` VALUES (404, '202006302247040169', '440785', 'asdf', '124124', 'asdf', '13111111111', '2020-06-30 22:47:56', '2020-06-30 22:48:07', '2020-06-30 22:48:20', 3, 169);
+INSERT INTO `productorder` VALUES (405, '202007061454450170', '120101', 'Yyy', '600622', 'Nnnh', '13588030247', '2020-07-06 14:55:20', NULL, NULL, 1, 170);
+INSERT INTO `productorder` VALUES (406, '202007211800390172', '110101', '11', '111111', '罗闯', '15871595176', '2020-07-21 18:00:39', NULL, NULL, 0, 172);
+INSERT INTO `productorder` VALUES (407, '202007211800410172', '110101', '11', '111111', '罗闯', '15871595176', '2020-07-21 18:00:41', NULL, NULL, 0, 172);
+INSERT INTO `productorder` VALUES (408, '202007211847000173', '130102', '1', '', '1', '13043236152', '2020-07-21 18:47:04', '2020-07-21 19:01:09', '2020-07-21 19:02:05', 3, 173);
+INSERT INTO `productorder` VALUES (409, '202007211905340173', '130102', '1', '', '1', '13043236152', '2020-07-21 19:05:55', NULL, NULL, 1, 173);
+INSERT INTO `productorder` VALUES (410, '202008151739340175', '110101', 'ddd', '529635', 'ddd', '15966615802', '2020-08-15 17:39:36', NULL, NULL, 1, 175);
+INSERT INTO `productorder` VALUES (411, '2020081604241401', '110101', 'shanghai', '100000', 'xiao', '18545454545', '2020-08-16 04:24:18', '2020-08-16 04:24:28', '2020-08-16 04:24:43', 3, 1);
+INSERT INTO `productorder` VALUES (412, '202008170838290175', '110101', 'ddd', '529635', 'ddd', '15966615802', '2020-08-17 08:38:31', NULL, NULL, 1, 175);
+INSERT INTO `productorder` VALUES (413, '202008241906570176', '110101', '1111111111', '', '1', '13212345678', '2020-08-24 19:07:15', NULL, NULL, 1, 176);
+INSERT INTO `productorder` VALUES (414, '202009021535580177', '110101', '345', '123213', 'qwe3', '13333332222', '2020-09-02 15:36:05', '2020-09-02 15:36:14', '2020-09-02 15:36:27', 3, 177);
+INSERT INTO `productorder` VALUES (415, '202009021537270177', '110101', '345', '123213', 'qwe3', '13333332222', '2020-09-02 15:37:29', '2020-09-02 15:37:33', '2020-09-02 15:37:39', 3, 177);
+INSERT INTO `productorder` VALUES (416, '202009021855020178', '110101', 'beijign', '233500', '123', '13086332369', '2020-09-02 18:55:04', NULL, NULL, 1, 178);
+INSERT INTO `productorder` VALUES (417, '202009080917140179', '110101', 'sky road 188', '310008', 'sky road 188', '13987251110', '2020-09-08 09:17:44', '2020-09-08 09:18:16', NULL, 2, 179);
+INSERT INTO `productorder` VALUES (418, '202009082226400180', '110101', '哈哈哈', '123456', '123', '17732578653', '2020-09-08 22:27:00', '2020-09-14 16:46:40', NULL, 2, 180);
+INSERT INTO `productorder` VALUES (419, '2020091714465501034', '230102', '嵩山路111号科技楼227室', '150001', '嵩山路111号科技楼227室', '13895746710', '2020-09-17 14:46:57', NULL, NULL, 1, 1034);
+INSERT INTO `productorder` VALUES (420, '2020091814031801035', '110101', '123', '420000', '123', '13237181000', '2020-09-18 14:03:22', '2020-09-18 14:03:56', '2020-09-18 14:04:03', 3, 1035);
+INSERT INTO `productorder` VALUES (421, '202009290909590183', '110101', '说说', '', 'sda', '15073534864', '2020-09-29 09:10:01', '2020-09-29 09:10:08', '2020-09-29 09:10:15', 3, 183);
+INSERT INTO `productorder` VALUES (422, '202009290913230183', '110101', '说说', '', 'sda', '15073534864', '2020-09-29 09:13:24', '2020-09-29 09:13:27', '2020-09-29 09:13:32', 3, 183);
+INSERT INTO `productorder` VALUES (423, '202009290914340183', '110101', '说说', '', 'sda', '15073534864', '2020-09-29 09:14:35', '2020-09-29 09:14:41', '2020-09-29 09:14:45', 3, 183);
+INSERT INTO `productorder` VALUES (424, '2020092915474301038', '130102', '实习生', '432000', '哇塞', '15973480083', '2020-09-29 15:47:45', NULL, NULL, 1, 1038);
+INSERT INTO `productorder` VALUES (425, '2020101214411301041', '110101', '11', '103214', '123', '13357725066', '2020-10-12 14:41:17', '2020-10-12 14:41:23', '2020-10-12 14:42:02', 3, 1041);
+INSERT INTO `productorder` VALUES (426, '2020101216082701043', '150102', '11', '103214', '123', '13357725066', '2020-10-12 16:08:29', NULL, NULL, 1, 1043);
+INSERT INTO `productorder` VALUES (427, '2020101217285401044', '110101', '11111112', '121213', '12121', '13357725036', '2020-10-12 17:28:56', NULL, NULL, 1, 1044);
+INSERT INTO `productorder` VALUES (428, '2020101217463201044', '110101', '11111112', '121213', '12121', '13357725036', '2020-10-12 17:46:34', '2020-11-04 00:21:30', NULL, 2, 1044);
+INSERT INTO `productorder` VALUES (429, '2020101217473401044', '110101', '11111112', '121213', '12121', '13357725036', '2020-10-12 17:47:35', '2020-10-12 17:48:53', '2020-10-12 17:49:01', 3, 1044);
+INSERT INTO `productorder` VALUES (430, '2020101821073401045', '110101', '12312312312', '123123', '吴符盛', '15912311234', '2020-10-18 21:07:35', '2020-10-18 21:07:43', NULL, 2, 1045);
+INSERT INTO `productorder` VALUES (431, '2020101914355901046', '110101', '1', '789666', '1', '13045678911', '2020-10-19 14:36:15', '2020-10-19 14:36:33', '2020-10-19 14:36:45', 3, 1046);
+INSERT INTO `productorder` VALUES (432, '2020101916451701046', '110101', '1', '789666', '1', '13045678911', '2020-10-19 16:45:18', NULL, NULL, 1, 1046);
+INSERT INTO `productorder` VALUES (433, '2020102615133801048', '110101', 'ddddd', '', 'dddd', '18109418370', '2020-10-26 15:13:40', '2020-10-30 16:15:13', NULL, 2, 1048);
+INSERT INTO `productorder` VALUES (434, '2020102710351901049', '110101', '123', '100010', 'tianmao12', '13163636363', '2020-10-27 10:35:35', '2020-10-27 10:35:57', '2020-10-27 10:36:07', 3, 1049);
+INSERT INTO `productorder` VALUES (435, '2020102714050901050', '110101', '我弟弟', '', '爱妃', '13052103250', '2020-10-27 14:05:12', NULL, NULL, 1, 1050);
+INSERT INTO `productorder` VALUES (436, '2020103011234901053', '110101', '123', '524200', 'huazi', '18898341234', '2020-10-30 11:23:53', '2020-10-30 11:24:06', '2020-10-30 11:24:34', 3, 1053);
+INSERT INTO `productorder` VALUES (437, '2020103120435401', '110105', '哈哈哈哈', '710000', '不知道', '15319449084', '2020-10-31 20:44:00', '2020-11-05 13:06:10', '2020-11-05 14:37:40', 3, 1);
+INSERT INTO `productorder` VALUES (438, '2020110513362101054', '120223', '1651651', '251652', '165165', '13131313131', '2020-11-05 13:36:55', '2020-11-05 13:37:02', '2020-11-05 13:37:17', 3, 1054);
+INSERT INTO `productorder` VALUES (439, '2020110609184601056', '110101', 'dasdas', '', 'dsa', '18270523136', '2020-11-06 09:18:49', '2020-11-06 09:22:23', '2020-11-06 09:22:29', 3, 1056);
+INSERT INTO `productorder` VALUES (440, '2020110611393206', '110101', '东方红法规及客户', '116021', '法国人', '14545666777', '2020-11-06 11:39:32', NULL, NULL, 0, 6);
+INSERT INTO `productorder` VALUES (441, '2020110611400706', '110101', '东方红法规及客户', '116021', '法国人', '14545666777', '2020-11-06 11:41:28', NULL, NULL, 1, 6);
+INSERT INTO `productorder` VALUES (442, '20201106151033020', '110101', '东方红法规及客户', '116021', '法国人', '14545666777', '2020-11-06 15:10:33', NULL, NULL, 0, 20);
+INSERT INTO `productorder` VALUES (443, '2020110617052401', '110101', 'dsd', '710000', 'sdsds', '15312345689', '2020-11-06 17:05:27', '2020-11-30 10:27:54', '2020-12-07 17:43:24', 3, 1);
+INSERT INTO `productorder` VALUES (444, '2020110818120801057', '140428', '犄角格拉', '123456', '老王', '15635560983', '2020-11-08 18:12:11', '2020-11-08 18:12:50', '2020-11-08 18:13:48', 3, 1057);
+INSERT INTO `productorder` VALUES (445, '2020110911484501057', '140428', '犄角格拉', '123456', '老王', '15635560983', '2020-11-09 11:48:54', NULL, NULL, 1, 1057);
+INSERT INTO `productorder` VALUES (446, '2020110923520901059', '140105', '百货大厦', '', '张三', '18866668616', '2020-11-09 23:52:11', '2020-11-09 23:52:21', '2020-11-09 23:52:29', 3, 1059);
+INSERT INTO `productorder` VALUES (447, '2020110923542901058', '110101', '北京', '', 'wmm', '13845678910', '2020-11-09 23:54:32', '2020-11-09 23:55:50', NULL, 2, 1058);
+INSERT INTO `productorder` VALUES (448, '2020111016093101059', '140105', '百货大厦', '', '张三', '18866668616', '2020-11-10 16:09:33', '2020-11-10 16:09:38', '2020-11-10 16:09:46', 3, 1059);
+INSERT INTO `productorder` VALUES (449, '2020111016315101062', '110101', '666', '421600', '刘卫平', '15200531424', '2020-11-10 16:31:53', '2020-11-10 16:32:01', '2020-11-10 16:32:10', 3, 1062);
+INSERT INTO `productorder` VALUES (450, '2020111111481701058', '110101', '北京', '', 'wmm', '13845678910', '2020-11-11 11:49:57', NULL, NULL, 1, 1058);
+INSERT INTO `productorder` VALUES (451, '2020112016220001067', '110101', '123', '', '123', '13912345678', '2020-11-20 16:22:05', NULL, NULL, 1, 1067);
+INSERT INTO `productorder` VALUES (452, '2020112410001601068', '152502', '锡林郭勒职业学院', '', '包塞纳', '18847907208', '2020-11-24 10:00:18', '2020-11-24 10:02:03', '2020-11-24 10:02:10', 3, 1068);
+INSERT INTO `productorder` VALUES (453, '202011290010000111', '110101', '1', '110063', 'anc123', '13579246810', '2020-11-29 00:10:07', NULL, NULL, 1, 111);
+INSERT INTO `productorder` VALUES (454, '2020120116494401072', '110101', '12312', '726400', '1321', '15926857485', '2020-12-01 16:49:46', '2020-12-01 16:49:51', '2020-12-01 16:49:59', 3, 1072);
+INSERT INTO `productorder` VALUES (455, '2020120222104001074', '110101', '111', '350000', '111', '13102513211', '2020-12-02 22:10:45', '2020-12-02 22:10:54', '2020-12-02 22:11:06', 3, 1074);
+INSERT INTO `productorder` VALUES (456, '20201206015358017', '110101', '1', '', '我', '13023761123', '2020-12-06 01:54:19', '2020-12-06 01:54:49', '2020-12-06 01:55:21', 3, 17);
+INSERT INTO `productorder` VALUES (457, '20201206021626017', '110101', '1', '', '我', '13023761123', '2020-12-06 02:16:26', NULL, NULL, 0, 17);
+INSERT INTO `productorder` VALUES (458, '2020120717395901', '110101', 'w', '232135', 'jlk;lksdn;ln', '13213851651', '2020-12-07 17:40:00', '2020-12-07 17:40:08', '2020-12-07 17:40:14', 3, 1);
+INSERT INTO `productorder` VALUES (459, '2020120717430501', '110101', '013213', '232135', '1111132', '13213851651', '2020-12-07 17:43:07', '2020-12-07 17:43:12', '2020-12-07 17:43:16', 3, 1);
+INSERT INTO `productorder` VALUES (460, '2020120717462801', '110101', '013213', '232135', '1111132', '13213851651', '2020-12-07 17:46:29', '2020-12-07 17:46:33', '2020-12-07 17:46:36', 3, 1);
+INSERT INTO `productorder` VALUES (461, '2020121109291801078', '140321', 'diz', '123242', 'tg', '13203378251', '2020-12-11 09:29:38', NULL, NULL, 1, 1078);
+INSERT INTO `productorder` VALUES (462, '2020121109311101078', '140321', 'diz', '123242', 'tg', '13203378251', '2020-12-11 09:31:14', NULL, NULL, 1, 1078);
+INSERT INTO `productorder` VALUES (463, '2020121110013601078', '140321', 'diz', '123242', 'tg', '13203378251', '2020-12-11 10:01:38', NULL, NULL, 1, 1078);
+INSERT INTO `productorder` VALUES (464, '2020121211392001079', '110101', '111', '111111', '111111', '18373029255', '2020-12-12 11:39:25', NULL, NULL, 1, 1079);
+INSERT INTO `productorder` VALUES (465, '2020121317312201080', '130102', 'ss', '625321', 's', '15566666555', '2020-12-13 17:31:25', '2020-12-13 17:31:32', '2020-12-13 17:31:41', 3, 1080);
+INSERT INTO `productorder` VALUES (466, '2020121318305001080', '130102', 'ss', '625321', 's', '15566666555', '2020-12-13 18:30:54', '2020-12-13 18:31:10', '2020-12-13 18:31:37', 3, 1080);
+INSERT INTO `productorder` VALUES (467, '2020121318483101080', '130102', 'ss', '625321', 's', '15566666555', '2020-12-13 18:48:36', '2020-12-13 18:48:52', '2020-12-13 18:49:16', 3, 1080);
+INSERT INTO `productorder` VALUES (468, '2020123015163401083', '110101', '21', '211212', '12', '17712375414', '2020-12-30 15:16:37', '2020-12-30 15:16:46', '2020-12-30 15:16:56', 3, 1083);
+INSERT INTO `productorder` VALUES (469, '2021010212272101085', '110101', 'chongqingshiyubeiquxingguangdadao\n8hao', '400000', 'chongqingshiyubeiqux', '15173780455', '2021-01-02 12:27:23', NULL, NULL, 1, 1085);
+INSERT INTO `productorder` VALUES (470, '2021010416555501087', '110101', '123', '413000', '123', '13237378844', '2021-01-04 16:55:57', NULL, NULL, 1, 1087);
+INSERT INTO `productorder` VALUES (471, '2021010417295001088', '110101', '11', '414127', '金广君', '18669874561', '2021-01-04 17:29:51', '2021-01-04 17:30:07', NULL, 2, 1088);
+INSERT INTO `productorder` VALUES (472, '2021011410425601090', '110101', '123', '', '123', '17610851111', '2021-01-14 10:42:58', '2021-01-14 10:43:13', '2021-01-14 10:43:20', 3, 1090);
+INSERT INTO `productorder` VALUES (473, '2021011411580601091', '110101', '1212', '621000', '212', '18781199001', '2021-01-14 11:58:16', '2021-04-08 09:48:46', NULL, 2, 1091);
+INSERT INTO `productorder` VALUES (474, '2021011513543701092', '110101', '324', '450000', '234', '15517504568', '2021-01-15 13:54:40', '2021-01-15 13:54:47', '2021-01-15 13:54:58', 3, 1092);
+INSERT INTO `productorder` VALUES (475, '2021011712103201093', '110101', 'yyy', '', 'yy', '13956562585', '2021-01-17 12:10:35', '2021-01-17 12:10:42', NULL, 2, 1093);
+INSERT INTO `productorder` VALUES (476, '2021011712142101093', '110101', 'yyy', '', 'yy', '13956562585', '2021-01-17 12:15:09', '2021-04-08 09:48:40', NULL, 2, 1093);
+INSERT INTO `productorder` VALUES (477, '2021011712204601093', '110101', 'yyy', '', 'yy', '13956562585', '2021-01-17 12:21:13', '2021-01-17 12:57:23', NULL, 2, 1093);
+INSERT INTO `productorder` VALUES (478, '2021011712225301093', '110101', 'yyy', '', 'yy', '13956562585', '2021-01-17 12:22:58', '2021-01-17 12:23:59', '2021-01-17 12:25:30', 3, 1093);
+INSERT INTO `productorder` VALUES (479, '2021011713434701093', '110101', 'kk', '', 'll', '13956585852', '2021-01-17 13:43:47', NULL, NULL, 0, 1093);
+INSERT INTO `productorder` VALUES (480, '2021011813020001095', '120101', '武切维奇', '323423', '省道', '13846501111', '2021-01-18 13:02:03', '2021-04-08 09:48:33', NULL, 2, 1095);
+INSERT INTO `productorder` VALUES (481, '2021041011182501097', '110101', '1111', '', 'jiang1', '17353249016', '2021-04-10 11:18:29', '2021-04-10 11:18:42', NULL, 2, 1097);
+INSERT INTO `productorder` VALUES (482, '2021041116445101098', '110101', 'sdfsaf', '', 'sdf', '13423456675', '2021-04-11 16:44:58', '2021-04-11 16:45:10', '2021-04-11 16:45:21', 3, 1098);
+INSERT INTO `productorder` VALUES (483, '2021041419531201104', '110101', '幸福小区', '', '刘德华', '18912341234', '2021-04-14 19:53:14', '2021-04-14 19:53:20', NULL, 2, 1104);
+INSERT INTO `productorder` VALUES (484, '2021041515135601105', '110101', 'aaaa', '417000', 'aaa', '18692887578', '2021-04-15 15:14:00', '2021-04-15 15:14:11', '2021-04-15 15:14:47', 3, 1105);
+INSERT INTO `productorder` VALUES (485, '20210415164936020', '110101', 'sss', '678888', 'sxxx', '15123333333', '2021-04-15 16:49:38', NULL, NULL, 1, 20);
+INSERT INTO `productorder` VALUES (486, '20210415165120020', '110101', 'sss', '678888', 'sxxx', '15123333333', '2021-04-15 16:51:22', NULL, NULL, 1, 20);
+INSERT INTO `productorder` VALUES (487, '20210415165205020', '110101', 'sss', '678888', 'sxxx', '15123333333', '2021-04-15 16:52:07', NULL, NULL, 1, 20);
+INSERT INTO `productorder` VALUES (488, '2021041610014101106', '110101', '东二环18号1688', '', '李东', '13598681388', '2021-04-16 10:01:58', NULL, NULL, 1, 1106);
+INSERT INTO `productorder` VALUES (489, '2021041613150001107', '110101', 'ggg', '111111', 'eeee', '15684510785', '2021-04-16 13:15:05', '2021-04-16 13:15:18', NULL, 2, 1107);
+INSERT INTO `productorder` VALUES (490, '2021041912003801108', '110101', '小区', '123456', '阿什', '13137182009', '2021-04-19 12:00:42', '2021-04-19 12:01:01', NULL, 2, 1108);
+INSERT INTO `productorder` VALUES (491, '2021041917134901109', '110112', '高楼金', '', '李星星', '18838981022', '2021-04-19 17:13:52', NULL, NULL, 1, 1109);
+INSERT INTO `productorder` VALUES (492, '2021041922385101109', '110101', '高楼金', '', '李星星', '18838981023', '2021-04-19 22:38:56', NULL, NULL, 1, 1109);
+INSERT INTO `productorder` VALUES (493, '2021042308575801111', '110101', '11', '351100', 'fds', '13375002981', '2021-04-23 08:58:02', NULL, NULL, 1, 1111);
+INSERT INTO `productorder` VALUES (494, '2021042713555301113', '110101', '1', '', '1', '13111111111', '2021-04-27 13:56:46', NULL, NULL, 1, 1113);
+INSERT INTO `productorder` VALUES (495, '2021042721521101114', '110101', 'das', '213213', 'das', '13761355713', '2021-04-27 21:52:15', '2021-04-27 21:52:41', '2021-04-27 21:53:02', 3, 1114);
+INSERT INTO `productorder` VALUES (496, '2021042723081601114', '110101', 'das', '213213', 'das', '13761355713', '2021-04-27 23:08:19', '2021-04-27 23:08:33', '2021-04-27 23:08:41', 3, 1114);
+INSERT INTO `productorder` VALUES (497, '2021042916342101118', '110101', '湖南省湘潭市湖南科技大学', '411100', '湖南省湘潭市湖南科技大学', '15200372009', '2021-04-29 16:34:23', NULL, NULL, 1, 1118);
+INSERT INTO `productorder` VALUES (498, '2021043016030601119', '110101', 'asds', '226000', 'asd', '18251377520', '2021-04-30 16:03:11', NULL, NULL, 1, 1119);
+INSERT INTO `productorder` VALUES (499, '2021050413172001122', '110101', '是阿萨', '213456', '是啊', '13299266285', '2021-05-04 13:17:21', NULL, NULL, 1, 1122);
+INSERT INTO `productorder` VALUES (500, '2021050414404501123', '110101', 'bri', '111111', 'zzy', '13120223633', '2021-05-04 14:40:47', NULL, NULL, 1, 1123);
+INSERT INTO `productorder` VALUES (501, '2021050812103001124', '110101', '123', '843301', '123', '18199316606', '2021-05-08 12:10:33', '2021-05-08 12:10:44', '2021-05-08 12:12:06', 3, 1124);
+INSERT INTO `productorder` VALUES (502, '2021051115473101125', '110101', 'ewfwefw', '', 'za', '13994333888', '2021-05-11 15:47:36', '2021-05-11 15:47:51', '2021-05-11 15:54:38', 3, 1125);
+INSERT INTO `productorder` VALUES (503, '2021052312505201116', '110101', '银行', '321321', 'tt', '13345678910', '2021-05-23 12:50:52', NULL, NULL, 0, 1116);
+INSERT INTO `productorder` VALUES (504, '2021052312514101116', '110101', '银行', '321321', 'tt', '13345678910', '2021-05-23 12:51:41', NULL, NULL, 0, 1116);
+INSERT INTO `productorder` VALUES (505, '2021060108393701133', '110101', '是的', '456423', '打算', '15159713790', '2021-06-01 08:39:39', '2021-06-01 09:18:53', '2021-06-01 09:19:04', 3, 1133);
+INSERT INTO `productorder` VALUES (506, '2021060116073701137', '110101', '呜呜呜呜呜呜呜', '123222', '问问', '13523451234', '2021-06-01 16:07:41', NULL, NULL, 1, 1137);
+INSERT INTO `productorder` VALUES (507, '2021060400353601141', '110101', 'z', '', 'z', '13333333333', '2021-06-04 00:35:40', '2021-06-04 00:35:59', NULL, 2, 1141);
+INSERT INTO `productorder` VALUES (508, '2021060400392601141', '110101', 'z', '', 'z', '13333333333', '2021-06-04 00:39:29', NULL, NULL, 1, 1141);
+INSERT INTO `productorder` VALUES (509, '2021060400395201141', '110101', 'z', '', 'z', '13333333333', '2021-06-04 00:39:54', NULL, NULL, 1, 1141);
+INSERT INTO `productorder` VALUES (510, '2021060400400401141', '110101', 'z', '', 'z', '13333333333', '2021-06-04 00:40:06', NULL, NULL, 1, 1141);
+INSERT INTO `productorder` VALUES (511, '2021060416250301143', '110101', '12', '110010', 'yy', '15332921427', '2021-06-04 16:25:08', '2021-06-04 16:25:29', NULL, 2, 1143);
+INSERT INTO `productorder` VALUES (512, '2021060417164001145', '110101', '张家山一路', '', '张三', '18778787872', '2021-06-04 17:16:42', '2021-06-04 17:16:51', NULL, 2, 1145);
+INSERT INTO `productorder` VALUES (513, '2021060520413401146', '110101', 'afasdfasdafdasdfasdfasdfa', '', 'sadfas', '13321423412', '2021-06-05 20:41:37', '2021-06-05 20:41:44', NULL, 2, 1146);
+INSERT INTO `productorder` VALUES (514, '2021060614390401148', '110101', 'hhh', '', '12345678999', '15863435296', '2021-06-06 14:39:09', NULL, NULL, 1, 1148);
+INSERT INTO `productorder` VALUES (515, '2021060719103501149', '110101', '人读过', '215500', '但是', '13773065556', '2021-06-07 19:10:38', '2021-06-07 19:10:53', '2021-06-07 19:11:00', 3, 1149);
+INSERT INTO `productorder` VALUES (516, '2021061011102601129', '110101', '123', '424117', '123', '13512345678', '2021-06-10 11:10:29', '2021-06-10 11:10:49', NULL, 2, 1129);
+INSERT INTO `productorder` VALUES (517, '2021061013270701129', '110101', '123', '424117', '123', '13512345678', '2021-06-10 13:27:17', NULL, NULL, 1, 1129);
+INSERT INTO `productorder` VALUES (518, '2021061018402001148', '420202', 'hhh', '444100', '孝感', '13569963158', '2021-06-10 18:40:47', NULL, NULL, 1, 1148);
+INSERT INTO `productorder` VALUES (519, '20210611185031015', '110101', '123423442', '232342', '234234234', '19858201102', '2021-06-11 18:50:42', '2021-06-11 18:51:29', '2021-06-11 18:51:59', 3, 15);
+INSERT INTO `productorder` VALUES (520, '20210611185224015', '110101', '123423442', '232342', '234234234', '19858201102', '2021-06-11 19:06:11', NULL, NULL, 1, 15);
+INSERT INTO `productorder` VALUES (521, '20210611185811015', '110101', '123423442', '232342', '234234234', '19858201102', '2021-06-11 18:58:26', '2021-06-11 19:06:23', '2021-06-11 19:21:52', 3, 15);
+INSERT INTO `productorder` VALUES (522, '20210613163228015', '110101', '123423442', '232342', '234234234', '19858201102', '2021-06-13 16:32:31', NULL, NULL, 1, 15);
+INSERT INTO `productorder` VALUES (523, '20210613220637015', '110101', '123423442', '232342', '234234234', '19858201102', '2021-06-13 22:07:20', NULL, NULL, 1, 15);
+INSERT INTO `productorder` VALUES (524, '20210614135024015', '110101', '123423442', '232342', '234234234', '19858201102', '2021-06-14 13:50:47', '2021-06-15 22:17:21', NULL, 2, 15);
+INSERT INTO `productorder` VALUES (525, '20210615000331015', '110101', '123423442', '232342', '234234234', '19858201102', '2021-06-15 00:03:45', '2021-06-15 00:04:25', '2021-06-15 00:06:51', 3, 15);
+INSERT INTO `productorder` VALUES (526, '20210615220042015', '110101', '123423442', '232342', '234234234', '19858201102', '2021-06-15 22:02:12', NULL, NULL, 1, 15);
+INSERT INTO `productorder` VALUES (527, '2021061610322801154', '110101', '河东巷', '100000', '毛不易', '18227965401', '2021-06-16 10:32:32', NULL, NULL, 1, 1154);
+INSERT INTO `productorder` VALUES (528, '2021061717075501156', '110101', 'aaa', '', 'aaa', '18890888768', '2021-06-17 17:08:00', '2021-06-17 17:08:07', NULL, 2, 1156);
+INSERT INTO `productorder` VALUES (529, '2021061717101001156', '110101', 'aaa', '', 'aaa', '18890888768', '2021-06-17 17:10:17', NULL, NULL, 1, 1156);
+INSERT INTO `productorder` VALUES (530, '2021061809312101157', '110101', '河南省南阳市', '411302', 'byy', '15056789023', '2021-06-18 09:31:24', NULL, NULL, 1, 1157);
+INSERT INTO `productorder` VALUES (531, '2021061815255507', '510122', '顶顶顶顶', '', '何某', '13302345678', '2021-06-18 15:26:01', NULL, NULL, 1, 7);
+INSERT INTO `productorder` VALUES (532, '2021062217004201159', '110101', '认为人瓦房', '', '文案绕翁', '15620212534', '2021-06-22 17:00:49', '2021-06-22 17:01:01', '2021-06-22 17:01:08', 3, 1159);
+INSERT INTO `productorder` VALUES (533, '2021062509404201160', '110101', '132135', '', ']\\kp;o', '17300000000', '2021-06-25 09:40:45', NULL, NULL, 1, 1160);
+INSERT INTO `productorder` VALUES (534, '2021062618134201161', '440118', '广州华商学院', '525100', '孔庆槟', '18316607719', '2021-06-26 18:13:45', '2021-06-26 18:15:01', '2021-06-26 18:15:16', 3, 1161);
+INSERT INTO `productorder` VALUES (535, '2021071118214701167', '110101', 'asfds', '100010', 'dafs', '18210319921', '2021-07-11 18:22:15', NULL, NULL, 1, 1167);
+INSERT INTO `productorder` VALUES (536, '2021071422141906', '110101', '213214', '', '141', '17366636923', '2021-07-14 22:14:22', '2021-07-14 22:14:33', NULL, 2, 6);
+INSERT INTO `productorder` VALUES (537, '2021071822135901169', '110101', '朝阳区', '712000', '陈先生', '13000000000', '2021-07-18 22:14:03', '2021-07-18 22:14:08', '2021-07-18 22:14:25', 3, 1169);
+INSERT INTO `productorder` VALUES (538, '2021072210073401171', '110101', '333', '132433', '11', '13261643812', '2021-07-22 10:07:38', '2021-07-22 10:07:47', NULL, 2, 1171);
+INSERT INTO `productorder` VALUES (539, '2021072210582801172', '131082', '防灾科技学院', '551100', 'zou-weiying', '15329010072', '2021-07-22 11:00:25', NULL, NULL, 1, 1172);
+INSERT INTO `productorder` VALUES (541, '2021072211013601172', '131082', '防灾科技学院', '551100', 'zou-weiying', '15329011234', '2021-07-22 11:01:40', '2021-07-22 11:06:33', '2021-07-22 11:09:25', 3, 1172);
+INSERT INTO `productorder` VALUES (542, '2021072218255901173', '110101', 'wertwe', '435100', '657', '15512345678', '2021-07-22 18:26:02', NULL, NULL, 1, 1173);
+INSERT INTO `productorder` VALUES (543, '2021080909314801176', '110101', '123123', '', '123', '13312341234', '2021-08-09 09:31:50', NULL, NULL, 1, 1176);
+INSERT INTO `productorder` VALUES (544, '2021081713510401179', '110101', '222222222222222222', '710000', '2222', '13699999999', '2021-08-17 13:51:06', NULL, NULL, 1, 1179);
+INSERT INTO `productorder` VALUES (545, '20210819200213017', '110101', '凄凄切切群群群群', '', 'qqq', '13523452233', '2021-08-19 20:02:20', NULL, NULL, 1, 17);
+INSERT INTO `productorder` VALUES (546, '2021082016205701180', '110101', '2134', '', '123123', '13559225678', '2021-08-20 16:21:02', NULL, NULL, 1, 1180);
+INSERT INTO `productorder` VALUES (547, '2021082615544201182', '110101', '111', '', '11', '18366120118', '2021-08-26 15:54:43', '2021-08-26 15:54:59', '2021-08-26 15:55:12', 3, 1182);
+INSERT INTO `productorder` VALUES (548, '2021090520464601184', '130404', 'dsg', '', 'eff', '18888886655', '2021-09-05 20:48:04', '2021-09-05 20:48:27', '2021-09-05 20:48:43', 3, 1184);
+INSERT INTO `productorder` VALUES (549, '2021090811554201', '110101', '111', '133200', '111', '15319449084', '2021-09-08 11:55:42', NULL, NULL, 0, 1);
 
 -- ----------------------------
 -- Table structure for productorderitem
 -- ----------------------------
 DROP TABLE IF EXISTS `productorderitem`;
 CREATE TABLE `productorderitem`  (
-  `productorderitem_id` int(10) NOT NULL AUTO_INCREMENT,
-  `productorderitem_number` smallint(5) UNSIGNED NOT NULL,
-  `productorderitem_price` decimal(10, 2) NOT NULL,
-  `productorderitem_product_id` int(10) NOT NULL,
-  `productorderitem_order_id` int(10) NULL DEFAULT NULL,
-  `productorderitem_user_id` int(10) NOT NULL,
-  `productorderitem_userMessage` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`productorderitem_id`) USING BTREE,
-  INDEX `productorderitem_product_id`(`productorderitem_product_id`) USING BTREE,
-  INDEX `productorderitem_order_id`(`productorderitem_order_id`) USING BTREE,
-  INDEX `productorderitem_user_id`(`productorderitem_user_id`) USING BTREE,
-  CONSTRAINT `productorderitem_ibfk_1` FOREIGN KEY (`productorderitem_product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `productorderitem_ibfk_2` FOREIGN KEY (`productorderitem_order_id`) REFERENCES `productorder` (`productorder_id`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `productorderitem_ibfk_3` FOREIGN KEY (`productorderitem_user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 292 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+                                     `productorderitem_id` int(10) NOT NULL AUTO_INCREMENT,
+                                     `productorderitem_number` smallint(5) UNSIGNED NOT NULL,
+                                     `productorderitem_price` decimal(10, 2) NOT NULL,
+                                     `productorderitem_product_id` int(10) NOT NULL,
+                                     `productorderitem_order_id` int(10) NULL DEFAULT NULL,
+                                     `productorderitem_user_id` int(10) NOT NULL,
+                                     `productorderitem_userMessage` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                     PRIMARY KEY (`productorderitem_id`) USING BTREE,
+                                     INDEX `productorderitem_product_id`(`productorderitem_product_id`) USING BTREE,
+                                     INDEX `productorderitem_order_id`(`productorderitem_order_id`) USING BTREE,
+                                     INDEX `productorderitem_user_id`(`productorderitem_user_id`) USING BTREE,
+                                     CONSTRAINT `productorderitem_ibfk_1` FOREIGN KEY (`productorderitem_product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+                                     CONSTRAINT `productorderitem_ibfk_2` FOREIGN KEY (`productorderitem_order_id`) REFERENCES `productorder` (`productorder_id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+                                     CONSTRAINT `productorderitem_ibfk_3` FOREIGN KEY (`productorderitem_user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 884 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of productorderitem
@@ -5332,7 +5649,6 @@ INSERT INTO `productorderitem` VALUES (146, 1, 899.00, 27, 103, 10, '');
 INSERT INTO `productorderitem` VALUES (147, 1, 75.00, 4, 104, 1, '');
 INSERT INTO `productorderitem` VALUES (148, 1, 79.00, 9, 105, 7, '');
 INSERT INTO `productorderitem` VALUES (149, 1, 35.00, 38, 106, 1, '');
-INSERT INTO `productorderitem` VALUES (150, 1, 79.00, 1, NULL, 12, NULL);
 INSERT INTO `productorderitem` VALUES (151, 1, 79.00, 1, 107, 12, '');
 INSERT INTO `productorderitem` VALUES (152, 1, 78.00, 32, 108, 7, '');
 INSERT INTO `productorderitem` VALUES (153, 1, 79.90, 35, 109, 1, '');
@@ -5438,7 +5754,7 @@ INSERT INTO `productorderitem` VALUES (252, 1, 139.00, 36, 211, 1, '');
 INSERT INTO `productorderitem` VALUES (253, 4, 796.00, 20, 211, 1, '');
 INSERT INTO `productorderitem` VALUES (254, 1, 49.00, 41, 206, 16, '');
 INSERT INTO `productorderitem` VALUES (255, 1, 49.00, 41, 207, 1, '');
-INSERT INTO `productorderitem` VALUES (261, 5, 2845.00, 44, NULL, 17, NULL);
+INSERT INTO `productorderitem` VALUES (261, 5, 2845.00, 44, 545, 17, '');
 INSERT INTO `productorderitem` VALUES (262, 5, 12995.00, 42, 208, 18, '带包装盒');
 INSERT INTO `productorderitem` VALUES (263, 1, 2599.00, 42, 209, 18, '');
 INSERT INTO `productorderitem` VALUES (264, 1, 569.00, 44, 209, 18, '');
@@ -5467,20 +5783,572 @@ INSERT INTO `productorderitem` VALUES (288, 1, 49.00, 41, 224, 25, '');
 INSERT INTO `productorderitem` VALUES (289, 1, 49.00, 41, 225, 1, '');
 INSERT INTO `productorderitem` VALUES (290, 1, 49.00, 41, 226, 1, '');
 INSERT INTO `productorderitem` VALUES (291, 1, 49.00, 41, 227, 1, '');
+INSERT INTO `productorderitem` VALUES (292, 2, 156.00, 32, 228, 1, '');
+INSERT INTO `productorderitem` VALUES (293, 1, 79.00, 1, 229, 1, '');
+INSERT INTO `productorderitem` VALUES (294, 1, 79.00, 1, 230, 1, '');
+INSERT INTO `productorderitem` VALUES (295, 1, 259.00, 39, 265, 1, '');
+INSERT INTO `productorderitem` VALUES (296, 1, 259.00, 39, 231, 1, '');
+INSERT INTO `productorderitem` VALUES (297, 1, 79.00, 1, NULL, 27, NULL);
+INSERT INTO `productorderitem` VALUES (298, 1, 2599.00, 42, 232, 1, '');
+INSERT INTO `productorderitem` VALUES (299, 1, 2599.00, 42, 233, 1, '');
+INSERT INTO `productorderitem` VALUES (300, 8, 392.00, 41, 265, 1, '');
+INSERT INTO `productorderitem` VALUES (301, 1, 59.00, 34, 265, 1, '');
+INSERT INTO `productorderitem` VALUES (302, 1, 59.00, 34, 234, 1, '');
+INSERT INTO `productorderitem` VALUES (303, 1, 79.00, 1, 235, 1, '');
+INSERT INTO `productorderitem` VALUES (304, 1, 79.00, 1, 236, 1, '');
+INSERT INTO `productorderitem` VALUES (305, 1, 79.00, 1, 237, 1, '');
+INSERT INTO `productorderitem` VALUES (306, 1, 79.00, 1, 238, 1, '');
+INSERT INTO `productorderitem` VALUES (307, 1, 79.00, 1, 239, 1, '');
+INSERT INTO `productorderitem` VALUES (308, 1, 79.00, 1, 240, 1, '');
+INSERT INTO `productorderitem` VALUES (309, 8, 632.00, 1, 265, 1, '');
+INSERT INTO `productorderitem` VALUES (310, 1, 79.00, 1, 241, 1, '');
+INSERT INTO `productorderitem` VALUES (311, 1, 79.00, 1, 242, 1, '');
+INSERT INTO `productorderitem` VALUES (312, 8, 632.00, 1, 243, 31, '');
+INSERT INTO `productorderitem` VALUES (313, 1, 49.00, 41, 244, 31, '');
+INSERT INTO `productorderitem` VALUES (316, 1, 35.00, 38, 245, 31, '');
+INSERT INTO `productorderitem` VALUES (317, 1, 49.00, 41, 246, 33, '');
+INSERT INTO `productorderitem` VALUES (318, 9, 711.00, 1, NULL, 34, NULL);
+INSERT INTO `productorderitem` VALUES (319, 6, 4008.00, 84, NULL, 34, NULL);
+INSERT INTO `productorderitem` VALUES (320, 3, 147.00, 41, NULL, 34, NULL);
+INSERT INTO `productorderitem` VALUES (321, 1, 78.00, 32, 247, 35, '');
+INSERT INTO `productorderitem` VALUES (322, 1, 199.00, 20, 248, 36, '');
+INSERT INTO `productorderitem` VALUES (323, 12, 588.00, 41, 250, 12, '');
+INSERT INTO `productorderitem` VALUES (324, 1, 49.00, 41, 249, 12, '');
+INSERT INTO `productorderitem` VALUES (325, 10, 25590.00, 71, 250, 12, '');
+INSERT INTO `productorderitem` VALUES (326, 1, 79.90, 35, 250, 12, '');
+INSERT INTO `productorderitem` VALUES (327, 7, 2450.00, 62, NULL, 37, NULL);
+INSERT INTO `productorderitem` VALUES (328, 1005, 4108440.00, 45, NULL, 37, NULL);
+INSERT INTO `productorderitem` VALUES (329, 1, 49.00, 41, 251, 38, '');
+INSERT INTO `productorderitem` VALUES (330, 18, 10242.00, 44, 252, 38, '');
+INSERT INTO `productorderitem` VALUES (331, 2, 158.00, 1, NULL, 39, NULL);
+INSERT INTO `productorderitem` VALUES (332, 1, 2599.00, 42, NULL, 20, NULL);
+INSERT INTO `productorderitem` VALUES (333, 2, 218.00, 67, NULL, 41, NULL);
+INSERT INTO `productorderitem` VALUES (334, 1, 109.00, 67, 253, 41, '');
+INSERT INTO `productorderitem` VALUES (335, 4, 316.00, 1, 256, 44, '');
+INSERT INTO `productorderitem` VALUES (336, 3, 417.00, 36, 256, 44, '');
+INSERT INTO `productorderitem` VALUES (337, 1, 139.00, 36, 254, 44, '');
+INSERT INTO `productorderitem` VALUES (338, 6, 1728.00, 43, 256, 44, '');
+INSERT INTO `productorderitem` VALUES (339, 1, 49.00, 41, 255, 45, '');
+INSERT INTO `productorderitem` VALUES (340, 1, 59.00, 34, 257, 6, '');
+INSERT INTO `productorderitem` VALUES (341, 2, 398.00, 20, NULL, 47, NULL);
+INSERT INTO `productorderitem` VALUES (342, 1, 199.00, 20, 258, 47, '');
+INSERT INTO `productorderitem` VALUES (343, 1, 199.00, 2, 259, 48, '');
+INSERT INTO `productorderitem` VALUES (344, 1, 79.00, 1, 260, 49, '');
+INSERT INTO `productorderitem` VALUES (345, 2, 158.00, 1, NULL, 49, NULL);
+INSERT INTO `productorderitem` VALUES (348, 1, 118.00, 31, 261, 49, '');
+INSERT INTO `productorderitem` VALUES (350, 3, 354.00, 31, 270, 50, '可以');
+INSERT INTO `productorderitem` VALUES (351, 1, 298.00, 78, 262, 51, '');
+INSERT INTO `productorderitem` VALUES (352, 1, 75.00, 4, 263, 51, '');
+INSERT INTO `productorderitem` VALUES (353, 1, 139.00, 36, 270, 50, '好');
+INSERT INTO `productorderitem` VALUES (354, 1, 259.00, 39, 264, 51, '');
+INSERT INTO `productorderitem` VALUES (355, 1, 69.00, 5, 266, 51, '');
+INSERT INTO `productorderitem` VALUES (356, 1, 49.00, 41, 267, 51, '');
+INSERT INTO `productorderitem` VALUES (357, 1, 79.00, 1, 268, 52, '');
+INSERT INTO `productorderitem` VALUES (358, 1, 4088.00, 45, 269, 53, '');
+INSERT INTO `productorderitem` VALUES (359, 7, 18193.00, 42, NULL, 53, NULL);
+INSERT INTO `productorderitem` VALUES (360, 4, 16352.00, 45, NULL, 53, NULL);
+INSERT INTO `productorderitem` VALUES (361, 2, 98.00, 41, NULL, 50, NULL);
+INSERT INTO `productorderitem` VALUES (362, 1, 79.00, 1, 271, 1, '');
+INSERT INTO `productorderitem` VALUES (363, 1, 79.00, 1, 272, 55, '');
+INSERT INTO `productorderitem` VALUES (364, 17, 20230.00, 68, NULL, 56, NULL);
+INSERT INTO `productorderitem` VALUES (365, 1, 1190.00, 68, 273, 56, '');
+INSERT INTO `productorderitem` VALUES (366, 1, 1190.00, 68, 274, 56, '');
+INSERT INTO `productorderitem` VALUES (368, 15, 1185.00, 1, NULL, 57, NULL);
+INSERT INTO `productorderitem` VALUES (369, 1, 79.00, 1, NULL, 58, NULL);
+INSERT INTO `productorderitem` VALUES (370, 1, 79.00, 1, 275, 58, '');
+INSERT INTO `productorderitem` VALUES (371, 1, 79.00, 1, 276, 59, '');
+INSERT INTO `productorderitem` VALUES (372, 999, 48951.00, 41, 277, 59, '');
+INSERT INTO `productorderitem` VALUES (373, 1, 118.00, 31, 278, 59, '');
+INSERT INTO `productorderitem` VALUES (374, 1, 59.00, 34, 278, 59, '');
+INSERT INTO `productorderitem` VALUES (375, 1, 69.90, 40, 279, 59, '');
+INSERT INTO `productorderitem` VALUES (376, 1, 49.00, 41, 280, 60, 'daaa');
+INSERT INTO `productorderitem` VALUES (377, 1, 79.00, 9, 411, 1, '');
+INSERT INTO `productorderitem` VALUES (378, 1, 78.90, 33, 411, 1, '');
+INSERT INTO `productorderitem` VALUES (379, 2, 938.00, 30, 411, 1, '');
+INSERT INTO `productorderitem` VALUES (380, 2, 1798.00, 27, 411, 1, '');
+INSERT INTO `productorderitem` VALUES (381, 2, 119.60, 11, 411, 1, '');
+INSERT INTO `productorderitem` VALUES (382, 5, 495.00, 19, 411, 1, '');
+INSERT INTO `productorderitem` VALUES (383, 1, 49.00, 41, 281, 65, '');
+INSERT INTO `productorderitem` VALUES (384, 1, 68.00, 17, 282, 65, '');
+INSERT INTO `productorderitem` VALUES (385, 13, 11687.00, 27, 283, 65, '');
+INSERT INTO `productorderitem` VALUES (386, 2, 98.00, 41, 284, 66, '');
+INSERT INTO `productorderitem` VALUES (387, 8, 2072.00, 39, 286, 66, '');
+INSERT INTO `productorderitem` VALUES (388, 1, 259.00, 39, 285, 66, '');
+INSERT INTO `productorderitem` VALUES (389, 1, 79.00, 1, 287, 69, '');
+INSERT INTO `productorderitem` VALUES (390, 1, 49.00, 41, 288, 69, '');
+INSERT INTO `productorderitem` VALUES (391, 1, 79.00, 1, 289, 70, '');
+INSERT INTO `productorderitem` VALUES (392, 1, 2599.00, 42, 290, 72, '');
+INSERT INTO `productorderitem` VALUES (393, 1, 109.00, 67, 291, 73, '');
+INSERT INTO `productorderitem` VALUES (394, 3, 327.00, 67, NULL, 73, NULL);
+INSERT INTO `productorderitem` VALUES (395, 1, 350.00, 62, NULL, 73, NULL);
+INSERT INTO `productorderitem` VALUES (396, 20, 1180.00, 34, NULL, 76, NULL);
+INSERT INTO `productorderitem` VALUES (397, 1, 2599.00, 42, 292, 77, '');
+INSERT INTO `productorderitem` VALUES (398, 1, 2599.00, 42, 293, 78, '');
+INSERT INTO `productorderitem` VALUES (399, 1, 79.00, 1, 294, 79, '');
+INSERT INTO `productorderitem` VALUES (400, 8, 392.00, 41, NULL, 8, NULL);
+INSERT INTO `productorderitem` VALUES (401, 7, 343.00, 41, 295, 8, '');
+INSERT INTO `productorderitem` VALUES (402, 11, 44968.00, 45, 296, 8, '');
+INSERT INTO `productorderitem` VALUES (403, 9, 23391.00, 42, 297, 7, '');
+INSERT INTO `productorderitem` VALUES (404, 4, 196.00, 41, NULL, 25, NULL);
+INSERT INTO `productorderitem` VALUES (405, 2, 178.00, 26, 298, 80, '');
+INSERT INTO `productorderitem` VALUES (406, 6, 294.00, 41, NULL, 81, NULL);
+INSERT INTO `productorderitem` VALUES (407, 2, 158.00, 1, NULL, 82, NULL);
+INSERT INTO `productorderitem` VALUES (408, 5, 590.00, 31, NULL, 82, NULL);
+INSERT INTO `productorderitem` VALUES (409, 2, 278.00, 36, NULL, 82, NULL);
+INSERT INTO `productorderitem` VALUES (410, 1, 79.00, 1, 299, 82, '');
+INSERT INTO `productorderitem` VALUES (411, 1, 199.00, 20, 300, 82, '');
+INSERT INTO `productorderitem` VALUES (412, 1, 79.00, 1, NULL, 83, NULL);
+INSERT INTO `productorderitem` VALUES (413, 1, 79.00, 1, 301, 85, '');
+INSERT INTO `productorderitem` VALUES (414, 1, 680.00, 61, 302, 85, '');
+INSERT INTO `productorderitem` VALUES (417, 1, 2599.00, 42, NULL, 87, NULL);
+INSERT INTO `productorderitem` VALUES (418, 5, 295.00, 34, NULL, 88, NULL);
+INSERT INTO `productorderitem` VALUES (419, 5, 399.50, 35, NULL, 87, NULL);
+INSERT INTO `productorderitem` VALUES (420, 2, 576.00, 43, NULL, 89, NULL);
+INSERT INTO `productorderitem` VALUES (421, 2, 576.00, 43, 303, 89, '');
+INSERT INTO `productorderitem` VALUES (422, 1, 288.00, 43, 304, 90, '');
+INSERT INTO `productorderitem` VALUES (423, 1, 79.00, 1, NULL, 87, NULL);
+INSERT INTO `productorderitem` VALUES (424, 1, 79.00, 1, 305, 90, '');
+INSERT INTO `productorderitem` VALUES (425, 2, 158.00, 1, NULL, 92, NULL);
+INSERT INTO `productorderitem` VALUES (426, 1, 79.00, 1, 306, 92, '');
+INSERT INTO `productorderitem` VALUES (427, 1, 118.00, 31, 307, 93, '');
+INSERT INTO `productorderitem` VALUES (428, 1, 49.00, 41, 308, 94, '');
+INSERT INTO `productorderitem` VALUES (429, 2, 158.00, 1, NULL, 25, NULL);
+INSERT INTO `productorderitem` VALUES (430, 1, 118.00, 31, NULL, 25, NULL);
+INSERT INTO `productorderitem` VALUES (431, 1, 35.00, 38, NULL, 25, NULL);
+INSERT INTO `productorderitem` VALUES (432, 1, 69.90, 40, NULL, 25, NULL);
+INSERT INTO `productorderitem` VALUES (433, 1, 69.00, 5, NULL, 25, NULL);
+INSERT INTO `productorderitem` VALUES (434, 3, 417.00, 36, 311, 25, '');
+INSERT INTO `productorderitem` VALUES (435, 1, 138.00, 23, NULL, 25, NULL);
+INSERT INTO `productorderitem` VALUES (436, 1, 288.00, 43, 309, 96, '');
+INSERT INTO `productorderitem` VALUES (437, 1, 79.00, 1, 310, 98, '');
+INSERT INTO `productorderitem` VALUES (438, 5, 12995.00, 42, NULL, 25, NULL);
+INSERT INTO `productorderitem` VALUES (439, 1, 569.00, 44, NULL, 25, NULL);
+INSERT INTO `productorderitem` VALUES (440, 1, 79.00, 1, 312, 100, '');
+INSERT INTO `productorderitem` VALUES (441, 1, 259.00, 39, NULL, 101, NULL);
+INSERT INTO `productorderitem` VALUES (442, 1, 79.90, 37, NULL, 101, NULL);
+INSERT INTO `productorderitem` VALUES (443, 4, 10236.00, 71, NULL, 101, NULL);
+INSERT INTO `productorderitem` VALUES (444, 1, 79.00, 1, 313, 102, '');
+INSERT INTO `productorderitem` VALUES (445, 1, 79.00, 1, NULL, 104, NULL);
+INSERT INTO `productorderitem` VALUES (446, 1, 79.00, 1, 314, 104, '');
+INSERT INTO `productorderitem` VALUES (447, 1, 35.00, 38, 315, 6, '');
+INSERT INTO `productorderitem` VALUES (448, 2, 158.00, 1, 317, 6, '');
+INSERT INTO `productorderitem` VALUES (449, 1, 79.00, 1, 316, 6, '');
+INSERT INTO `productorderitem` VALUES (450, 1, 469.00, 30, 317, 6, '');
+INSERT INTO `productorderitem` VALUES (451, 1, 139.00, 36, 318, 6, '');
+INSERT INTO `productorderitem` VALUES (452, 1, 44.90, 63, 318, 6, '');
+INSERT INTO `productorderitem` VALUES (453, 1, 569.00, 44, 318, 6, '');
+INSERT INTO `productorderitem` VALUES (454, 1, 1599.00, 46, 318, 6, '');
+INSERT INTO `productorderitem` VALUES (455, 1, 259.00, 39, 319, 6, '');
+INSERT INTO `productorderitem` VALUES (456, 1, 49.00, 41, 320, 105, '');
+INSERT INTO `productorderitem` VALUES (457, 1, 59.80, 11, 321, 106, '');
+INSERT INTO `productorderitem` VALUES (458, 1, 79.00, 1, 322, 3, '');
+INSERT INTO `productorderitem` VALUES (459, 2, 157.80, 33, 323, 108, '');
+INSERT INTO `productorderitem` VALUES (460, 1, 79.90, 35, 323, 108, '');
+INSERT INTO `productorderitem` VALUES (461, 1, 79.00, 1, 324, 111, '');
+INSERT INTO `productorderitem` VALUES (462, 2, 118.00, 34, NULL, 112, NULL);
+INSERT INTO `productorderitem` VALUES (463, 1, 288.00, 43, 325, 1, '');
+INSERT INTO `productorderitem` VALUES (464, 1, 4088.00, 45, 326, 1, '');
+INSERT INTO `productorderitem` VALUES (465, 1, 79.90, 37, NULL, 113, NULL);
+INSERT INTO `productorderitem` VALUES (466, 1, 79.00, 1, 327, 114, '');
+INSERT INTO `productorderitem` VALUES (467, 1, 79.00, 1, 328, 114, '');
+INSERT INTO `productorderitem` VALUES (468, 2, 1138.00, 44, NULL, 116, NULL);
+INSERT INTO `productorderitem` VALUES (469, 1, 2599.00, 42, 329, 1, '');
+INSERT INTO `productorderitem` VALUES (470, 1, 49.00, 41, 330, 1, '');
+INSERT INTO `productorderitem` VALUES (471, 1014, 80106.00, 1, NULL, 117, NULL);
+INSERT INTO `productorderitem` VALUES (472, 1000, 79000.00, 1, 331, 117, 'qwerdf');
+INSERT INTO `productorderitem` VALUES (473, 1000, 79000.00, 1, 332, 117, '');
+INSERT INTO `productorderitem` VALUES (474, 1000, 1136000.00, 18, 333, 117, '');
+INSERT INTO `productorderitem` VALUES (475, 1000, 2599000.00, 42, 334, 117, '');
+INSERT INTO `productorderitem` VALUES (476, 1000, 4088000.00, 45, 335, 117, '');
+INSERT INTO `productorderitem` VALUES (477, 1, 490.00, 48, 336, 118, '123');
+INSERT INTO `productorderitem` VALUES (478, 1, 79.00, 1, 337, 119, '');
+INSERT INTO `productorderitem` VALUES (482, 1, 1599.00, 46, 338, 121, '');
+INSERT INTO `productorderitem` VALUES (483, 1, 199.00, 2, 339, 120, '');
+INSERT INTO `productorderitem` VALUES (484, 1, 79.00, 1, 340, 120, '');
+INSERT INTO `productorderitem` VALUES (485, 1, 199.00, 2, 340, 120, '');
+INSERT INTO `productorderitem` VALUES (486, 1, 79.00, 1, 341, 122, '');
+INSERT INTO `productorderitem` VALUES (487, 1, 329.00, 24, 342, 123, '');
+INSERT INTO `productorderitem` VALUES (488, 2, 658.00, 24, 343, 123, '');
+INSERT INTO `productorderitem` VALUES (489, 1, 288.00, 43, 344, 123, '');
+INSERT INTO `productorderitem` VALUES (490, 3, 207.00, 5, NULL, 124, NULL);
+INSERT INTO `productorderitem` VALUES (491, 4, 1316.00, 22, 345, 124, '');
+INSERT INTO `productorderitem` VALUES (492, 6, 1974.00, 22, NULL, 125, NULL);
+INSERT INTO `productorderitem` VALUES (493, 1, 329.00, 22, 346, 125, '');
+INSERT INTO `productorderitem` VALUES (494, 1, 420.00, 49, 347, 118, '');
+INSERT INTO `productorderitem` VALUES (495, 1, 79.00, 1, 347, 118, '');
+INSERT INTO `productorderitem` VALUES (496, 1, 1190.00, 68, 348, 118, '');
+INSERT INTO `productorderitem` VALUES (497, 1, 360.00, 51, 349, 118, '');
+INSERT INTO `productorderitem` VALUES (498, 1000, 329000.00, 22, 350, 125, '');
+INSERT INTO `productorderitem` VALUES (499, 1, 79.00, 1, 351, 1, '');
+INSERT INTO `productorderitem` VALUES (500, 1, 2599.00, 42, 352, 1, '');
+INSERT INTO `productorderitem` VALUES (501, 1, 79.00, 9, 353, 120, '');
+INSERT INTO `productorderitem` VALUES (502, 1, 129.00, 12, 354, 120, '');
+INSERT INTO `productorderitem` VALUES (503, 2, 158.00, 1, NULL, 44, NULL);
+INSERT INTO `productorderitem` VALUES (504, 1, 79.00, 1, 355, 126, '');
+INSERT INTO `productorderitem` VALUES (505, 1, 469.00, 30, 356, 129, '');
+INSERT INTO `productorderitem` VALUES (506, 1, 899.00, 27, 376, 120, '');
+INSERT INTO `productorderitem` VALUES (507, 1, 79.00, 1, 357, 130, '');
+INSERT INTO `productorderitem` VALUES (508, 1, 49.00, 41, 358, 120, '');
+INSERT INTO `productorderitem` VALUES (509, 1, 49.00, 41, 359, 120, '');
+INSERT INTO `productorderitem` VALUES (510, 1, 49.00, 41, 360, 120, '');
+INSERT INTO `productorderitem` VALUES (513, 20, 1580.00, 1, NULL, 134, NULL);
+INSERT INTO `productorderitem` VALUES (514, 1, 79.00, 1, NULL, 132, NULL);
+INSERT INTO `productorderitem` VALUES (515, 500, 49500.00, 19, 361, 120, '');
+INSERT INTO `productorderitem` VALUES (516, 1, 79.00, 1, 362, 25, '');
+INSERT INTO `productorderitem` VALUES (517, 1, 1190.00, 68, 363, 118, '');
+INSERT INTO `productorderitem` VALUES (518, 1, 1399.00, 73, 363, 118, '');
+INSERT INTO `productorderitem` VALUES (519, 9, 441.00, 41, NULL, 139, NULL);
+INSERT INTO `productorderitem` VALUES (520, 1, 49.00, 41, 364, 139, '');
+INSERT INTO `productorderitem` VALUES (521, 1, 59.00, 13, 365, 118, '');
+INSERT INTO `productorderitem` VALUES (522, 1, 139.00, 36, 366, 118, '');
+INSERT INTO `productorderitem` VALUES (523, 1, 79.00, 1, 367, 118, '');
+INSERT INTO `productorderitem` VALUES (524, 1, 49.00, 41, 368, 140, '');
+INSERT INTO `productorderitem` VALUES (525, 5, 245.00, 41, NULL, 140, NULL);
+INSERT INTO `productorderitem` VALUES (526, 1, 329.00, 22, NULL, 141, NULL);
+INSERT INTO `productorderitem` VALUES (527, 1, 79.00, 1, 369, 143, '');
+INSERT INTO `productorderitem` VALUES (528, 1, 4088.00, 45, 370, 144, '');
+INSERT INTO `productorderitem` VALUES (529, 1, 2599.00, 42, 371, 144, '');
+INSERT INTO `productorderitem` VALUES (530, 1, 79.00, 1, 372, 145, '');
+INSERT INTO `productorderitem` VALUES (531, 8, 9520.00, 68, NULL, 144, NULL);
+INSERT INTO `productorderitem` VALUES (532, 1, 49.00, 41, NULL, 144, NULL);
+INSERT INTO `productorderitem` VALUES (533, 4, 1036.00, 39, NULL, 144, NULL);
+INSERT INTO `productorderitem` VALUES (534, 1, 259.00, 39, 373, 144, '');
+INSERT INTO `productorderitem` VALUES (536, 1, 2599.00, 42, NULL, 118, NULL);
+INSERT INTO `productorderitem` VALUES (537, 1, 118.00, 31, 374, 146, '');
+INSERT INTO `productorderitem` VALUES (538, 1, 2599.00, 42, NULL, 147, NULL);
+INSERT INTO `productorderitem` VALUES (539, 1, 2599.00, 42, 375, 147, '');
+INSERT INTO `productorderitem` VALUES (540, 1, 78.00, 32, 376, 120, '');
+INSERT INTO `productorderitem` VALUES (541, 1, 78.90, 33, 377, 120, '');
+INSERT INTO `productorderitem` VALUES (542, 1, 78.00, 32, 377, 120, '');
+INSERT INTO `productorderitem` VALUES (543, 1, 199.00, 2, 377, 120, '');
+INSERT INTO `productorderitem` VALUES (544, 1, 118.00, 31, 378, 148, '');
+INSERT INTO `productorderitem` VALUES (545, 1, 49.00, 41, 379, 149, '我要大码的鞋子');
+INSERT INTO `productorderitem` VALUES (546, 4, 556.00, 36, NULL, 149, NULL);
+INSERT INTO `productorderitem` VALUES (547, 1, 139.00, 36, 380, 149, '');
+INSERT INTO `productorderitem` VALUES (548, 1, 79.00, 1, NULL, 150, NULL);
+INSERT INTO `productorderitem` VALUES (549, 1, 79.00, 1, 381, 150, '');
+INSERT INTO `productorderitem` VALUES (550, 1, 2599.00, 42, 382, 151, '');
+INSERT INTO `productorderitem` VALUES (551, 2, 8176.00, 45, NULL, 151, NULL);
+INSERT INTO `productorderitem` VALUES (552, 1, 4088.00, 45, 383, 151, '');
+INSERT INTO `productorderitem` VALUES (553, 1, 1599.00, 46, 384, 151, '不发顺丰');
+INSERT INTO `productorderitem` VALUES (554, 1, 49.00, 41, 385, 120, '');
+INSERT INTO `productorderitem` VALUES (555, 1, 79.00, 1, 386, 120, '');
+INSERT INTO `productorderitem` VALUES (556, 1, 79.00, 1, 387, 152, '');
+INSERT INTO `productorderitem` VALUES (557, 1, 109.00, 64, 388, 8, '');
+INSERT INTO `productorderitem` VALUES (558, 1, 79.00, 1, NULL, 153, NULL);
+INSERT INTO `productorderitem` VALUES (559, 1, 79.00, 1, 389, 153, 'eeeeeeeeeeeeeee');
+INSERT INTO `productorderitem` VALUES (560, 2, 1980.00, 50, NULL, 153, NULL);
+INSERT INTO `productorderitem` VALUES (561, 1, 4088.00, 45, NULL, 154, NULL);
+INSERT INTO `productorderitem` VALUES (562, 3, 147.00, 41, NULL, 154, NULL);
+INSERT INTO `productorderitem` VALUES (563, 1, 79.00, 1, 390, 154, '');
+INSERT INTO `productorderitem` VALUES (564, 1, 79.00, 1, 391, 154, '');
+INSERT INTO `productorderitem` VALUES (565, 2, 158.00, 1, 392, 154, '');
+INSERT INTO `productorderitem` VALUES (566, 1, 79.00, 1, 393, 156, '');
+INSERT INTO `productorderitem` VALUES (567, 1, 79.00, 1, NULL, 156, NULL);
+INSERT INTO `productorderitem` VALUES (568, 18, 882.00, 41, 411, 1, '');
+INSERT INTO `productorderitem` VALUES (569, 1, 49.00, 41, 394, 1, '');
+INSERT INTO `productorderitem` VALUES (573, 8, 631.20, 33, NULL, 16, NULL);
+INSERT INTO `productorderitem` VALUES (574, 6, 358.80, 11, NULL, 16, NULL);
+INSERT INTO `productorderitem` VALUES (575, 8, 559.20, 40, NULL, 16, NULL);
+INSERT INTO `productorderitem` VALUES (576, 1, 49.00, 41, 395, 159, '');
+INSERT INTO `productorderitem` VALUES (577, 1, 49.00, 41, 396, 3, '');
+INSERT INTO `productorderitem` VALUES (578, 1, 35.00, 38, 397, 160, '');
+INSERT INTO `productorderitem` VALUES (579, 4, 196.00, 41, NULL, 161, NULL);
+INSERT INTO `productorderitem` VALUES (580, 7, 1813.00, 39, NULL, 161, NULL);
+INSERT INTO `productorderitem` VALUES (581, 1, 1350.00, 69, 398, 162, '');
+INSERT INTO `productorderitem` VALUES (582, 1, 490.00, 48, 399, 1, '');
+INSERT INTO `productorderitem` VALUES (583, 1, 199.00, 20, NULL, 163, NULL);
+INSERT INTO `productorderitem` VALUES (584, 2, 576.00, 43, NULL, 164, NULL);
+INSERT INTO `productorderitem` VALUES (585, 3, 237.00, 1, NULL, 165, NULL);
+INSERT INTO `productorderitem` VALUES (586, 1, 79.00, 1, 400, 165, '');
+INSERT INTO `productorderitem` VALUES (587, 1, 79.00, 1, 401, 1, '');
+INSERT INTO `productorderitem` VALUES (588, 1, 49.00, 41, 402, 166, '');
+INSERT INTO `productorderitem` VALUES (589, 4, 796.00, 2, NULL, 168, NULL);
+INSERT INTO `productorderitem` VALUES (590, 1, 199.00, 2, 403, 168, '');
+INSERT INTO `productorderitem` VALUES (591, 1, 469.00, 30, 404, 169, 'sdfasd');
+INSERT INTO `productorderitem` VALUES (592, 1, 79.00, 1, 405, 170, '');
+INSERT INTO `productorderitem` VALUES (593, 3, 237.00, 1, NULL, 171, NULL);
+INSERT INTO `productorderitem` VALUES (594, 1, 259.00, 39, NULL, 171, NULL);
+INSERT INTO `productorderitem` VALUES (595, 1, 199.00, 20, 406, 172, '');
+INSERT INTO `productorderitem` VALUES (596, 1, 199.00, 20, 407, 172, '');
+INSERT INTO `productorderitem` VALUES (597, 1, 79.00, 1, 408, 173, '');
+INSERT INTO `productorderitem` VALUES (598, 1, 2599.00, 42, NULL, 173, NULL);
+INSERT INTO `productorderitem` VALUES (599, 1, 288.00, 43, 409, 173, '');
+INSERT INTO `productorderitem` VALUES (601, 25, 1225.00, 41, NULL, 174, NULL);
+INSERT INTO `productorderitem` VALUES (602, 25, 3475.00, 36, NULL, 174, NULL);
+INSERT INTO `productorderitem` VALUES (603, 1, 49.00, 41, 410, 175, '');
+INSERT INTO `productorderitem` VALUES (604, 1, 469.00, 30, 412, 175, '');
+INSERT INTO `productorderitem` VALUES (605, 1, 49.00, 41, 413, 176, '');
+INSERT INTO `productorderitem` VALUES (606, 14, 826.00, 34, NULL, 177, NULL);
+INSERT INTO `productorderitem` VALUES (607, 3, 177.00, 34, 414, 177, '');
+INSERT INTO `productorderitem` VALUES (608, 12, 948.00, 1, NULL, 177, NULL);
+INSERT INTO `productorderitem` VALUES (609, 1, 79.00, 1, 415, 177, '');
+INSERT INTO `productorderitem` VALUES (610, 1, 35.00, 38, NULL, 177, NULL);
+INSERT INTO `productorderitem` VALUES (611, 1, 79.00, 1, 416, 178, '');
+INSERT INTO `productorderitem` VALUES (612, 2, 700.00, 62, NULL, 179, NULL);
+INSERT INTO `productorderitem` VALUES (613, 1, 350.00, 62, 417, 179, '');
+INSERT INTO `productorderitem` VALUES (614, 2, 158.00, 1, 418, 180, '');
+INSERT INTO `productorderitem` VALUES (615, 2, 158.00, 1, NULL, 182, NULL);
+INSERT INTO `productorderitem` VALUES (616, 1, 49.00, 41, 419, 1034, '');
+INSERT INTO `productorderitem` VALUES (617, 1, 49.00, 41, 420, 1035, '');
+INSERT INTO `productorderitem` VALUES (618, 1, 490.00, 48, NULL, 1037, NULL);
+INSERT INTO `productorderitem` VALUES (619, 1, 49.00, 41, 421, 183, '');
+INSERT INTO `productorderitem` VALUES (620, 1, 668.00, 84, 422, 183, '');
+INSERT INTO `productorderitem` VALUES (621, 1, 469.00, 30, 423, 183, '');
+INSERT INTO `productorderitem` VALUES (622, 4, 196.00, 41, NULL, 1038, NULL);
+INSERT INTO `productorderitem` VALUES (623, 1, 49.00, 41, 424, 1038, '');
+INSERT INTO `productorderitem` VALUES (624, 3, 147.00, 41, NULL, 1039, NULL);
+INSERT INTO `productorderitem` VALUES (625, 1, 79.00, 1, 425, 1041, '');
+INSERT INTO `productorderitem` VALUES (626, 2, 158.00, 1, NULL, 1043, NULL);
+INSERT INTO `productorderitem` VALUES (627, 1, 79.00, 1, 426, 1043, '');
+INSERT INTO `productorderitem` VALUES (628, 1, 79.90, 37, NULL, 1044, NULL);
+INSERT INTO `productorderitem` VALUES (629, 1, 79.90, 37, 427, 1044, '');
+INSERT INTO `productorderitem` VALUES (630, 10, 799.00, 37, 428, 1044, '');
+INSERT INTO `productorderitem` VALUES (631, 20, 1598.00, 37, 429, 1044, '');
+INSERT INTO `productorderitem` VALUES (632, 2, 98.00, 41, NULL, 1045, NULL);
+INSERT INTO `productorderitem` VALUES (633, 1, 49.00, 41, 430, 1045, '');
+INSERT INTO `productorderitem` VALUES (634, 1, 259.00, 39, 431, 1046, '');
+INSERT INTO `productorderitem` VALUES (635, 1, 139.00, 3, NULL, 1046, NULL);
+INSERT INTO `productorderitem` VALUES (636, 1, 139.00, 3, 432, 1046, '');
+INSERT INTO `productorderitem` VALUES (637, 2, 158.00, 9, NULL, 1046, NULL);
+INSERT INTO `productorderitem` VALUES (638, 3, 327.00, 67, 433, 1048, '');
+INSERT INTO `productorderitem` VALUES (639, 1, 49.00, 41, 434, 1049, '');
+INSERT INTO `productorderitem` VALUES (640, 1, 49.00, 41, 435, 1050, '');
+INSERT INTO `productorderitem` VALUES (642, 1, 49.00, 41, 436, 1053, '');
+INSERT INTO `productorderitem` VALUES (643, 1, 49.00, 41, 437, 1, '');
+INSERT INTO `productorderitem` VALUES (648, 7, 3983.00, 44, NULL, 1054, NULL);
+INSERT INTO `productorderitem` VALUES (649, 1, 569.00, 44, 438, 1054, '156165');
+INSERT INTO `productorderitem` VALUES (650, 1, 79.90, 37, NULL, 1056, NULL);
+INSERT INTO `productorderitem` VALUES (651, 1, 2599.00, 42, NULL, 1056, NULL);
+INSERT INTO `productorderitem` VALUES (652, 1, 1599.00, 46, NULL, 1056, NULL);
+INSERT INTO `productorderitem` VALUES (653, 1, 79.90, 37, 439, 1056, '');
+INSERT INTO `productorderitem` VALUES (654, 1, 1136.00, 18, 440, 6, '');
+INSERT INTO `productorderitem` VALUES (655, 1, 1136.00, 18, 441, 6, '');
+INSERT INTO `productorderitem` VALUES (656, 1, 1136.00, 18, 442, 20, '');
+INSERT INTO `productorderitem` VALUES (657, 1, 199.00, 2, 443, 1, '');
+INSERT INTO `productorderitem` VALUES (659, 1, 139.00, 36, 444, 1057, '');
+INSERT INTO `productorderitem` VALUES (660, 1, 1136.00, 18, 445, 1057, '');
+INSERT INTO `productorderitem` VALUES (661, 1, 1136.00, 18, NULL, 1058, NULL);
+INSERT INTO `productorderitem` VALUES (662, 1, 1136.00, 18, NULL, 1059, NULL);
+INSERT INTO `productorderitem` VALUES (663, 1, 139.00, 36, NULL, 1059, NULL);
+INSERT INTO `productorderitem` VALUES (664, 1, 899.00, 27, NULL, 1059, NULL);
+INSERT INTO `productorderitem` VALUES (665, 1, 1136.00, 18, 446, 1059, '');
+INSERT INTO `productorderitem` VALUES (666, 1, 1136.00, 18, 447, 1058, '');
+INSERT INTO `productorderitem` VALUES (667, 1, 1136.00, 18, 448, 1059, '');
+INSERT INTO `productorderitem` VALUES (668, 1, 569.00, 44, 449, 1062, '666');
+INSERT INTO `productorderitem` VALUES (669, 1, 139.00, 36, 450, 1058, '');
+INSERT INTO `productorderitem` VALUES (670, 8, 32704.00, 45, NULL, 1064, NULL);
+INSERT INTO `productorderitem` VALUES (671, 8, 1112.00, 36, NULL, 1066, NULL);
+INSERT INTO `productorderitem` VALUES (672, 1, 2599.00, 42, NULL, 1067, NULL);
+INSERT INTO `productorderitem` VALUES (673, 1, 59.00, 13, 451, 1067, '');
+INSERT INTO `productorderitem` VALUES (674, 1, 1136.00, 18, 452, 1068, '1');
+INSERT INTO `productorderitem` VALUES (675, 1, 78.90, 33, NULL, 1069, NULL);
+INSERT INTO `productorderitem` VALUES (677, 1, 2599.00, 42, 453, 111, '');
+INSERT INTO `productorderitem` VALUES (678, 1, 1136.00, 18, NULL, 1071, NULL);
+INSERT INTO `productorderitem` VALUES (680, 1, 1136.00, 18, 454, 1072, '');
+INSERT INTO `productorderitem` VALUES (682, 1, 139.00, 36, 455, 1074, '');
+INSERT INTO `productorderitem` VALUES (683, 2, 89.80, 63, NULL, 1075, NULL);
+INSERT INTO `productorderitem` VALUES (684, 1, 79.90, 37, NULL, 1075, NULL);
+INSERT INTO `productorderitem` VALUES (685, 2, 278.00, 36, 456, 17, '');
+INSERT INTO `productorderitem` VALUES (686, 1, 1136.00, 18, 457, 17, '');
+INSERT INTO `productorderitem` VALUES (689, 1, 199.00, 20, 458, 1, 'asf');
+INSERT INTO `productorderitem` VALUES (690, 1, 109.00, 67, 459, 1, '');
+INSERT INTO `productorderitem` VALUES (691, 5, 695.00, 3, 460, 1, '');
+INSERT INTO `productorderitem` VALUES (693, 1, 35.00, 38, NULL, 1077, NULL);
+INSERT INTO `productorderitem` VALUES (694, 4, 556.00, 8, NULL, 1077, NULL);
+INSERT INTO `productorderitem` VALUES (695, 2, 5198.00, 42, NULL, 1078, NULL);
+INSERT INTO `productorderitem` VALUES (696, 2, 5198.00, 42, 461, 1078, '快递发');
+INSERT INTO `productorderitem` VALUES (697, 6, 24528.00, 45, NULL, 1078, NULL);
+INSERT INTO `productorderitem` VALUES (698, 6, 24528.00, 45, 462, 1078, '');
+INSERT INTO `productorderitem` VALUES (699, 1, 1599.00, 46, 463, 1078, '');
+INSERT INTO `productorderitem` VALUES (700, 1, 69.00, 5, NULL, 1079, NULL);
+INSERT INTO `productorderitem` VALUES (701, 1, 69.00, 5, 464, 1079, '');
+INSERT INTO `productorderitem` VALUES (702, 1, 259.00, 39, NULL, 1080, NULL);
+INSERT INTO `productorderitem` VALUES (703, 1, 259.00, 39, 465, 1080, '');
+INSERT INTO `productorderitem` VALUES (704, 2, 318.00, 15, NULL, 1080, NULL);
+INSERT INTO `productorderitem` VALUES (705, 1, 159.00, 15, 466, 1080, '');
+INSERT INTO `productorderitem` VALUES (706, 1, 159.00, 6, 467, 1080, '');
+INSERT INTO `productorderitem` VALUES (707, 1, 35.00, 38, NULL, 1081, NULL);
+INSERT INTO `productorderitem` VALUES (708, 1, 139.00, 36, NULL, 1081, NULL);
+INSERT INTO `productorderitem` VALUES (709, 1, 79.90, 37, NULL, 1083, NULL);
+INSERT INTO `productorderitem` VALUES (710, 1, 1136.00, 18, 468, 1083, '');
+INSERT INTO `productorderitem` VALUES (711, 1, 1136.00, 18, NULL, 1084, NULL);
+INSERT INTO `productorderitem` VALUES (712, 1, 35.00, 38, NULL, 1084, NULL);
+INSERT INTO `productorderitem` VALUES (713, 1, 159.00, 15, NULL, 1084, NULL);
+INSERT INTO `productorderitem` VALUES (714, 1, 1136.00, 18, 469, 1085, '');
+INSERT INTO `productorderitem` VALUES (715, 2, 8176.00, 45, NULL, 1086, NULL);
+INSERT INTO `productorderitem` VALUES (716, 2, 2272.00, 18, NULL, 1086, NULL);
+INSERT INTO `productorderitem` VALUES (717, 4, 556.00, 36, NULL, 1087, NULL);
+INSERT INTO `productorderitem` VALUES (718, 1, 139.00, 36, 470, 1087, '');
+INSERT INTO `productorderitem` VALUES (719, 1, 259.00, 39, 471, 1088, '');
+INSERT INTO `productorderitem` VALUES (721, 3, 7797.00, 42, NULL, 26, NULL);
+INSERT INTO `productorderitem` VALUES (722, 1, 1136.00, 18, 472, 1090, '');
+INSERT INTO `productorderitem` VALUES (724, 4, 10396.00, 42, 473, 1091, '');
+INSERT INTO `productorderitem` VALUES (725, 1, 1136.00, 18, 474, 1092, '');
+INSERT INTO `productorderitem` VALUES (726, 1, 25.00, 91, 475, 1093, '');
+INSERT INTO `productorderitem` VALUES (727, 1, 35.00, 38, 476, 1093, '');
+INSERT INTO `productorderitem` VALUES (728, 1, 259.00, 39, 477, 1093, '');
+INSERT INTO `productorderitem` VALUES (729, 1, 288.00, 43, 478, 1093, '');
+INSERT INTO `productorderitem` VALUES (730, 2, 138.00, 5, NULL, 1093, NULL);
+INSERT INTO `productorderitem` VALUES (731, 1, 69.00, 5, 479, 1093, '');
+INSERT INTO `productorderitem` VALUES (732, 2, 2272.00, 18, NULL, 1094, NULL);
+INSERT INTO `productorderitem` VALUES (733, 1, 139.00, 16, NULL, 1095, NULL);
+INSERT INTO `productorderitem` VALUES (734, 1, 139.00, 16, 480, 1095, '');
+INSERT INTO `productorderitem` VALUES (735, 6, 414.00, 5, NULL, 1096, NULL);
+INSERT INTO `productorderitem` VALUES (736, 2, 2272.00, 18, NULL, 1096, NULL);
+INSERT INTO `productorderitem` VALUES (737, 18, 630.00, 38, NULL, 1097, NULL);
+INSERT INTO `productorderitem` VALUES (738, 1, 35.00, 38, 481, 1097, '');
+INSERT INTO `productorderitem` VALUES (739, 5, 20440.00, 45, NULL, 1098, NULL);
+INSERT INTO `productorderitem` VALUES (740, 1, 4088.00, 45, 482, 1098, '');
+INSERT INTO `productorderitem` VALUES (741, 1, 25.00, 91, NULL, 1103, NULL);
+INSERT INTO `productorderitem` VALUES (742, 1, 139.00, 36, NULL, 1103, NULL);
+INSERT INTO `productorderitem` VALUES (743, 1, 1136.00, 18, 483, 1104, '');
+INSERT INTO `productorderitem` VALUES (744, 1, 139.00, 36, NULL, 1104, NULL);
+INSERT INTO `productorderitem` VALUES (745, 1, 1136.00, 18, NULL, 1105, NULL);
+INSERT INTO `productorderitem` VALUES (746, 1, 1136.00, 18, 484, 1105, '');
+INSERT INTO `productorderitem` VALUES (747, 1, 199.00, 2, 485, 20, '');
+INSERT INTO `productorderitem` VALUES (748, 1, 1136.00, 18, 486, 20, '');
+INSERT INTO `productorderitem` VALUES (749, 1, 1136.00, 18, 487, 20, '');
+INSERT INTO `productorderitem` VALUES (750, 1, 139.00, 36, 488, 1106, '');
+INSERT INTO `productorderitem` VALUES (751, 1, 1136.00, 18, 489, 1107, '');
+INSERT INTO `productorderitem` VALUES (752, 1, 68.00, 17, 490, 1108, '');
+INSERT INTO `productorderitem` VALUES (753, 1, 35.00, 38, 491, 1109, '');
+INSERT INTO `productorderitem` VALUES (754, 4, 4544.00, 18, NULL, 8, NULL);
+INSERT INTO `productorderitem` VALUES (755, 1, 1136.00, 18, 492, 1109, '');
+INSERT INTO `productorderitem` VALUES (756, 2, 576.00, 43, NULL, 30, NULL);
+INSERT INTO `productorderitem` VALUES (757, 1, 288.00, 43, 493, 1111, '');
+INSERT INTO `productorderitem` VALUES (758, 1, 118.00, 31, NULL, 1113, NULL);
+INSERT INTO `productorderitem` VALUES (759, 2, 236.00, 31, 494, 1113, '');
+INSERT INTO `productorderitem` VALUES (760, 1, 139.00, 36, NULL, 1113, NULL);
+INSERT INTO `productorderitem` VALUES (761, 3, 3408.00, 18, NULL, 1114, NULL);
+INSERT INTO `productorderitem` VALUES (762, 1, 199.00, 20, NULL, 1114, NULL);
+INSERT INTO `productorderitem` VALUES (763, 1, 69.90, 40, NULL, 1114, NULL);
+INSERT INTO `productorderitem` VALUES (764, 1, 79.00, 9, 495, 1114, '');
+INSERT INTO `productorderitem` VALUES (765, 1, 35.00, 38, 496, 1114, '');
+INSERT INTO `productorderitem` VALUES (767, 1, 69.90, 40, NULL, 1117, NULL);
+INSERT INTO `productorderitem` VALUES (768, 1, 1136.00, 18, 497, 1118, '');
+INSERT INTO `productorderitem` VALUES (769, 1, 89.00, 26, NULL, 1118, NULL);
+INSERT INTO `productorderitem` VALUES (770, 1, 990.00, 83, NULL, 1118, NULL);
+INSERT INTO `productorderitem` VALUES (771, 1, 1136.00, 18, 498, 1119, '');
+INSERT INTO `productorderitem` VALUES (772, 3, 417.00, 36, NULL, 1122, NULL);
+INSERT INTO `productorderitem` VALUES (773, 1, 139.00, 36, 499, 1122, '是');
+INSERT INTO `productorderitem` VALUES (774, 999, 287712.00, 43, 500, 1123, '');
+INSERT INTO `productorderitem` VALUES (775, 1, 139.00, 3, 501, 1124, '');
+INSERT INTO `productorderitem` VALUES (776, 1, 69.90, 40, NULL, 1124, NULL);
+INSERT INTO `productorderitem` VALUES (778, 1, 4088.00, 45, NULL, 1125, NULL);
+INSERT INTO `productorderitem` VALUES (779, 23, 59777.00, 42, NULL, 1125, NULL);
+INSERT INTO `productorderitem` VALUES (780, 1, 1599.00, 46, NULL, 1125, NULL);
+INSERT INTO `productorderitem` VALUES (781, 1, 199.00, 20, NULL, 1125, NULL);
+INSERT INTO `productorderitem` VALUES (782, 1, 4088.00, 45, 502, 1125, '');
+INSERT INTO `productorderitem` VALUES (783, 3, 417.00, 36, NULL, 1128, NULL);
+INSERT INTO `productorderitem` VALUES (784, 1, 59.00, 34, NULL, 1129, NULL);
+INSERT INTO `productorderitem` VALUES (785, 2, 236.00, 31, NULL, 1130, NULL);
+INSERT INTO `productorderitem` VALUES (786, 1, 139.00, 36, NULL, 1130, NULL);
+INSERT INTO `productorderitem` VALUES (787, 1, 1136.00, 18, NULL, 1130, NULL);
+INSERT INTO `productorderitem` VALUES (788, 1, 4088.00, 45, NULL, 1130, NULL);
+INSERT INTO `productorderitem` VALUES (789, 1, 1136.00, 18, 503, 1116, '');
+INSERT INTO `productorderitem` VALUES (790, 1, 1136.00, 18, 504, 1116, '');
+INSERT INTO `productorderitem` VALUES (791, 3, 3408.00, 18, NULL, 1116, NULL);
+INSERT INTO `productorderitem` VALUES (793, 1, 1136.00, 18, 505, 1133, '');
+INSERT INTO `productorderitem` VALUES (794, 3, 354.00, 31, NULL, 1134, NULL);
+INSERT INTO `productorderitem` VALUES (795, 5, 375.00, 4, NULL, 1136, NULL);
+INSERT INTO `productorderitem` VALUES (796, 1, 2599.00, 42, NULL, 85, NULL);
+INSERT INTO `productorderitem` VALUES (797, 1, 68.00, 17, 506, 1137, '');
+INSERT INTO `productorderitem` VALUES (798, 2, 278.00, 36, NULL, 1138, NULL);
+INSERT INTO `productorderitem` VALUES (799, 1, 259.00, 39, NULL, 1138, NULL);
+INSERT INTO `productorderitem` VALUES (800, 1, 139.00, 36, NULL, 1139, NULL);
+INSERT INTO `productorderitem` VALUES (801, 2, 5198.00, 42, NULL, 1140, NULL);
+INSERT INTO `productorderitem` VALUES (802, 1, 1599.00, 46, 507, 1141, '');
+INSERT INTO `productorderitem` VALUES (803, 1001, 2561559.00, 71, NULL, 1141, NULL);
+INSERT INTO `productorderitem` VALUES (804, 1000, 2559000.00, 71, 508, 1141, '');
+INSERT INTO `productorderitem` VALUES (805, 1000, 2559000.00, 71, 509, 1141, '');
+INSERT INTO `productorderitem` VALUES (806, 1000, 2559000.00, 71, 510, 1141, '');
+INSERT INTO `productorderitem` VALUES (808, 1, 1136.00, 18, NULL, 1142, NULL);
+INSERT INTO `productorderitem` VALUES (809, 2, 70.00, 38, NULL, 1143, NULL);
+INSERT INTO `productorderitem` VALUES (810, 1, 35.00, 38, 511, 1143, '');
+INSERT INTO `productorderitem` VALUES (811, 2, 580.00, 55, NULL, 1145, NULL);
+INSERT INTO `productorderitem` VALUES (812, 1, 290.00, 55, 512, 1145, '');
+INSERT INTO `productorderitem` VALUES (813, 1, 1350.00, 69, 513, 1146, '');
+INSERT INTO `productorderitem` VALUES (814, 1, 259.00, 39, NULL, 1147, NULL);
+INSERT INTO `productorderitem` VALUES (815, 3, 417.00, 36, NULL, 1148, NULL);
+INSERT INTO `productorderitem` VALUES (816, 1, 139.00, 36, 514, 1148, '');
+INSERT INTO `productorderitem` VALUES (817, 1, 139.00, 3, 515, 1149, '但是给');
+INSERT INTO `productorderitem` VALUES (818, 1, 1136.00, 18, NULL, 1150, NULL);
+INSERT INTO `productorderitem` VALUES (819, 1, 79.00, 9, NULL, 1150, NULL);
+INSERT INTO `productorderitem` VALUES (820, 8, 9088.00, 18, NULL, 1151, NULL);
+INSERT INTO `productorderitem` VALUES (821, 2, 318.00, 6, NULL, 1129, NULL);
+INSERT INTO `productorderitem` VALUES (822, 1, 159.00, 6, 516, 1129, '');
+INSERT INTO `productorderitem` VALUES (823, 7, 2940.00, 49, NULL, 1129, NULL);
+INSERT INTO `productorderitem` VALUES (824, 1, 490.00, 48, 517, 1129, '');
+INSERT INTO `productorderitem` VALUES (825, 1, 1136.00, 18, 518, 1148, '');
+INSERT INTO `productorderitem` VALUES (826, 2, 278.00, 36, 521, 15, '');
+INSERT INTO `productorderitem` VALUES (827, 1, 2599.00, 42, 519, 15, '');
+INSERT INTO `productorderitem` VALUES (828, 1, 1136.00, 18, 520, 15, '');
+INSERT INTO `productorderitem` VALUES (829, 1, 1136.00, 18, 521, 15, '');
+INSERT INTO `productorderitem` VALUES (830, 2, 278.00, 36, 522, 15, '');
+INSERT INTO `productorderitem` VALUES (831, 2, 398.00, 20, 522, 15, '');
+INSERT INTO `productorderitem` VALUES (832, 1, 139.00, 3, NULL, 1153, NULL);
+INSERT INTO `productorderitem` VALUES (833, 2, 398.00, 2, 523, 15, '');
+INSERT INTO `productorderitem` VALUES (834, 1, 139.00, 36, 523, 15, '');
+INSERT INTO `productorderitem` VALUES (835, 1, 139.00, 3, NULL, 15, NULL);
+INSERT INTO `productorderitem` VALUES (836, 1, 159.00, 6, 524, 15, '');
+INSERT INTO `productorderitem` VALUES (837, 1, 2599.00, 42, 525, 15, '');
+INSERT INTO `productorderitem` VALUES (838, 1, 199.00, 20, 526, 15, '');
+INSERT INTO `productorderitem` VALUES (839, 1, 199.00, 20, NULL, 15, NULL);
+INSERT INTO `productorderitem` VALUES (840, 1, 79.90, 35, NULL, 15, NULL);
+INSERT INTO `productorderitem` VALUES (841, 1, 139.00, 36, 527, 1154, '');
+INSERT INTO `productorderitem` VALUES (842, 7, 7952.00, 18, NULL, 1156, NULL);
+INSERT INTO `productorderitem` VALUES (843, 6, 6816.00, 18, 528, 1156, '');
+INSERT INTO `productorderitem` VALUES (844, 100, 56900.00, 44, 529, 1156, '');
+INSERT INTO `productorderitem` VALUES (845, 5, 295.00, 34, NULL, 1157, NULL);
+INSERT INTO `productorderitem` VALUES (846, 1, 59.00, 34, 530, 1157, '');
+INSERT INTO `productorderitem` VALUES (847, 1, 2599.00, 42, NULL, 1158, NULL);
+INSERT INTO `productorderitem` VALUES (848, 1, 4088.00, 45, 531, 7, '');
+INSERT INTO `productorderitem` VALUES (849, 2, 2272.00, 18, NULL, 1159, NULL);
+INSERT INTO `productorderitem` VALUES (850, 1, 1136.00, 18, 532, 1159, '');
+INSERT INTO `productorderitem` VALUES (851, 4, 796.00, 2, NULL, 1160, NULL);
+INSERT INTO `productorderitem` VALUES (852, 1, 199.00, 2, 533, 1160, '');
+INSERT INTO `productorderitem` VALUES (853, 1, 79.00, 9, 534, 1161, '');
+INSERT INTO `productorderitem` VALUES (854, 1, 999.00, 47, NULL, 1162, NULL);
+INSERT INTO `productorderitem` VALUES (855, 1, 139.00, 36, NULL, 1163, NULL);
+INSERT INTO `productorderitem` VALUES (856, 2, 5198.00, 42, NULL, 1163, NULL);
+INSERT INTO `productorderitem` VALUES (857, 1, 25.00, 91, NULL, 1163, NULL);
+INSERT INTO `productorderitem` VALUES (858, 1, 288.00, 43, NULL, 1163, NULL);
+INSERT INTO `productorderitem` VALUES (859, 1, 288.00, 43, NULL, 1166, NULL);
+INSERT INTO `productorderitem` VALUES (860, 1, 1136.00, 18, 535, 1167, '');
+INSERT INTO `productorderitem` VALUES (861, 1, 2599.00, 42, NULL, 1168, NULL);
+INSERT INTO `productorderitem` VALUES (862, 1000, 259000.00, 39, 536, 6, '');
+INSERT INTO `productorderitem` VALUES (863, 1, 59.80, 11, 537, 1169, '');
+INSERT INTO `productorderitem` VALUES (864, 1, 79.90, 37, 538, 1171, '');
+INSERT INTO `productorderitem` VALUES (865, 3, 777.00, 39, NULL, 1172, NULL);
+INSERT INTO `productorderitem` VALUES (866, 1, 259.00, 39, 539, 1172, '');
+INSERT INTO `productorderitem` VALUES (867, 1, 259.00, 39, 541, 1172, '');
+INSERT INTO `productorderitem` VALUES (869, 1, 79.00, 1, 542, 1173, '');
+INSERT INTO `productorderitem` VALUES (873, 1, 79.00, 1, 543, 1176, '');
+INSERT INTO `productorderitem` VALUES (874, 2, 158.00, 1, NULL, 26, NULL);
+INSERT INTO `productorderitem` VALUES (875, 1, 2599.00, 42, 544, 1179, '');
+INSERT INTO `productorderitem` VALUES (876, 1, 79.00, 1, 546, 1180, '');
+INSERT INTO `productorderitem` VALUES (877, 9, 5121.00, 44, NULL, 94, NULL);
+INSERT INTO `productorderitem` VALUES (878, 12, 717.60, 11, NULL, 85, NULL);
+INSERT INTO `productorderitem` VALUES (879, 6, 6816.00, 18, NULL, 1181, NULL);
+INSERT INTO `productorderitem` VALUES (880, 1, 79.00, 1, 547, 1182, '');
+INSERT INTO `productorderitem` VALUES (881, 1, 1136.00, 18, NULL, 1183, NULL);
+INSERT INTO `productorderitem` VALUES (882, 2, 236.00, 31, 548, 1184, '');
+INSERT INTO `productorderitem` VALUES (883, 1, 69.90, 40, 549, 1, '');
 
 -- ----------------------------
 -- Table structure for property
 -- ----------------------------
 DROP TABLE IF EXISTS `property`;
 CREATE TABLE `property`  (
-  `property_id` int(10) NOT NULL AUTO_INCREMENT,
-  `property_name` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `property_category_id` int(10) NOT NULL,
-  PRIMARY KEY (`property_id`) USING BTREE,
-  INDEX `property_category_id`(`property_category_id`) USING BTREE,
-  INDEX `cn_property_name`(`property_name`) USING BTREE,
-  CONSTRAINT `property_ibfk_1` FOREIGN KEY (`property_category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 245 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+                             `property_id` int(10) NOT NULL AUTO_INCREMENT,
+                             `property_name` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+                             `property_category_id` int(10) NOT NULL,
+                             PRIMARY KEY (`property_id`) USING BTREE,
+                             INDEX `property_category_id`(`property_category_id`) USING BTREE,
+                             INDEX `cn_property_name`(`property_name`) USING BTREE,
+                             CONSTRAINT `property_ibfk_1` FOREIGN KEY (`property_category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 245 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of property
@@ -5738,7 +6606,7 @@ CREATE TABLE `propertyvalue`  (
   INDEX `propertyvalue_product_id`(`propertyvalue_product_id`) USING BTREE,
   CONSTRAINT `propertyvalue_ibfk_1` FOREIGN KEY (`propertyvalue_property_id`) REFERENCES `property` (`property_id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `propertyvalue_ibfk_2` FOREIGN KEY (`propertyvalue_product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 716 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 723 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of propertyvalue
@@ -6457,26 +7325,33 @@ INSERT INTO `propertyvalue` VALUES (712, '11', 3, 86);
 INSERT INTO `propertyvalue` VALUES (713, '1111', 2, 86);
 INSERT INTO `propertyvalue` VALUES (714, '111111', 1, 86);
 INSERT INTO `propertyvalue` VALUES (715, '1555', 1, 88);
+INSERT INTO `propertyvalue` VALUES (716, 'zxzx', 22, 37);
+INSERT INTO `propertyvalue` VALUES (717, 'sas', 23, 37);
+INSERT INTO `propertyvalue` VALUES (718, 'zxzzx', 24, 37);
+INSERT INTO `propertyvalue` VALUES (719, 'zxz', 16, 37);
+INSERT INTO `propertyvalue` VALUES (720, 'zxzxz', 20, 37);
+INSERT INTO `propertyvalue` VALUES (721, 'w', 13, 91);
+INSERT INTO `propertyvalue` VALUES (722, 'e\'w', 15, 91);
 
 -- ----------------------------
 -- Table structure for review
 -- ----------------------------
 DROP TABLE IF EXISTS `review`;
 CREATE TABLE `review`  (
-  `review_id` int(10) NOT NULL AUTO_INCREMENT,
-  `review_content` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `review_createdate` datetime(0) NOT NULL,
-  `review_user_id` int(10) NOT NULL,
-  `review_product_id` int(10) NOT NULL,
-  `review_orderItem_id` int(10) NOT NULL,
-  PRIMARY KEY (`review_id`) USING BTREE,
-  INDEX `review_user_id`(`review_user_id`) USING BTREE,
-  INDEX `review_product_id`(`review_product_id`) USING BTREE,
-  INDEX `review_orderItem_id`(`review_orderItem_id`) USING BTREE,
-  CONSTRAINT `review_ibfk_1` FOREIGN KEY (`review_user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `review_ibfk_2` FOREIGN KEY (`review_product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `review_ibfk_3` FOREIGN KEY (`review_orderItem_id`) REFERENCES `productorderitem` (`productorderitem_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+                           `review_id` int(10) NOT NULL AUTO_INCREMENT,
+                           `review_content` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+                           `review_createdate` datetime(0) NOT NULL,
+                           `review_user_id` int(10) NOT NULL,
+                           `review_product_id` int(10) NOT NULL,
+                           `review_orderItem_id` int(10) NOT NULL,
+                           PRIMARY KEY (`review_id`) USING BTREE,
+                           INDEX `review_user_id`(`review_user_id`) USING BTREE,
+                           INDEX `review_product_id`(`review_product_id`) USING BTREE,
+                           INDEX `review_orderItem_id`(`review_orderItem_id`) USING BTREE,
+                           CONSTRAINT `review_ibfk_1` FOREIGN KEY (`review_user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+                           CONSTRAINT `review_ibfk_2` FOREIGN KEY (`review_product_id`) REFERENCES `product` (`product_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+                           CONSTRAINT `review_ibfk_3` FOREIGN KEY (`review_orderItem_id`) REFERENCES `productorderitem` (`productorderitem_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 165 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of review
@@ -6557,56 +7432,141 @@ INSERT INTO `review` VALUES (73, '非常不错', '2018-05-23 00:00:00', 1, 11, 2
 INSERT INTO `review` VALUES (74, '手机很好', '2018-05-23 00:00:00', 1, 42, 279);
 INSERT INTO `review` VALUES (75, '111111111', '2018-05-23 00:00:00', 1, 42, 284);
 INSERT INTO `review` VALUES (76, '123', '2019-09-09 00:00:00', 25, 41, 288);
+INSERT INTO `review` VALUES (77, '衣服真好看', '2019-09-10 00:00:00', 1, 32, 292);
+INSERT INTO `review` VALUES (78, '很不错', '2019-09-10 00:00:00', 1, 1, 294);
+INSERT INTO `review` VALUES (79, '222', '2019-09-11 00:00:00', 1, 1, 311);
+INSERT INTO `review` VALUES (80, 'qweqweqwe', '2019-09-16 00:00:00', 33, 41, 317);
+INSERT INTO `review` VALUES (81, '穿着真帅，打篮球更有劲了。', '2019-09-17 00:00:00', 36, 20, 322);
+INSERT INTO `review` VALUES (82, '这是一个好的作品', '2019-09-17 00:00:00', 12, 41, 324);
+INSERT INTO `review` VALUES (83, 'sadasdasd', '2019-09-17 00:00:00', 12, 71, 325);
+INSERT INTO `review` VALUES (84, 'aaaaaa', '2019-09-18 00:00:00', 38, 41, 329);
+INSERT INTO `review` VALUES (85, 'hao', '2019-09-21 00:00:00', 41, 67, 334);
+INSERT INTO `review` VALUES (86, '111', '2019-10-06 00:00:00', 51, 78, 351);
+INSERT INTO `review` VALUES (87, 'eeeee', '2019-10-06 00:00:00', 51, 4, 352);
+INSERT INTO `review` VALUES (88, '哈哈哈。嘻嘻嘻', '2019-10-10 00:00:00', 53, 45, 358);
+INSERT INTO `review` VALUES (89, '我是迈克杰克骚', '2019-10-15 00:00:00', 59, 1, 371);
+INSERT INTO `review` VALUES (90, 'qnmd laji', '2019-10-15 00:00:00', 60, 41, 376);
+INSERT INTO `review` VALUES (91, 'znb', '2019-10-18 00:00:00', 65, 41, 383);
+INSERT INTO `review` VALUES (92, '尼玛没了', '2019-10-18 00:00:00', 65, 17, 384);
+INSERT INTO `review` VALUES (93, '给儿子陆焕买的新鞋 很喜欢  儿子天天很开心', '2019-10-18 00:00:00', 65, 27, 385);
+INSERT INTO `review` VALUES (94, '212112', '2019-10-18 00:00:00', 66, 41, 386);
+INSERT INTO `review` VALUES (95, 'ewrewrwerewrewrewr', '2019-10-22 00:00:00', 70, 1, 391);
+INSERT INTO `review` VALUES (96, 'aaaa', '2019-10-25 00:00:00', 72, 42, 392);
+INSERT INTO `review` VALUES (97, 'rwedsadsadsa', '2019-10-28 00:00:00', 73, 67, 393);
+INSERT INTO `review` VALUES (98, '和愉悦体验体验台', '2019-11-15 00:00:00', 8, 41, 401);
+INSERT INTO `review` VALUES (99, '生日歌单个方法结构化', '2019-11-15 00:00:00', 8, 45, 402);
+INSERT INTO `review` VALUES (100, '123123', '2019-11-19 00:00:00', 80, 26, 405);
+INSERT INTO `review` VALUES (101, '店家送的红酒very nice', '2019-12-03 00:00:00', 89, 43, 421);
+INSERT INTO `review` VALUES (102, '1', '2019-12-04 00:00:00', 90, 43, 422);
+INSERT INTO `review` VALUES (103, '123123', '2019-12-06 00:00:00', 92, 1, 426);
+INSERT INTO `review` VALUES (104, '还行', '2020-01-07 00:00:00', 100, 1, 440);
+INSERT INTO `review` VALUES (105, '还行', '2020-01-16 00:00:00', 102, 1, 444);
+INSERT INTO `review` VALUES (106, '不错', '2020-03-12 00:00:00', 118, 48, 477);
+INSERT INTO `review` VALUES (107, '111', '2020-03-17 00:00:00', 119, 1, 478);
+INSERT INTO `review` VALUES (108, '88', '2020-03-21 00:00:00', 123, 24, 487);
+INSERT INTO `review` VALUES (109, '好极了', '2020-03-23 00:00:00', 124, 22, 491);
+INSERT INTO `review` VALUES (110, '牛逼', '2020-03-23 00:00:00', 125, 22, 493);
+INSERT INTO `review` VALUES (111, 'hao', '2020-03-23 00:00:00', 118, 1, 495);
+INSERT INTO `review` VALUES (112, '不错，舒适极了', '2020-03-24 00:00:00', 125, 22, 498);
+INSERT INTO `review` VALUES (113, '5000', '2020-03-25 00:00:00', 1, 42, 500);
+INSERT INTO `review` VALUES (114, '111', '2020-03-28 00:00:00', 126, 1, 504);
+INSERT INTO `review` VALUES (115, '啊啊啊啊啊啊', '2020-04-08 00:00:00', 25, 36, 434);
+INSERT INTO `review` VALUES (116, '11', '2020-04-11 00:00:00', 118, 13, 521);
+INSERT INTO `review` VALUES (117, '挺好的', '2020-04-14 00:00:00', 118, 1, 523);
+INSERT INTO `review` VALUES (118, '非常合适，颜色也很好看！不要犹豫，快买它！', '2020-05-01 00:00:00', 120, 41, 510);
+INSERT INTO `review` VALUES (119, '黄家驹', '2020-05-13 00:00:00', 152, 1, 556);
+INSERT INTO `review` VALUES (120, '洗发水非常舒服', '2020-05-14 00:00:00', 8, 64, 557);
+INSERT INTO `review` VALUES (121, 'dadadadad', '2020-05-16 00:00:00', 156, 1, 566);
+INSERT INTO `review` VALUES (122, '123', '2020-06-14 00:00:00', 6, 39, 455);
+INSERT INTO `review` VALUES (123, '12341234', '2020-06-16 00:00:00', 3, 41, 577);
+INSERT INTO `review` VALUES (124, '111', '2020-06-18 00:00:00', 1, 48, 582);
+INSERT INTO `review` VALUES (125, '15', '2020-06-30 00:00:00', 169, 30, 591);
+INSERT INTO `review` VALUES (126, '45', '2020-08-16 00:00:00', 1, 9, 377);
+INSERT INTO `review` VALUES (127, '213123', '2020-09-02 00:00:00', 177, 34, 607);
+INSERT INTO `review` VALUES (128, '214e21w', '2020-09-02 00:00:00', 177, 1, 609);
+INSERT INTO `review` VALUES (129, '评价评价', '2020-09-18 00:00:00', 1035, 41, 617);
+INSERT INTO `review` VALUES (130, '撒大声地', '2020-09-29 00:00:00', 183, 41, 619);
+INSERT INTO `review` VALUES (131, 'safas', '2020-09-29 00:00:00', 183, 30, 621);
+INSERT INTO `review` VALUES (132, '132131564', '2020-10-12 00:00:00', 1041, 1, 625);
+INSERT INTO `review` VALUES (133, '1343124', '2020-10-12 00:00:00', 1044, 37, 631);
+INSERT INTO `review` VALUES (134, 'nice', '2020-10-19 00:00:00', 1046, 39, 634);
+INSERT INTO `review` VALUES (135, '<script><alert>123</alert></script>', '2020-10-31 00:00:00', 1, 33, 378);
+INSERT INTO `review` VALUES (136, '太贵', '2020-11-05 00:00:00', 1054, 44, 649);
+INSERT INTO `review` VALUES (137, '垃圾东西', '2020-11-06 00:00:00', 1, 41, 643);
+INSERT INTO `review` VALUES (138, '东西不好\r\n', '2020-11-06 00:00:00', 1, 30, 379);
+INSERT INTO `review` VALUES (139, '好！', '2020-11-06 00:00:00', 1056, 37, 653);
+INSERT INTO `review` VALUES (140, '质量好，样式好，服务态度好！', '2020-11-09 00:00:00', 1059, 18, 665);
+INSERT INTO `review` VALUES (141, '奥里给bsn', '2020-11-24 00:00:00', 1068, 18, 674);
+INSERT INTO `review` VALUES (142, 'asdasd', '2020-11-30 00:00:00', 1, 27, 380);
+INSERT INTO `review` VALUES (143, '24312421', '2020-12-01 00:00:00', 1072, 18, 680);
+INSERT INTO `review` VALUES (144, 'hao', '2020-12-02 00:00:00', 1074, 36, 682);
+INSERT INTO `review` VALUES (145, '111', '2020-12-06 00:00:00', 17, 36, 685);
+INSERT INTO `review` VALUES (146, '1351351153135113', '2020-12-07 00:00:00', 1, 41, 470);
+INSERT INTO `review` VALUES (147, 'wqdcsfdsadss', '2020-12-07 00:00:00', 1, 20, 689);
+INSERT INTO `review` VALUES (148, 'asfdawdwafawfawf', '2020-12-07 00:00:00', 1, 3, 691);
+INSERT INTO `review` VALUES (149, 'ddd', '2020-12-13 00:00:00', 1080, 39, 703);
+INSERT INTO `review` VALUES (150, '厉害', '2020-12-30 00:00:00', 1083, 18, 710);
+INSERT INTO `review` VALUES (151, '123123', '2021-01-14 00:00:00', 1090, 18, 722);
+INSERT INTO `review` VALUES (152, 'hhh', '2021-01-17 00:00:00', 1093, 43, 729);
+INSERT INTO `review` VALUES (153, 'dssdfasd', '2021-04-11 00:00:00', 1098, 45, 740);
+INSERT INTO `review` VALUES (154, '很不错', '2021-04-15 00:00:00', 1105, 18, 746);
+INSERT INTO `review` VALUES (155, 'saS ', '2021-04-27 00:00:00', 1114, 9, 764);
+INSERT INTO `review` VALUES (156, 'dsad', '2021-04-27 00:00:00', 1114, 38, 765);
+INSERT INTO `review` VALUES (157, '12312', '2021-05-08 00:00:00', 1124, 3, 775);
+INSERT INTO `review` VALUES (158, '垃圾', '2021-06-01 00:00:00', 1133, 18, 793);
+INSERT INTO `review` VALUES (159, '人读过的的风格的', '2021-06-07 00:00:00', 1149, 3, 817);
+INSERT INTO `review` VALUES (160, '感染的若干代人受过', '2021-06-22 00:00:00', 1159, 18, 850);
+INSERT INTO `review` VALUES (161, '很好，这衣服非常不错！！！\r\n卖家非常良心，你值得拥有！！！\r\n', '2021-06-26 00:00:00', 1161, 9, 853);
+INSERT INTO `review` VALUES (162, '测试2', '2021-07-18 00:00:00', 1169, 11, 863);
+INSERT INTO `review` VALUES (163, '111222', '2021-08-26 00:00:00', 1182, 1, 880);
+INSERT INTO `review` VALUES (164, 'sdgd', '2021-09-05 00:00:00', 1184, 31, 882);
+
+-- ----------------------------
+-- Table structure for reward
+-- ----------------------------
+DROP TABLE IF EXISTS `reward`;
+CREATE TABLE `reward`  (
+   `reward_id` int(10) NOT NULL AUTO_INCREMENT,
+   `reward_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+   `reward_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+   `reward_createDate` datetime(0) NOT NULL,
+   `reward_state` int(10) NOT NULL,
+   `reward_amount` decimal(10, 2) NOT NULL,
+   `reward_user_id` int(10) NOT NULL,
+   PRIMARY KEY (`reward_id`) USING BTREE,
+   INDEX `cn_reward_name`(`reward_name`) USING BTREE,
+   INDEX `cn_reward_state`(`reward_state`) USING BTREE,
+   INDEX `cn_reward_amount`(`reward_amount`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `user_id` int(10) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(25) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `user_nickname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `user_password` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `user_realname` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `user_gender` tinyint(1) NOT NULL,
-  `user_birthday` date NOT NULL,
-  `user_address` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `user_homeplace` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `user_profile_picture_src` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`user_id`) USING BTREE,
-  UNIQUE INDEX `un_user_name`(`user_name`) USING BTREE,
-  INDEX `user_address`(`user_address`) USING BTREE,
-  INDEX `user_homeplace`(`user_homeplace`) USING BTREE,
-  INDEX `cn_user_nickname`(`user_nickname`) USING BTREE,
-  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_address`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`user_homeplace`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+     `user_id` int(10) NOT NULL AUTO_INCREMENT,
+     `user_name` varchar(25) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+     `user_nickname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+     `user_password` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+     `user_realname` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+     `user_gender` tinyint(1) NOT NULL,
+     `user_birthday` date NOT NULL,
+     `user_address` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+     `user_homeplace` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+     `user_profile_picture_src` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+     PRIMARY KEY (`user_id`) USING BTREE,
+     UNIQUE INDEX `un_user_name`(`user_name`) USING BTREE,
+     INDEX `user_address`(`user_address`) USING BTREE,
+     INDEX `user_homeplace`(`user_homeplace`) USING BTREE,
+     INDEX `cn_user_nickname`(`user_nickname`) USING BTREE,
+     CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_address`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+     CONSTRAINT `user_ibfk_2` FOREIGN KEY (`user_homeplace`) REFERENCES `address` (`address_areaId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1185 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'a120', 'MRJIANG', 'cc123.0', '?????', 0, '2013-12-01', '610112', '110100', '803da9e6-8f33-43b4-9aac-6ad41cf8b4d5.jpg');
-INSERT INTO `user` VALUES (3, 'MRJIANG', '如有巧合', 'cc123.0', '流年', 0, '2018-05-11', '110101', '130000', NULL);
-INSERT INTO `user` VALUES (6, 'a1209577113', '如有巧合丶', 'cc123.0', NULL, 0, '2018-05-07', '230102', '130000', NULL);
-INSERT INTO `user` VALUES (7, '李浩', '李', 'cc123.0', '李浩', 0, '1997-06-22', '110109', '130000', NULL);
-INSERT INTO `user` VALUES (8, '聚散又依依', '聚散又依依', 'a1392432919', '邓云涛', 0, '1997-04-05', '110101', '130000', NULL);
-INSERT INTO `user` VALUES (9, '红豆豆', '豆豆', 'li19970622', '红豆豆', 1, '2000-05-12', '510923', '130000', NULL);
-INSERT INTO `user` VALUES (10, '兰文斌', '停车坐爱枫林晚', 'ln221397', '老男孩', 0, '2018-05-10', '511922', '130000', NULL);
-INSERT INTO `user` VALUES (11, '明明', '小明', 'li19970622', '红豆豆', 0, '2018-05-01', '110101', '130000', NULL);
-INSERT INTO `user` VALUES (12, '霜叶红于二月花', '王九日', 'a666', NULL, 0, '1999-10-01', '320583', '130000', NULL);
-INSERT INTO `user` VALUES (13, '那倒是', '加尔奈特巴斯塔', 'ln221379', NULL, 0, '2018-05-04', '610113', '130000', NULL);
-INSERT INTO `user` VALUES (14, '王999', '王恒', 'a999999999', '王蓝', 0, '1995-01-08', '230112', '130000', NULL);
-INSERT INTO `user` VALUES (15, '我变强了', '李有生', 'a789', NULL, 0, '1980-09-04', '370102', '130000', NULL);
-INSERT INTO `user` VALUES (16, '柯6', '我的兄弟叫顺溜', 'hui6', '柯旭', 1, '2001-01-07', '420102', '130000', NULL);
-INSERT INTO `user` VALUES (17, 'bao', '可乐', '123456a', '小猫咪', 0, '2002-02-16', '610113', '130000', NULL);
-INSERT INTO `user` VALUES (18, '西安', '西安', 'cc123.0', '西安', 0, '2018-05-03', '110101', '130000', NULL);
-INSERT INTO `user` VALUES (19, 'b120', '人员', 'cc123.0', '其他', 0, '2018-05-01', '110101', '130000', NULL);
-INSERT INTO `user` VALUES (20, 'c120', 'aaa', 'cc123.0', NULL, 0, '2018-05-03', '110101', '130000', NULL);
-INSERT INTO `user` VALUES (21, 'd120', '任意切换', 'cc123.0', NULL, 0, '2018-05-09', '110101', '130000', NULL);
-INSERT INTO `user` VALUES (22, '叽里呱啦', '泰山石敢当', 'zxq123456', NULL, 1, '2019-09-09', '110101', '130000', NULL);
-INSERT INTO `user` VALUES (23, '233', '2333', 'lx123456', NULL, 0, '2019-09-09', '110101', '130000', NULL);
-INSERT INTO `user` VALUES (24, '贤趣测试员', '睿啊', '1qwertyuiop', NULL, 0, '2000-09-09', '610102', '130000', NULL);
-INSERT INTO `user` VALUES (25, '111', '111', '111qwe', NULL, 0, '2019-09-05', '110101', '130000', NULL);
-INSERT INTO `user` VALUES (26, '123456', 'abner', 'qwe321', NULL, 0, '2019-09-09', '110101', '130000', NULL);
+INSERT INTO `user` VALUES (1, 'a120', 'MRJIANG', '123456', 'aaaa', 0, '2013-12-01', '610112', '110100', '803da9e6-8f33-43b4-9aac-6ad41cf8b4d5.jpg');
+INSERT INTO `user` VALUES (3, 'MRJIANG', '如有巧合', '123456', '流年', 0, '2018-05-11', '110101', '130000', '708e48cb-87ab-4d5a-987f-e16dfad1a826.jpg');
 
 SET FOREIGN_KEY_CHECKS = 1;
