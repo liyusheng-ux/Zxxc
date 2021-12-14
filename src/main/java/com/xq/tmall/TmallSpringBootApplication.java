@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  *
  * 配置文件说明：
  * SpringBoot配置文件地址：    resources/application.properties
- * 数据库(mysql)连接配置文件地址：  resources/jdbc.properties
  * log日志配置文件地址：     resources/log4j2.xml
  */
 @SpringBootApplication
