@@ -65,3 +65,9 @@
 
 + ##### 微信
 <img src="https://images.gitee.com/uploads/images/2021/0908/120333_894f5c7e_1616166.png" alt="微信打赏二维码" width="128px" height="128px"/>
+
+## Stargazers over time
+[![Stargazers over time](https://whnb.wang/stars/herodotus/vuetify-form-generator)](https://whnb.wang)
+
+## contributors
+[![contributors](https://whnb.wang/contributors/herodotus/vuetify-form-generator)](https://whnb.wang)
