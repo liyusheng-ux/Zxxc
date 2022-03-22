@@ -13,6 +13,9 @@ pipeline { // 直接上k8s，用k8s来管理docker
         )
     }
     environment {
+        // 自建镜像仓库地址
+        docker_hub = "k8s-harbor:30002"
+
         // 自建harbor仓库的namespace
         docker_hub_namespace = "tmall"
 
