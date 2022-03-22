@@ -20,7 +20,7 @@ pipeline { // 直接上k8s，用k8s来管理docker
         docker_hub_id = "tmall-zhangjialin-myself-harbor-account"
 
         // k8s 上面的 namespace
-        k8s_namespace = "youlai-mall"
+        k8s_namespace = "tmall-project"
         GIT_COMMIT_ID = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
         // BUILD_NUMBER 这个变量从jenkins传递过来
         current_build_number = "${BUILD_NUMBER}"
