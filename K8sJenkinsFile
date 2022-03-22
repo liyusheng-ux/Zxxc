@@ -17,7 +17,7 @@ pipeline { // 直接上k8s，用k8s来管理docker
         docker_hub_namespace = "tmall"
 
         // 在jenknis或kubesphere上面的凭证
-        docker_hub_id = "youlai-zhangjialin-myself-harbor-account"
+        docker_hub_id = "tmall-zhangjialin-myself-harbor-account"
 
         // k8s 上面的 namespace
         k8s_namespace = "youlai-mall"
