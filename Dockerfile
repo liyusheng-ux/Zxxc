@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk
 LABEL maintainer=xtaylkss@163.com
-ENV PARAMS="--server.port=8080 spring.datasource.url=dbc:mysql://mysql.infrastructure:3306/tmalldemodb?characterEncoding=utf-8&useSSL=false"
+ENV PARAMS="--server.port=8080 --spring.datasource.url=dbc:mysql://mysql.infrastructure:3306/tmalldemodb?characterEncoding=utf-8&useSSL=false"
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
 COPY target/*.jar /app.jar
 EXPOSE 8080
