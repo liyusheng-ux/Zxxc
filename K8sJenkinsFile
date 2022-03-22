@@ -25,7 +25,7 @@ pipeline { // 直接上k8s，用k8s来管理docker
         // BUILD_NUMBER 这个变量从jenkins传递过来
         current_build_number = "${BUILD_NUMBER}"
         // 在k8s上面配置的id
-        KUBECONFIG_CREDENTIAL_ID = "youlai-kubeconfig"
+        KUBECONFIG_CREDENTIAL_ID = "tmall-kubeconfig"
     }
 
     stages {
