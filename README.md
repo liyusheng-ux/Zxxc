@@ -77,6 +77,11 @@ K8sJenkinsFile:大概作用是把生成jar包、部署jar包流程自动化
 
 deploy.yaml:此文件为k8s deployment svc资源模板化文件
 
+k8s部署的项目访问网址:
+
++ 前台地址：http://tmall.howlaisi.com:31253/tmall
++ 后台地址：http://tmall.howlaisi.com:31253/tmall/admin
+
 具体情况可联系以下同学(加他时请备注"贤趣CICD"):
 + ##### 贤趣CICD同学微信
 <img src="https://gitee.com/haoxr/image/raw/master/default/jialin.jpg" alt="CICD同学" width="128px" height="128px"/>
