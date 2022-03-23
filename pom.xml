@@ -124,12 +124,16 @@
         <directory>src/main/webapp</directory>
         <targetPath>META-INF/resources</targetPath>
         <filtering>false</filtering>
+        <includes>
+          <include>**/**</include>
+        </includes>
       </resource>
     </resources>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>1.4.2.RELEASE</version>
       </plugin>
     </plugins>
   </build>
