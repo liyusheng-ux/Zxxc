@@ -73,4 +73,5 @@ Dockerfile:大概作用是依据基础的jdk镜像，添加上自己本身的jar
 K8sJenkinsFile:大概作用是把生成jar包、部署jar包流程自动化
 deploy.yaml:此文件为k8s deployment svc资源模板化文件
 具体情况可联系以下同学(加他时请备注"贤趣CICD"):
++ ##### 贤趣CICD同学微信
 <img src="https://gitee.com/haoxr/image/raw/master/default/jialin.jpg" alt="CICD同学" width="128px" height="128px"/>
