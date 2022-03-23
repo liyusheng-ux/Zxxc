@@ -65,3 +65,23 @@
 
 + ##### 微信
 <img src="https://images.gitee.com/uploads/images/2021/0908/120333_894f5c7e_1616166.png" alt="微信打赏二维码" width="128px" height="128px"/>
+
+### 关于拓展
+近期本项目通过改造，将原来war部署方式改成了jar部署，进入到target目录，仅需要java -jar tmall.jar即可完成部署启动。
+
+另本项目已使用当前较为流利的CICD方式，jenkins+k8s进行持续构建、部署，涉及文件:Dockerfile,K8sJenkinsFile及deploy.yaml
+
+Dockerfile:大概作用是依据基础的jdk镜像，添加上自己本身的jar包，打成镜像包
+
+K8sJenkinsFile:大概作用是把生成jar包、部署jar包流程自动化
+
+deploy.yaml:此文件为k8s deployment svc资源模板化文件
+
+k8s部署的项目访问网址:
+
++ 前台地址：http://tmall.howlaisi.com:31253/tmall
++ 后台地址：http://tmall.howlaisi.com:31253/tmall/admin
+
+具体情况可联系以下同学(加他时请备注"贤趣CICD"):
++ ##### 贤趣CICD同学微信
+<img src="https://gitee.com/haoxr/image/raw/master/default/jialin.jpg" alt="CICD同学" width="128px" height="128px"/>
