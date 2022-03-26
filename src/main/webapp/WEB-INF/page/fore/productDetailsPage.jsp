@@ -262,6 +262,9 @@
             <li class="ul_trigger_down"><a href="#"></a></li>
         </ul>
     </div>
+    <div class="msg">
+        <span>商品已添加</span>
+    </div>
 </div>
 <div class="mainwrap">
     <div class="J_TabBarBox">
@@ -284,9 +287,6 @@
             <img src="${pageContext.request.contextPath}/res/images/item/productDetailsPicture/${image.productImage_src}"/>
         </c:forEach>
     </div>
-</div>
-<div class="msg">
-    <span>商品已添加</span>
 </div>
 <%@ include file="include/footer_two.jsp" %>
 <%@ include file="include/footer.jsp" %>

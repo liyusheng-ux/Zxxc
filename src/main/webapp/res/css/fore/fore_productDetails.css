@@ -384,10 +384,10 @@ nav {
 }
 
 .context {
+    position: relative;
     width: 1190px;
     height: 600px;
     margin: 20px auto;
-
 }
 
 .context > .context_left {
