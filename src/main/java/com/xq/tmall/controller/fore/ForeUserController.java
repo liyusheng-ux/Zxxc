@@ -104,7 +104,7 @@ public class ForeUserController extends BaseController{
                              @RequestParam(value = "user_profile_picture_src", required = false)
                                          String user_profile_picture_src /* 用户头像*/,
                              @RequestParam(value = "user_password") String user_password/* 用户密码 */
-    ) throws ParseException, UnsupportedEncodingException {
+    ) throws ParseException {
         logger.info("检查用户是否登录");
         Object userId = checkUser(session);
         if (userId != null) {
