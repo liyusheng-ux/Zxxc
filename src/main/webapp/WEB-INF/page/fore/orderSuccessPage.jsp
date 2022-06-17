@@ -2,7 +2,7 @@
 <%@ include file="include/header.jsp" %>
 <head>
     <link href="${pageContext.request.contextPath}/res/css/fore/fore_orderSuccessPage.css" rel="stylesheet"/>
-    <title>交易成功 - Tmall.com天猫-理想生活上天猫</title>
+    <title>交易成功 - 鞋城Demo</title>
 </head>
 <body>
 <nav>
@@ -31,7 +31,7 @@
                 <div class="successInfo">
                     <ul class="info-rate-coin">
                         <li>
-                            <span class="review_msg">认真填写商品评价，就有机会获得20点天猫达人经验值！</span>
+                            <span class="review_msg">认真填写商品评价，就有机会获得20点达人经验值！</span>
                             <a class="J_makePoint"
                                href="${pageContext.request.contextPath}/review/${requestScope.orderItem.productOrderItem_id}">
                                 <img src="${pageContext.request.contextPath}/res/images/item/productSinglePicture/${requestScope.product.singleProductImageList[0].productImage_src}"

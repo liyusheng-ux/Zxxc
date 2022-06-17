@@ -4,17 +4,17 @@
     <script src="${pageContext.request.contextPath}/res/js/jquery-color-2.1.2.js"></script>
     <script src="${pageContext.request.contextPath}/res/js/fore/fore_home.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/fore/fore_home.css" rel="stylesheet"/>
-    <title>天猫tmall.com--理想生活上天猫</title>
+    <title>鞋城Demo</title>
 </head>
 <body>
 <nav>
     <%@ include file="include/navigator.jsp" %>
     <div class="header">
-        <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/HomeLogoA.png">
+        <%-- <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/HomeLogoA.png"> --%>
         <div class="mallSearch">
             <form action="${pageContext.request.contextPath}/product" method="get">
                 <div class="mallSearch-input">
-                    <input class="header_search_input" type="text" name="product_name" placeholder="搜索 天猫 商品/品牌/店铺"
+                    <input class="header_search_input" type="text" name="product_name" placeholder="搜索 商品/品牌/店铺"
                            maxlength="50">
                     <input class="header_search_button" type="submit" value="搜索">
                 </div>

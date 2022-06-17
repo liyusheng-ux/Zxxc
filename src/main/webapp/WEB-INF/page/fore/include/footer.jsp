@@ -3,7 +3,6 @@
 <div class="footer-copyright">
     <div class="footer">
         <p>
-            <a href="http://pages.tmall.com/wow/seller/act/zhaoshangproduce" target="_blank">关于天猫</a>
             <a href="http://service.tmall.com/support/tmall/tmallHelp.htm" target="_blank">帮助中心</a>
             <a href="http://open.taobao.com" target="_blank">开放平台</a>
             <a href="http://job.alibaba.com/zhaopin/index.htm" target="_blank">诚聘英才</a>
@@ -18,7 +17,6 @@
         <p class="footertwo">
             <a href="http://www.alibabagroup.com/cn/global/home" target="_blank">阿里巴巴集团</a>
             <a href="http://www.taobao.com" target="_blank">淘宝网</a>
-            <a href="http://www.tmall.com/" target="_blank">天猫</a>
             <a href="http://ju.taobao.com/" target="_blank">聚划算</a>
             <a href="http://www.aliexpress.com/" target="_blank">全球速卖通</a>
             <a href="http://www.alibaba.com/" target="_blank">阿里巴巴国际交易市场</a>
@@ -39,9 +37,6 @@
             <a href="https://www.alipay.com" target="_blank">支付宝</a>
         </p>
         <div class="copyright">
-            <span>© 2022 XQ Team</span>
-            <a href="http://license.coscl.org.cn/MulanPSL2/" target="_blank">Mulan PSL v2</a>
-            <a href="https://xianqu.fun/" target="_blank" class="link_normal">关于XQ（贤趣）</a>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;你知道什么是996.ICU吗？</span>
             <a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg" alt="996.icu"/></a>
             <br/>

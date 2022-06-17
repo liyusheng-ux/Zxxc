@@ -41,12 +41,5 @@
                 <a href="http://maowo.tmall.com/" target="_blank">喵言喵语</a>
                 <a href="http://fw.tmall.com/" target="_blank">运营服务</a></dd>
         </dl>
-        <dl>
-            <dt>手机天猫</dt>
-            <dd><a href="http://mobile.tmall.com/?spm=875.7931836/B.a2226n1.23.71ca4265hUvhyq" class="join"><img
-                    src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/TB14VZKHXXXXXcAXXXX64VRZFXX-105-105.png"
-                    width="105" height="105" alt="手机天猫"></a>
-            </dd>
-        </dl>
     </div>
 </div>

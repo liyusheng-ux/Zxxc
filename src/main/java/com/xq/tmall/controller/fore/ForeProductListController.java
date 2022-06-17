@@ -27,14 +27,14 @@ import java.util.Map;
  * @author 贤趣项目小组
  */
 @Controller
-public class ForeProductListController extends BaseController {
-    @Resource(name = "productService")
-    private ProductService productService;
-    @Resource(name = "userService")
-    private UserService userService;
-    @Resource(name = "categoryService")
-    private CategoryService categoryService;
-    @Resource(name = "productImageService")
+    public class ForeProductListController extends BaseController {
+        @Resource(name = "productService")
+        private ProductService productService;
+        @Resource(name = "userService")
+        private UserService userService;
+        @Resource(name = "categoryService")
+        private CategoryService categoryService;
+        @Resource(name = "productImageService")
     private ProductImageService productImageService;
     @Resource(name = "reviewService")
     private ReviewService reviewService;

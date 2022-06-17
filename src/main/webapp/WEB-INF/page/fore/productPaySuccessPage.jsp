@@ -15,7 +15,7 @@
         <div class="shopSearchHeader">
             <form action="${pageContext.request.contextPath}/product" method="get">
                 <div class="shopSearchInput">
-                    <input type="text" class="searchInput" name="product_name" placeholder="搜索 天猫 商品/品牌/店铺"
+                    <input type="text" class="searchInput" name="product_name" placeholder="搜索  商品/品牌/店铺"
                            value="${requestScope.searchValue}" maxlength="50">
                     <input type="submit" value="搜 索" class="searchBtn">
                 </div>
@@ -54,7 +54,7 @@
                         <strong>安全提醒：</strong>
                         <span class="info">下单后，</span>
                         <span class="warn">用QQ给您发送链接办理退款的都是骗子</span>
-                        <span class="info">！天猫不存在系统升级，订单异常等问题，谨防假冒客服电话诈骗！</span>
+                        <span class="info">！谨防假冒客服电话诈骗！</span>
                     </p>
                 </li>
             </ul>
