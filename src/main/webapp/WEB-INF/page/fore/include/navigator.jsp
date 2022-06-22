@@ -34,7 +34,7 @@
         <ul class="quick_li">
             <li class="quick_li_MyTaobao">
                 <div class="sn_menu">
-                    <a href="${pageContext.request.contextPath}/userDetails">我的淘宝<b></b></a>
+                    <a href="${pageContext.request.contextPath}/userDetails">我的鞋城<b></b></a>
                     <div class="quick_menu">
                         <a href="${pageContext.request.contextPath}/order/0/10">已买到的宝贝</a>
                         <a href="#">已卖出的宝贝</a>
@@ -59,11 +59,10 @@
                 <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/mobile.png">
                 <a href="#" title="天猫无线">手机版</a>
                 <div class="quick_qrcode">
-                    <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/qrcode.png">
                     <b></b>
                 </div>
             </li>
-            <li class="quick_home"><a href="${pageContext.request.contextPath}">淘宝网</a></li>
+            <li class="quick_home"><a href="${pageContext.request.contextPath}">鞋城网</a></li>
             <li class="quick_DirectPromo">
                 <div class="sn_menu">
                     <a href="#">商家支持<b></b></a>
@@ -72,18 +71,15 @@
                             <li>
                                 <h3>商家：</h3>
                                 <a href="">商家中心</a>
-                                <a href="">天猫规则</a>
                                 <a href="">商家入驻</a>
                                 <a href="">运营服务</a>
                                 <a href="">商家品控</a>
                                 <a href="">商家工具</a>
-                                <a href="">天猫智库</a>
-                                <a href="">喵言喵语</a>
                             </li>
                             <li>
                                 <h3>帮助：</h3>
                                 <a href="">帮助中心</a>
-                                <a href="">问商友</a>
+                                <a href="">问鞋友</a>
                             </li>
                         </ul>
                     </div>
@@ -96,50 +92,49 @@
                         <div class="site-hot">
                             <h2>热点推荐<span>Hot</span></h2>
                             <ul>
-                                <li><a href="">天猫超市</a></li>
-                                <li><a href="">喵鲜生</a></li>
-                                <li><a href="">科技新品</a></li>
-                                <li><a href="">女装新品</a></li>
-                                <li><a href="">酷玩街</a></li>
-                                <li><a href="">内衣新品</a></li>
-                                <li><a href="">试美妆</a></li>
-                                <li><a href="">运动新品</a></li>
-                                <li><a href="">时尚先生</a></li>
-                                <li><a href="">精明妈咪</a></li>
-                                <li><a href="">吃乐会</a></li>
-                                <li><a href="">企业采购</a></li>
-                                <li><a href="">会员积分</a></li>
-                                <li><a href="">天猫国际</a></li>
-                                <li><a href="">品质频道</a></li>
+                                <li><a href="">特步</a></li>
+                                <li><a href="">安踏</a></li>
+                                <li><a href="">李宁</a></li>
+                                <li><a href="">乔丹</a></li>
+                                <li><a href="">361°</a></li>
+                                <li><a href="">回力</a></li>
+                                <li><a href="">花花公子</a></li>
+                                <li><a href="">木林森</a></li>
+                                <li><a href="">阿迪达斯</a></li>
+                                <li><a href="">鸿星尔克</a></li>
+                                <li><a href="">JEEP</a></li>
+                                <li><a href="">卡帝乐鳄鱼</a></li>
+                                <li><a href="">红蜻蜓</a></li>
+                                <li><a href="">彪马</a></li>
+                                <li><a href="">匹克</a></li>
                             </ul>
                         </div>
                         <div class="site-market">
-                            <h2>行业市场<span>Market</span></h2>
+                            <h2>品牌市场<span>Market</span></h2>
                             <ul>
-                                <li><a href="">美妆</a></li>
-                                <li><a href="">电器</a></li>
-                                <li><a href="">女装</a></li>
-                                <li><a href="">男装</a></li>
-                                <li><a href="">女鞋</a></li>
-                                <li><a href="">男鞋</a></li>
-                                <li><a href="">内衣</a></li>
-                                <li><a href="">箱包</a></li>
-                                <li><a href="">运动</a></li>
-                                <li><a href="">母婴</a></li>
-                                <li><a href="">家装</a></li>
-                                <li><a href="">医药</a></li>
-                                <li><a href="">食品</a></li>
-                                <li><a href="">配饰</a></li>
-                                <li><a href="">汽车</a></li>
+                                <li><a href="">特步</a></li>
+                                <li><a href="">安踏</a></li>
+                                <li><a href="">李宁</a></li>
+                                <li><a href="">乔丹</a></li>
+                                <li><a href="">361°</a></li>
+                                <li><a href="">回力</a></li>
+                                <li><a href="">花花公子</a></li>
+                                <li><a href="">木林森</a></li>
+                                <li><a href="">阿迪达斯</a></li>
+                                <li><a href="">鸿星尔克</a></li>
+                                <li><a href="">JEEP</a></li>
+                                <li><a href="">卡帝乐鳄鱼</a></li>
+                                <li><a href="">红蜻蜓</a></li>
+                                <li><a href="">彪马</a></li>
+                                <li><a href="">匹克</a></li>
                             </ul>
                         </div>
                         <div class="site-brand">
                             <h2>品牌风尚<span>Brand</span></h2>
                             <ul>
-                                <li><a href="">尚天猫</a></li>
+                                <li><a href="">尚鞋城</a></li>
                                 <li><a href="">大牌街</a></li>
                                 <li><a href="">潮牌街</a></li>
-                                <li><a href="">天猫原创</a></li>
                                 <li><a href="">什么牌子好</a></li>
                             </ul>
                         </div>

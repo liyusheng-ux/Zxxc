@@ -2,7 +2,7 @@
 <%@ include file="include/header.jsp" %>
 <head>
     <link href="${pageContext.request.contextPath}/res/css/fore/fore_orderPaySuccess.css" rel="stylesheet"/>
-    <title>天猫tmall.com - 网上支付</title>
+    <title>鞋城 - 网上支付</title>
 </head>
 <body>
 <nav>
@@ -10,7 +10,7 @@
     <div class="header">
         <div id="mallLogo">
             <a href="${pageContext.request.contextPath}"><img
-                    src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/tmallLogoA.png"></a>
+                    src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/zuo.png"></a>
         </div>
         <div class="shopSearchHeader">
             <form action="${pageContext.request.contextPath}/product" method="get">
@@ -61,7 +61,7 @@
         </div>
         <div id="J_Qrcode">
             <div class="mui-tm">
-                <a target="_blank" href="http://pages.tmall.com/wow/portal/act/app-download">
+                <a target="_blank" href="#">
                     <img class="type2-info"
                          src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/TB1c1dwRFXXXXaMapXXXXXXXXXX-259-81.png"/>
                     <img class="type2-qrcode"

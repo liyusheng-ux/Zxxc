@@ -67,6 +67,7 @@
                 if(table.find(">tbody>tr").length <= 1){
                     return;
                 }
+
                 //获取排序字段
                 dataList.orderBy = $(this).attr("data-name");
                 //是否倒序排序
@@ -174,7 +175,7 @@
 
             //设置样式
             $("#div_home_title").children("span").text(title);
-            document.title = "Tmall管理后台 - "+title;
+            document.title = "鞋城管理后台 - "+title;
             //ajax请求页面
             ajaxUtil.getPage(url,null,true);
         }

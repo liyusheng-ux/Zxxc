@@ -167,7 +167,7 @@
         function getChildPage(obj) {
             //设置样式
             $("#div_home_title").children("span").text("订单详情");
-            document.title = "Tmall管理后台 - 订单详情";
+            document.title = "鞋城管理后台 - 订单详情";
             //ajax请求页面
             ajaxUtil.getPage("order/" + $(obj).parents("tr").find(".order_id").text(), null, true);
         }
@@ -276,6 +276,7 @@
                     </c:when>
                     <c:otherwise><span class="td_error" title="交易关闭">交易关闭</span></c:otherwise>
                 </c:choose>
+
             </td>
             <td><span class="td_special" title="查看订单详情"><a href="javascript:void(0)" onclick="getChildPage(this)">详情</a></span>
             </td>

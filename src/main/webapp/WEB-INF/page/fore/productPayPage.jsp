@@ -3,7 +3,7 @@
 <head>
     <script src="${pageContext.request.contextPath}/res/js/fore/fore_reward.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/fore/fore_orderPay.css" rel="stylesheet"/>
-    <title>天猫tmall.com - 网上支付</title>
+    <title>鞋城- 网上支付</title>
     <style type="text/css">
         .frm_label{
             cursor: pointer;
@@ -82,7 +82,7 @@
     <div class="header">
         <div id="mallLogo">
             <a href="${pageContext.request.contextPath}"><img
-                    src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/tmallLogoA.png"></a>
+                    src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/zuo.png"></a>
         </div>
     </div>
 </nav>
@@ -91,15 +91,15 @@
         <c:choose>
             <c:when test="${fn:length(requestScope.productOrder.productOrderItemList)==1}">
                 <div class="order_name">
-                    <span>天猫Tmall -- ${requestScope.productOrder.productOrderItemList[0].productOrderItem_product.product_name}</span>
+                    <span>鞋城-- ${requestScope.productOrder.productOrderItemList[0].productOrderItem_product.product_name}</span>
                 </div>
                 <div class="order_shop_name">
-                    <span>卖家昵称：天猫${requestScope.productOrder.productOrderItemList[0].productOrderItem_product.product_category.category_name}旗舰店</span>
+                    <span>卖家昵称：鞋城${requestScope.productOrder.productOrderItemList[0].productOrderItem_product.product_category.category_name}旗舰店</span>
                 </div>
             </c:when>
             <c:otherwise>
                 <div class="order_name">
-                    <span>天猫Tmall -- 合并订单：${fn:length(requestScope.productOrder.productOrderItemList)}笔</span>
+                    <span>鞋城 -- 合并订单：${fn:length(requestScope.productOrder.productOrderItemList)}笔</span>
                 </div>
             </c:otherwise>
         </c:choose>
@@ -134,36 +134,6 @@
             }
         </script>
         <a class="order_pay_btn" href="javascript:void(0)" onclick="pay()">确认支付</a>
-    </div>
-    <div class="order_reward_div">
-        <p class="order_reward_header">作者的话</p>
-        <br/>
-        <p>首先感谢您看到这里</p>
-        <p>本项目是我和其他两个朋友空闲时间在校合作完成的一个商城demo</p>
-        <p>前后台业务代码，都是自主完成，后台都是专门设计的样式，前台是参考天猫自行开发界面</p>
-        <p>技术日新月异，目前我们在使用更流行的前后台技术栈，从而开源更多优质项目</p>
-        <p>但我们仍记得，我们对这个项目付出的热情和精力</p>
-        <p>在校开发不易，如对您有帮助，您可以打赏我们</p>
-        <p>您打赏后，可以留下您的付款昵称以便我们录入打赏榜，我们会对您的信息进行隐私处理，对您衷心表示感谢</p>
-        <form method="post" class="messageForm">
-            <label for="name" class="frm_label">昵称</label>
-            <input type="text" name="name" id="name" class="frm_input" maxlength="12">
-            <input id="checkbox_is_anonymous" name="checkbox_is_anonymous" type="checkbox" value="0">
-            <label class="frm_label" id="lbl_checkbox_is_anonymous" for="checkbox_is_anonymous">匿名</label>
-            <br/>
-            <label for="message" class="frm_label">留言</label>
-            <input type="text" name="message" id="message" class="frm_input" maxlength="100">
-            <input type="submit" class="frm_btn" id="reward_submit" value="提 交">
-        </form>
-        <br/>
-        <div class="order_reward_alipay_div">
-            <p class="order_reward_name" id="reward_alipay_name">支付宝</p>
-            <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/alipay.jpg"/>
-        </div>
-        <div class="order_reward_weixinpay_div">
-            <p class="order_reward_name" id="reward_weixin_name">微信</p>
-            <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/weixinpay.png">
-        </div>
     </div>
 </div>
 <%@include file="include/footer_two.jsp" %>

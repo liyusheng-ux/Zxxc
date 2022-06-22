@@ -98,4 +98,3 @@ spec:
     app: tmall
   sessionAffinity: None
   type: NodePort
-

@@ -3,7 +3,7 @@
 <head>
     <script src="${pageContext.request.contextPath}/res/js/fore/fore_productBuy.js"></script>
     <link href="${pageContext.request.contextPath}/res/css/fore/fore_productBuyPage.css" rel="stylesheet"/>
-    <title>确认订单 - Tmall.com天猫-理想生活上天猫</title>
+    <title>确认订单 -鞋城-理想生活上鞋城</title>
     <script>
         $(function () {
             $("span.address_province").text($("#select_order_address_province").find("option:selected").text());
@@ -95,7 +95,7 @@
             <c:forEach items="${requestScope.orderItemList}" var="orderItem" varStatus="i">
                 <tr class="tr_shop">
                     <td><span class="span_shopTitle">店铺：</span><span
-                            class="span_shopName">贤趣${orderItem.productOrderItem_product.product_category.category_name}旗舰店</span>
+                            class="span_shopName">鞋城${orderItem.productOrderItem_product.product_category.category_name}旗舰店</span>
                     </td>
                     <td></td>
                     <td></td>

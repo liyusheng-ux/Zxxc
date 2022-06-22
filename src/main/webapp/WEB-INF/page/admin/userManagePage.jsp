@@ -130,7 +130,7 @@
         function getChildPage(obj) {
             //设置样式
             $("#div_home_title").children("span").text("用户详情");
-            document.title = "Tmall管理后台 - 用户详情";
+            document.title = "鞋城管理后台 - 用户详情";
             //ajax请求页面
             ajaxUtil.getPage("user/" + $(obj).parents("tr").find(".user_id").text(), null, true);
         }
@@ -223,6 +223,7 @@
                 <td title="${user.user_realname}">${user.user_realname}</td>
                 <td title="${user.user_birthday}">${user.user_birthday}</td>
                 <td>
+
                     <c:choose>
                         <c:when test="${user.user_gender==0}">男</c:when>
                         <c:otherwise>女</c:otherwise>

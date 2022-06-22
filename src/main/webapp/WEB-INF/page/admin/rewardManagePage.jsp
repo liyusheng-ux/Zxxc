@@ -169,7 +169,7 @@
             alert("待完成")
             // //设置样式
             // $("#div_home_title").children("span").text("打赏详情");
-            // document.title = "Tmall管理后台 - 打赏详情";
+            // document.title = "鞋城管理后台 - 打赏详情";
             // //ajax请求页面
             // ajaxUtil.getPage("reward/" + $(obj).parents("tr").find(".reward_id").text(), null, true);
         }
@@ -284,3 +284,4 @@
 </div>
 </body>
 </html>
+

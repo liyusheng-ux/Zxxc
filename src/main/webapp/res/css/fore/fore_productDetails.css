@@ -31,7 +31,7 @@ nav {
 }
 
 .loginDiv > .loginDivHeader {
-    background: #FF0036 url(../../images/fore/WebsiteImage/TB1VLoORXXXXXc4XXXXXXXXXXXX-132-41.png) 20px 10px no-repeat;
+    background: white url(../../images/fore/WebsiteImage/login_head.png) 20px 10px no-repeat;
     height: 35px;
 }
 
@@ -42,7 +42,7 @@ nav {
     top: 10px;
     height: 16px;
     width: 16px;
-    background: #ff0036 url(../../images/fore/WebsiteImage/TB1VLoORXXXXXc4XXXXXXXXXXXX-132-41.png) 0 -25px no-repeat;
+    background: white url(../../images/fore/WebsiteImage/login_head.png) 0 -25px no-repeat;
 }
 
 .loginSwitch {

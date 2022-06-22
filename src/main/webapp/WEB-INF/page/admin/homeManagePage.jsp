@@ -138,7 +138,7 @@
                                     lineStyle: {        // 系列级个性化折线样式
                                         width: 2,
                                         type: 'dotted',
-                                        color: "ffdea4"
+                                        color: "#ffdea4"
                                     }
                                 }
                             }
@@ -200,7 +200,7 @@
                                     lineStyle: {        // 系列级个性化折线样式
                                         width: 2,
                                         type: 'dotted',
-                                        color: "dfbdd6"
+                                        color: "#dfbdd6"
                                     }
                                 }
                             }

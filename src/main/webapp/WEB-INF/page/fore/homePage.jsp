@@ -36,18 +36,16 @@
             <img src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/header_nav_title.png">
             <span>商品分类</span>
         </div>
-        <a href="https://chaoshi.tmall.com/" target="_blank"><img
-                src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/TB1ztBlaMMPMeJjy1XbXXcwxVXa-200-60.png"></a>
-        <a href="https://www.tmall.hk/" target="_blank"><img
-                src="${pageContext.request.contextPath}/res/images/fore/WebsiteImage/TB1t5ObaBxRMKJjy0FdXXaifFXa-200-60.png"></a>
-        <a href="http://vip.tmall.com/" target="_blank">天猫会员</a>
-        <a href="https://3c.tmall.com/" target="_blank">电器城</a>
-        <a href="https://miao.tmall.com/" target="_blank">喵鲜生</a>
-        <a href="http://yao.tmall.com/" target="_blank">医药馆</a>
-        <a href="http://wt.tmall.com/" target="_blank">营业厅</a>
-        <a href="https://meilihui.tmall.com/" target="_blank">魅力惠</a>
-        <a href="https://www.alitrip.com/" target="_blank">飞猪旅行</a>
-        <a href="https://suning.tmall.com/" target="_blank">苏宁易购</a>
+        <a href="#" target="_blank">鞋城会员</a>
+        <a href="#" target="_blank">品牌城</a>
+        <a href="#" target="_blank">男鞋</a>
+        <a href="#" target="_blank">女鞋</a>
+        <a href="#" target="_blank">童鞋</a>
+        <a href="#" target="_blank">魅力男鞋</a>
+        <a href="#" target="_blank">魅力女鞋</a>
+        <a href="#" target="_blank">高跟鞋</a>
+        <a href="#" target="_blank">高帮鞋</a>
+        <a href="#" target="_blank">低帮鞋</a>
     </div>
 </nav>
 <div class="banner">
