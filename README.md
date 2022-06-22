@@ -8,7 +8,7 @@
 所有页面均兼容IE10及以上现代浏览器。
 
 ### 部署方式
-1. 项目使用IntelliJ IDEA开发，请使用IntelliJ IDEA的版本控制检出功能，输入“<https://gitee.com/li-yusheng1/online-shoe-city.git>”或“<https://github.com/liyusheng-ux/Zxxc.git>”拉取项目即可。
+1. 项目使用IntelliJ IDEA开发，请使用IntelliJ IDEA的版本控制检出功能，输入“<https://gitee.com/li-yusheng1/Zxxc.git>”或“<https://github.com/liyusheng-ux/Zxxc.git>”拉取项目即可。
 2. 项目数据库为MySQL 5.7.9版本，在**sqls文件夹**中找到SQL文件并导入到数据库中。
 3. 使用IDEA打开项目后，在maven面板刷新项目，下载依赖包。
 4. 配置数据库连接并启动SpringBootApplication即可。
