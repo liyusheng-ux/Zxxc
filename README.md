@@ -24,25 +24,25 @@
 
 ### 项目界面
 + ##### 后台界面(部分)---
-<img src="src/main/webapp/res/images/dome/主页.jpg">
-<img src="src/main/webapp/res/images/dome/所有产品.jpg>
-<img src="src/main/webapp/res/images/dome/产品详情.jpg>
-<img src="src/main/webapp/res/images/dome/产品分类.jpg>
-<img src="src/main/webapp/res/images/dome/分类详情.jpg>
-<img src="src/main/webapp/res/images/dome/用户管理.jpg>
-<img src="src/main/webapp/res/images/dome/用户详情.jpg>
-<img src="src/main/webapp/res/images/dome/订单列表.jpg>
-<img src="src/main/webapp/res/images/dome/订单详情.jpg>
-<img src="src/main/webapp/res/images/dome/我的账户.jpg>
+<img src="screenshot/admin/主页.jpg">
+<img src="screenshot/admin/所有产品.jpg">
+<img src="screenshot/admin/产品详情.jpg">
+<img src="screenshot/admin/产品分类.jpg">
+<img src="screenshot/admin/分类详情.jpg">
+<img src="screenshot/admin/用户管理.jpg">
+<img src="screenshot/admin/用户详情.jpg">
+<img src="screenshot/admin/订单列表.jpg">
+<img src="screenshot/admin/订单详情.jpg">
+<img src="screenshot/admin/我的账户.jpg">
 + ##### 前台界面(部分)---
-<img src="src/main/webapp/res/images/demo2/登陆页面.jpg>
-<img src="src/main/webapp/res/images/demo2/首页.jpg>
-<img src="src/main/webapp/res/images/demo2/产品详情.jpg>
-<img src="src/main/webapp/res/images/demo2/下单页面.jpg>
-<img src="src/main/webapp/res/images/demo2/订单页面.jpg>
-<img src="src/main/webapp/res/images/demo2/确认收货.jpg>
-<img src="src/main/webapp/res/images/demo2/产品列表.jpg>
-<img src="src/main/webapp/res/images/demo2/购物车.jpg>
+<img src="screenshot/fore/登陆页面.jpg">
+<img src="screenshot/fore/首页.jpg">
+<img src="screenshot/fore/产品详情.jpg">
+<img src="screenshot/fore/下单页面.jpg">
+<img src="screenshot/fore/订单页面.jpg">
+<img src="screenshot/fore/确认收货.jpg">
+<img src="screenshot/fore/产品列表.jpg">
+<img src="screenshot/fore/购物车.jpg">
 
 ### 作者的话
 
