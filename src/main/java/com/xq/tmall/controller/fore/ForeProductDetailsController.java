@@ -19,7 +19,6 @@ import java.util.Random;
 
 /**
  * 产品详情页
- * @author 贤趣项目小组
  */
 @Controller
 public class ForeProductDetailsController extends BaseController {

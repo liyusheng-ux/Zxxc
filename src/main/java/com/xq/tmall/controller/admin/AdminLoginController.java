@@ -27,7 +27,6 @@ public class AdminLoginController extends BaseController {
         logger.info("转到后台管理-登录页");
         return "admin/loginPage";
     }
-
     //登陆验证-ajax
     @ResponseBody
     @RequestMapping(value = "admin/login/doLogin",method = RequestMethod.POST,produces = "application/json;charset=utf-8")

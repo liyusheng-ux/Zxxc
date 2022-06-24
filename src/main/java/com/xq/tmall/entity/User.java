@@ -7,7 +7,6 @@ import java.util.Locale;
 
 /**
  * 用户实体类
- * @author 贤趣项目小组
  */
 public class User {
     private Integer user_id/*用户ID*/;

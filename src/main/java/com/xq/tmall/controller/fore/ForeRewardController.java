@@ -20,7 +20,6 @@ import java.util.List;
 
 /**
  * 打赏信息管理
- * @author 贤趣项目小组
  */
 @Controller
 public class ForeRewardController extends BaseController {

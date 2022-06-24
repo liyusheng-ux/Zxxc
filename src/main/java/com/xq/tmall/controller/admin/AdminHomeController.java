@@ -120,7 +120,6 @@ public class AdminHomeController extends BaseController {
             return getChartData(null, null,7).toJSONString();
         }
     }
-
     /**
      * 按日期获取图表数据
      * @param beginDate 开始日期

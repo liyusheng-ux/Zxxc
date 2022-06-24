@@ -2,7 +2,6 @@ package com.xq.tmall.entity;
 
 /**
  * 订单项实体类
- * @author 贤趣项目小组
  */
 public class ProductOrderItem {
     private Integer productOrderItem_id/*订单项ID*/;

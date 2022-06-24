@@ -35,7 +35,6 @@ public class CategoryController extends BaseController {
     private LastIDService lastIDService;
     @Resource(name = "propertyService")
     private PropertyService propertyService;
-
     //转到后台管理-产品类型页-ajax
     @RequestMapping(value = "admin/category", method = RequestMethod.GET)
     public String goToPage(HttpSession session, Map<String, Object> map) {
