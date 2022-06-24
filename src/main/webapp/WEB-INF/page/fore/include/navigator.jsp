@@ -21,7 +21,7 @@
                     <em>嘿，欢迎来到在线鞋城</em>
                     <a href="${pageContext.request.contextPath}/login">请登录</a>
                     <a href="${pageContext.request.contextPath}/register">免费注册</a>
-                    <a href="https://gitee.com/li-yusheng1/online-shoe-city.git">码云项目地址</a>
+                    <a href="https://gitee.com/li-yusheng1/Zxxc.git">码云项目地址</a>
                 </c:when>
                 <c:otherwise>
                     <em>Hi，</em>
